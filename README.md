@@ -20,7 +20,7 @@
 | `/products/details-product/review/:id` | POST      | Review Product            |
 | `/products/request-product/:id`        | GET       | Request product           |
 | `/products/request-product/:id`        | POST      | Send Request product      |
-| `/products/create-new-products`        | POST      | Create new product        |
+| `/products/create-new-product`        | POST      | Create new product        |
 | `/products/delete/:id`                 | GET       | Delete product            |
 | `/products/edit/:id`                   | GET       | Edit product              |
 | `/products/edit/:id`                   | POST      | Edit product and upload   |

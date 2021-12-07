@@ -19,10 +19,13 @@ router.post('/signup', (req, res) => {
       const salt = bcrypt.genSaltSync(bcryptSalt)
       const hashPass = bcrypt.hashSync(password, salt)
 
+      console.log(email, username, password, bankAccount)
+
       User
-        .create({ username, email, password: hashPass, bankAccount,  imageUser })
+        .create({ username, email, password: hashPass, bankAccount})
         .then((user) => res.status(200).json(user))
-        .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating user', err: err.message }))
+        .catch(err => console.log(err))
+        //.catch(err => res.status(500).json({ code: 500, message: 'DB error while creating user', err: err.message }))
     })
     .catch(err => res.status(500).json({ code: 500, message: 'BDB error while fetching user', err: err.message }))
 })
@@ -40,11 +43,9 @@ router.post('/login', (req, res) => {
         res.status(401).json({ code: 401, message: 'Username not registered' })
         return
       }
-    
-      
+
       if (bcrypt.compareSync(password, user.password) === false) {
         res.status(401).json({ code: 401, message: 'Incorrect password' })
- 
         return
       }
 

@@ -37,7 +37,7 @@ const userSchema = new Schema(
     
     city:{
       type: String,
-      unique:true,
+      default:""
     },
     
     imageUser: {

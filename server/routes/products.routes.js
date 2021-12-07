@@ -53,7 +53,7 @@ router.post("/products/create-new-product", (req, res) => {
 
 //// Editar producto:
 
-router.put("/editProduct/:id", (req, res) => {
+router.put("/products/edit-product/:id", (req, res) => {
   const { id } = req.params;
   const {
     name,
@@ -86,7 +86,7 @@ router.put("/editProduct/:id", (req, res) => {
 
 //// Delete products:
 
-router.delete("/deleteProduct/:id", (req, res) => {
+router.delete("products/delete-product/:id", (req, res) => {
   const { id } = req.params;
 
   Products.findByIdAndDelete(id)

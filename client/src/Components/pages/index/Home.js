@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Container, Button } from "react-bootstrap";
+
+import { Container } from "react-bootstrap";
 
 const Home = () => {
   return (
