@@ -19,9 +19,8 @@ class LoginPage extends Component {
 
     this.authService.login(this.state.email, this.state.password)
       .then(response => {
-        //this.props.sto(response.data)
         this.props.history.push("/")
-
+        this.props.storeUser(response.data)
       })
       .catch(err => console.log(err.response.data.message))
   }
@@ -67,3 +66,19 @@ class LoginPage extends Component {
 }
 
 export default LoginPage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
