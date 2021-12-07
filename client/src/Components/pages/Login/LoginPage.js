@@ -19,10 +19,8 @@ class LoginPage extends Component {
 
     this.authService.login(this.state.email, this.state.password)
       .then(response => {
-        // this.props.storeEmail(response.data)
-
-        // this.props.history.push("/coaster-list")
-
+        this.props.history.push("/")
+        this.props.storeUser(response.data)
       })
       .catch(err => console.log(err.response.data.message))
   }
@@ -45,7 +43,7 @@ class LoginPage extends Component {
               <hr />
 
               <Form onSubmit={this.handleSubmit}>
-                <Form.Group className="mb-3" controlId="username">
+                <Form.Group className="mb-3" controlId="email">
                   <Form.Label>Email</Form.Label>
                   <Form.Control onChange={this.handleInputChange} value={this.state.email} name="email" type="text" placeholder="Email" />
                 </Form.Group>
@@ -68,3 +66,19 @@ class LoginPage extends Component {
 }
 
 export default LoginPage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -57,7 +57,7 @@ class SignupPage extends Component {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="bankAccount">
-                <Form.Label>Bank Accout</Form.Label>
+                <Form.Label>Bank Account</Form.Label>
                 <Form.Control onChange={this.handleInputChange} value={this.state.bankAccount} name="bankAccount" type="text" placeholder="Please write your bank accout" />
               </Form.Group>
 

@@ -7,9 +7,12 @@ class ProductService {
     })
   }
 
-  // getAllCoasters = () => this.app.get("/allProducts")
-  // getOneCoaster = (id) => this.app.get(`/product/${id}`)
-  // createCoaster = (productData) => this.app.post("/newProduct", productData)
+  getAllProducts = () => this.app.get("/")
+  getProductsSearch = (name, city) => this.app.get(`/product/${name}/${city}`)
+  getOneProduct = (id) => this.app.get(`/details-product/${id}`)
+  createProduct = (productData) => this.app.post("/create-new-product", productData)
+  editProduct = (id) => this.app.put (`/edit-product/${id}`)
+  deleteProduct = (id) => this.app.delete (`/delete-product/${id}`)
 }
 
 export default ProductService

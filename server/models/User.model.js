@@ -1,17 +1,16 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
 const userSchema = new Schema(
   {
     email: {
       type: String,
-      unique:true,
+      //unique:true,
       required  : [ true, 'The email is required' ], 
     },
     
     username:{
       type: String,
-      unique:true,
+      //unique:true,
       required  : [ true, 'The username is required' ], 
       maxlength : 12,
     },
@@ -35,11 +34,11 @@ const userSchema = new Schema(
     
     bankAccount: Number,
     
-    city:{
+    city: {
       type: String,
-      unique:true,
+      default:" ",
     },
-    
+  
     imageUser: {
       type: String,
       default: '/images/person-icon-default.png'
