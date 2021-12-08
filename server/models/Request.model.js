@@ -26,7 +26,7 @@ const requestSchema = new Schema(
         default:'PENDING',
       },
 
-      idProduct:{
+    idProduct:{
         type: Schema.Types.ObjectId,
         ref: "Product"
     },

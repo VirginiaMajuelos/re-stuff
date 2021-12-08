@@ -12,9 +12,8 @@ class AuthService {
   login = (email, password) => this.app.post("/login", { email, password })
   logout = () => this.app.get("/logout")
   isloggedin = () => this.app.get("/isloggedin")
-  getEdit = (id) => this.app.get(`profile/${id}`)
-  editProfile = (id) => this.app.get(`/edit-profile/${id}`)
-  editProfile = (id) => this.app.post(`/edit-profile/${id}`)
+  getEditProfile = (id) => this.app.get(`profile/${id}`)
+  editProfile = (id) => this.app.put(`/edit-profile/${id}`)
 }
 
 export default AuthService

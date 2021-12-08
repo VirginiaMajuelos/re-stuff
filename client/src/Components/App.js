@@ -10,6 +10,7 @@ import NewProduct from './pages/Forms/NewProduct';
 import ProductsPage from './pages/Products/ProductsPage'
 import ProductDetails from './pages/Products/ProductDetails';
 import ProductEdit from './pages/Products/ProductEdit';
+import ProfilePage from './pages/Profile/ProfilePage'
 
 class App extends Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class App extends Component {
             <Route path="/products/request/:id" loggedUser={this.state.loggedUser} exact render={(props) => <ProductDetails loggedUser={this.state.loggedUser} {...props} />} />
             <Route path="/products/details-product/:id" exact render={(props) => <ProductDetails {...props} />} />
 
+            <Route path="/profile" render={(props) => <ProfilePage {...props} loggedUser={this.state.loggedUser} storeUser={this.storeUser} />} />
 
             {this.state.loggedUser ?
             <>
