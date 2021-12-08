@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Container, Row } from 'react-bootstrap'
 import ProductService from '../../../services/product.service'
 
 export default class NewProduct extends Component {
@@ -62,27 +62,29 @@ export default class NewProduct extends Component {
           <Form.Control onChange={this.handleInputChange} value={this.state.description} name="description" type="text" />
         </Form.Group>
 
+        
+
+        {/* <Form.Group className="mb-3" controlId="categorie">
+          <Form.Label>Categorie</Form.Label>
+          <Form.Control onChange={this.handleInputChange} value={this.state.categorie} name="categorie" type="text" />
+        </Form.Group> */}
+
+        <Form.Group className="mb-3" controlId="categorie">
+          <Form.Label>Categorie</Form.Label>
+           <Form.Select onChange={this.handleInputChange} value={this.state.categorie} name="categorie" aria-label="Floating label select example">
+              <option>Open this select categorie</option>
+              <option value="TECNOLOGIE" name="categorie">TECNOLOGIE</option>
+              <option value="SPORTS">SPORTS</option>
+              <option value="FURNITURE">FURNITURE</option>
+              <option value="GAMES">GAMES</option>
+              <option value="CULTURE">CULTURE</option>
+        </Form.Select>
+        </Form.Group>
+
         <Form.Group className="mb-3" controlId="cityProduct">
           <Form.Label>City Product</Form.Label>
           <Form.Control onChange={this.handleInputChange} value={this.state.cityProduct} name="cityProduct" type="text" />
         </Form.Group>
-
-        <Form.Group className="mb-3" controlId="categorie">
-          <Form.Label>Categorie</Form.Label>
-          <Form.Control onChange={this.handleInputChange} value={this.state.categorie} name="categorie" type="text" />
-        </Form.Group>
-
-        {/* <Form.Group className="mb-3" controlId="categorie">
-          <Form.Label>Categorie</Form.Label>
-           <Form.Select aria-label="Floating label select example">
-              <option>Open this select categorie</option>
-              <option value="1">TECNOLOGIE</option>
-              <option value="2">SPORTS</option>
-              <option value="3">FURNITURE</option>
-              <option value="4">GAMES</option>
-              <option value="5">CULTURE</option>
-        </Form.Select>
-        </Form.Group> */}
 
         {/* <Form.Group className="mb-3" controlId="cityProduct">
           <Form.Label>City</Form.Label>

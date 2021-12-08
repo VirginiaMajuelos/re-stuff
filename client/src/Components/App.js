@@ -40,7 +40,7 @@ class App extends Component {
           <Switch>
             <Route path="/" exact render={() => <Home />} />
             <Route path="/products/create-new-product" render={() => <NewProduct  storeUser={this.storeUser} />} />
-            <Route path="/products" render={() => <ProductsPage storeUser={this.storeUser} />} />
+            <Route path="/products" render={(props) => <ProductsPage {...props} storeUser={this.storeUser} />} />
 
             {this.state.loggedUser ?
             <>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Container } from 'react-bootstrap'
 import ProductList from './ProductsList'
-// import ProductService from '../../../services/product.service'
+import ProductService from '../../../services/product.service'
 
 
 class ProductPage extends Component {
@@ -13,20 +13,20 @@ class ProductPage extends Component {
     
     }
 
-  // this.service = new ProductService()
-  // }
-  // componentDidMount() {
-  //   this.refreshProducts()
-  // }
-  // refreshProducts = () => {
-  //   this.service.getAllProducts()
-  //     .then(response => {
-  //       const products = response.data
-  //       this.setState({ products: products })
-  //     })
-  //     .catch(err => console.log(err))
-  // }
+ this.service = new ProductService()
   }
+   componentDidMount() {
+  this.refreshProducts()
+  }
+   refreshProducts = () => {
+     this.service.getAllProducts()
+       .then(response => {
+        const products = response.data
+        this.setState({ products: products })
+       })
+       .catch(err => console.log(err))
+   }
+  
   render() {
     return (
       <Container>
