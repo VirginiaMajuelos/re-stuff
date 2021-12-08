@@ -19,8 +19,6 @@ router.post('/signup', (req, res) => {
       const salt = bcrypt.genSaltSync(bcryptSalt)
       const hashPass = bcrypt.hashSync(password, salt)
 
-      console.log(email, username, password, bankAccount)
-
       User
         .create({ username, email, password: hashPass, bankAccount})
         .then((user) => res.status(200).json(user))
@@ -50,7 +48,6 @@ router.post('/login', (req, res) => {
       }
 
       req.session.currentUser = user
-      console.log(req.session.currentUser)
       res.json(req.session.currentUser)
     })
     .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err }))

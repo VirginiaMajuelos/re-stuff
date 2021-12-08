@@ -1,25 +1,37 @@
 import React, { Component } from 'react'
-import { Container, Row } from 'react-bootstrap'
-import { ProductsList } from '../Products/ProductsList'
+import { Container } from 'react-bootstrap'
+import ProductList from './ProductsList'
+// import ProductService from '../../../services/product.service'
 
 
 class ProductPage extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
 
     this.state = {
+      products: []
     
     }
+
+  // this.service = new ProductService()
+  // }
+  // componentDidMount() {
+  //   this.refreshProducts()
+  // }
+  // refreshProducts = () => {
+  //   this.service.getAllProducts()
+  //     .then(response => {
+  //       const products = response.data
+  //       this.setState({ products: products })
+  //     })
+  //     .catch(err => console.log(err))
+  // }
   }
-
-
-
-  render(props) {
+  render() {
     return (
       <Container>
-      <Row>
-        <ProductsList/>
-        </Row>
+      <h1>Product List</h1>
+      <ProductList refreshProducts={this.refreshProducts} products={this.state.products} />
       </Container>
     )
   }

@@ -1,28 +1,34 @@
 import React, { Component } from 'react'
-import { Container} from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
+import ProductsCard from './ProductsCard'
 
-
-
-class ProductPage extends Component {
+class ProductsList extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-    
+     
     }
   }
 
-
-
-  render(props) {
+  render() {
     return (
-      <Container>
-      holi
-    
-      </Container>
+      <div>
+        
+        <Row>
+          {this.props.products.map(elm => {
+
+            return (
+              <Col key={elm._id}>
+                <ProductsCard  {...elm} />
+              </Col>
+            )
+          })
+          }
+        </Row>
+      </div>
     )
   }
-
 }
 
-export default ProductPage
+export default ProductsList

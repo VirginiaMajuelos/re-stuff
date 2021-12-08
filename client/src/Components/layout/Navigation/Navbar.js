@@ -8,7 +8,7 @@ const authService = new AuthService()
 
 const Navigation = ({ loggedUser, storeUser }) => {
 
-
+  // const navigate = useNavigate()
   const history = useHistory();
 
   const logout = () => {
