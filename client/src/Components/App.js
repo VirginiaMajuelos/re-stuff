@@ -6,6 +6,7 @@ import Navbar from './layout/Navigation/Navbar'
 import SignupPage from './pages/Singup/SignupPage'
 import LoginPage from './pages/Login/LoginPage';
 import AuthService from '../services/auth.service';
+import NewProduct from './pages/Forms/NewProduct';
 
 class App extends Component {
   constructor(props) {
@@ -37,9 +38,12 @@ class App extends Component {
         <main>
           <Switch>
             <Route path="/" exact render={() => <Home />} />
-            
+            <Route path="/products/create-new-product" render={() => <NewProduct  storeUser={this.storeUser} />} />
+
             {this.state.loggedUser ?
+            <>
               <Redirect to="/" />
+             </>
               :
               <>
             <Route path="/signup" render={(props) => <SignupPage {...props} storeUser={this.storeUser} />} />

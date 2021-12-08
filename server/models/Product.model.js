@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const productSchema = new Schema(
   {
-    imageURL: String,
+    imageUrl: String,
     
     name:{
         type: String,
@@ -37,6 +37,7 @@ const productSchema = new Schema(
       
     cityProduct:{
         type: String,
+        enum: ['ÁLAVA', 'ALBACETE', 'ALICANTE', 'ALMERÍA', 'ASTURIAS', 'ÁVILA', 'BADAJOZ', 'BARCELONA', 'BURGOS', 'CÁCERES', 'CÁDIZ', 'CANTABRIACASTELLÓN', 'CIUDAD REAL', 'CÓRDOBALA', 'CORUÑA', 'CUENCAGERONA', 'GRANADA', 'GUADALAJARA', 'GUIPÚZCOA', 'HUELVA', 'HUESCA', 'BALEARES', 'JAÉN', 'LEÓNLÉRIDA', 'LUGO', 'MADRID', 'MÁLAGA', 'MURCIA', 'NAVARRA', 'ORENSE', 'PALENCIALAS', 'PALMAS', 'PONTEVEDRA', 'LA RIOJA', 'SALAMANCA', 'SEGOVIA', 'SEVILLA', 'SORIA', 'TARRAGONA', 'SANTA CRUZ DE TENERIFE', 'TERUEL', 'TOLEDOVALENCIA', 'VALLADOLID', 'VIZCAYAZAMORA', 'ZARAGOZA'],
         required  : [ true, 'The name of the product is required' ], 
       },
       

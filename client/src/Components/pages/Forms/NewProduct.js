@@ -1,29 +1,33 @@
 import React, { Component } from 'react'
-import { Form, Button } from 'react-bootstrap'
-import CoasterService from '../services/product.service'
+import { Form, Container, Button, Row } from 'react-bootstrap'
+import ProductService from '../../../services/product.service'
 
-export default class NewCoasterForm extends Component {
+
+
+export default class NewProduct extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      title: "",
+      imageUrl: "",
+      name: "",
+      price: "",
       description: "",
-      length: "",
-      inversions: "",
-      imageUrl: ""
+      categorie: "",
+      cityProduct: "",
+      postCode: "",
     }
 
-    this.service = new CoasterService()
+    this.productService = new ProductService()
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
 
-    this.service.createCoaster(this.state)
+    this.productService.createProduct(this.state)
       .then(response => {
-        this.props.closeModal()
-        this.props.refreshCoasters()
+        
+        this.props.refreshProduct()
       })
       .catch(err => console.log(err))
 
@@ -35,14 +39,24 @@ export default class NewCoasterForm extends Component {
     this.setState({ [name]: value })
   }
 
-
-
   render() {
     return (
+      <Container style={{padding:"60px"}}>
+      <Row>
       <Form onSubmit={this.handleSubmit}>
-        <Form.Group className="mb-3" controlId="title">
-          <Form.Label>Title</Form.Label>
-          <Form.Control onChange={this.handleInputChange} value={this.state.title} name="title" type="text" />
+        <Form.Group className="mb-3" controlId="imageUrl">
+          <Form.Label>Url de la imagen</Form.Label>
+          <Form.Control onChange={this.handleInputChange} value={this.state.imageUrl} name="imageUrl" type="text" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="name">
+          <Form.Label>Name</Form.Label>
+          <Form.Control onChange={this.handleInputChange} value={this.state.name} name="name" type="text" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="price">
+          <Form.Label>Price</Form.Label>
+          <Form.Control onChange={this.handleInputChange} value={this.state.price} name="price" type="number" />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="description">
@@ -50,25 +64,28 @@ export default class NewCoasterForm extends Component {
           <Form.Control onChange={this.handleInputChange} value={this.state.description} name="description" type="text" />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="length">
-          <Form.Label>Longitud</Form.Label>
-          <Form.Control onChange={this.handleInputChange} value={this.state.length} name="length" type="text" />
+        <Form.Group className="mb-3" controlId="categorie">
+          <Form.Label>Categorie</Form.Label>
+          {/* <Select options={this.props.categorie} /> */}
+          <Form.Control onChange={this.handleInputChange} value={this.state.categorie} name="categorie" type="text" />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="inversions">
-          <Form.Label>Inversiones</Form.Label>
-          <Form.Control onChange={this.handleInputChange} value={this.state.inversions} name="inversions" type="text" />
+        <Form.Group className="mb-3" controlId="cityProduct">
+          <Form.Label>City Product</Form.Label>
+          <Form.Control onChange={this.handleInputChange} value={this.state.cityProduct} name="cityProduct" type="text" />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="imageUrl">
-          <Form.Label>Url de la imagen</Form.Label>
-          <Form.Control onChange={this.handleInputChange} value={this.state.imageUrl} name="imageUrl" type="text" />
+        <Form.Group className="mb-3" controlId="postCode">
+          <Form.Label>Post Code</Form.Label>
+          <Form.Control onChange={this.handleInputChange} value={this.state.postCode} name="postCode" type="number" />
         </Form.Group>
 
         <Button variant="primary" type="submit">
           Submit
         </Button>
       </Form>
+      </Row>
+      </Container>
     )
   }
 }
