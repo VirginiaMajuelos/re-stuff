@@ -21,10 +21,11 @@ export default class NewProduct extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
+console.log(this.state)
     this.productService.createProduct(this.state)
       .then(response => {
-        this.props.refreshProduct()
+        // this.props.refreshProduct()
+        console.log(response)
         this.props.history.push("/")
       })
       .catch(err => console.log(err))
@@ -62,28 +63,27 @@ export default class NewProduct extends Component {
           <Form.Control onChange={this.handleInputChange} value={this.state.description} name="description" type="text" />
         </Form.Group>
 
-        
-
         {/* <Form.Group className="mb-3" controlId="categorie">
           <Form.Label>Categorie</Form.Label>
           <Form.Control onChange={this.handleInputChange} value={this.state.categorie} name="categorie" type="text" />
         </Form.Group> */}
 
+        <Form.Group className="mb-3" controlId="cityProduct">
+          <Form.Label>City Product</Form.Label>
+          <Form.Control onChange={this.handleInputChange} value={this.state.cityProduct} name="cityProduct" type="text" />
+        </Form.Group>
+
+
         <Form.Group className="mb-3" controlId="categorie">
           <Form.Label>Categorie</Form.Label>
-           <Form.Select onChange={this.handleInputChange} value={this.state.categorie} name="categorie" aria-label="Floating label select example">
+           <Form.Select onChange={this.handleInputChange} aria-label="Floating label select example" name="categorie">
               <option>Open this select categorie</option>
-              <option value="TECNOLOGIE" name="categorie">TECNOLOGIE</option>
+              <option value="TECNOLOGIE">TECNOLOGIE</option>
               <option value="SPORTS">SPORTS</option>
               <option value="FURNITURE">FURNITURE</option>
               <option value="GAMES">GAMES</option>
               <option value="CULTURE">CULTURE</option>
         </Form.Select>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="cityProduct">
-          <Form.Label>City Product</Form.Label>
-          <Form.Control onChange={this.handleInputChange} value={this.state.cityProduct} name="cityProduct" type="text" />
         </Form.Group>
 
         {/* <Form.Group className="mb-3" controlId="cityProduct">

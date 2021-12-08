@@ -28,7 +28,7 @@ const Navigation = ({ loggedUser, storeUser }) => {
           <>
             <Nav.Link as={"span"} onClick={logout}>Logout</Nav.Link>
             <Nav.Link as={Link} to="/products/create-new-product">New product</Nav.Link>
-            <Nav.Link as={Link} to="/products">Product</Nav.Link>
+            <Nav.Link as={Link} to="/profile/:id">Profile</Nav.Link>
             </>
             :
             <>

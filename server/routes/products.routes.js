@@ -36,8 +36,10 @@ router.get("/details-product/:id", (req, res) => {
 
 router.post("/create-new-product", (req, res) => {
   const { name, description, imageUrl, price, categorie, cityProduct, postCode } = req.body;
+console.log(req.body)
 
   Product.create({
+    owner: req.session.currentUser._id,
     name,
     description,
     imageUrl,
@@ -47,7 +49,7 @@ router.post("/create-new-product", (req, res) => {
     postCode,
   })
     .then((newProduct) => res.json(newProduct))
-    .catch((err) => res.json({ err, errMessage: "error creating a new product" }));
+    .catch((err) => res.status(500).json({ err, errMessage: "error creating a new product" }));
 });
 
 
