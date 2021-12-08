@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import AuthService from '../../../services/auth.service'
 
 const authService = new AuthService()
@@ -8,9 +8,13 @@ const authService = new AuthService()
 
 const Navigation = ({ loggedUser, storeUser }) => {
 
+  // const navigate = useNavigate()
+  const history = useHistory();
+
   const logout = () => {
     authService.logout()
       .then(response => storeUser(null))
+      .then(() => history.push('/'))
       .catch(err => console.log(err))
   }
 

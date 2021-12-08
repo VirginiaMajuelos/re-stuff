@@ -3,7 +3,7 @@ import axios from 'axios'
 class ProductService {
   constructor() {
     this.app = axios.create({
-      baseURL: 'http://localhost:3000/products'
+      baseURL: 'http://localhost:5005/products'
     })
   }
 
