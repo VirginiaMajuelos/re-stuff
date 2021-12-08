@@ -39,7 +39,7 @@ router.post("/create-new-product", (req, res) => {
 console.log(req.body)
 
   Product.create({
-    owner: req.session.currentUser._id,
+    // owner: req.session.currentUser._id,
     name,
     description,
     imageUrl,

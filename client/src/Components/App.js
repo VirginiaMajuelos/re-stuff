@@ -8,6 +8,7 @@ import LoginPage from './pages/Login/LoginPage';
 import AuthService from '../services/auth.service';
 import NewProduct from './pages/Forms/NewProduct';
 import ProductsPage from './pages/Products/ProductsPage'
+import ProfilePage from './pages/Profile/ProfilePage'
 
 class App extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class App extends Component {
             <Route path="/" exact render={() => <Home />} />
             <Route path="/products/create-new-product" render={(props) => <NewProduct {...props} storeUser={this.storeUser} />} />
             <Route path="/products" render={(props) => <ProductsPage {...props} storeUser={this.storeUser} />} />
+            <Route path="/profile" render={(props) => <ProfilePage {...props} loggedUser={this.state.loggedUser} storeUser={this.storeUser} />} />
 
             {this.state.loggedUser ?
             <>

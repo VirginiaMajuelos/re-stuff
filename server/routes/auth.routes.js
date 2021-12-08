@@ -3,6 +3,8 @@ const User = require("../models/User.model")
 const bcrypt = require("bcrypt")
 const bcryptSalt = 10
 
+//// Sign 
+
 router.post('/signup', (req, res) => {
 
   const { email, username, password, bankAccount } = req.body
@@ -28,6 +30,7 @@ router.post('/signup', (req, res) => {
     .catch(err => res.status(500).json({ code: 500, message: 'BDB error while fetching user', err: err.message }))
 })
 
+////  Login
 
 router.post('/login', (req, res) => {
 
@@ -53,6 +56,7 @@ router.post('/login', (req, res) => {
     .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err }))
 })
 
+////Logout
 
 router.get('/logout', (req, res) => {
   console.log(req.session.currentUser)
@@ -62,5 +66,31 @@ router.get('/logout', (req, res) => {
 router.get("/isloggedin", (req, res) => {
   req.session.currentUser ? res.json(req.session.currentUser) : res.status(401).json({ code: 401, message: 'Unauthorized' })
 })
+
+//// Profile
+
+router.get('/profile/:id', (req, res) => {
+const { id } = req.params;
+
+  User.findById(id)
+    .then((theUser) => res.json(theUser))
+    .catch((err) =>
+      res.json({ err, errMessage: "Error looking profile" })
+    );
+});
+
+
+/// Edit profile
+
+router.put("/edit-profile/:id", (req, res) => {
+  const { id } = req.params;
+  const {email, username, description, city, imageUser, productLike} = req.body;
+
+  User.findByIdAndUpdate(
+    id,{email, username, description, city, imageUser, productLike},
+    { new: true })
+    .then((updatedProfile) => res.json(updatedProfile))
+    .catch((err) => res.json({ err, errMessage: "Error editing product" }));
+});
 
 module.exports = router

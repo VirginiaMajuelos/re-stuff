@@ -83,6 +83,7 @@ console.log(this.state)
               <option value="FURNITURE">FURNITURE</option>
               <option value="GAMES">GAMES</option>
               <option value="CULTURE">CULTURE</option>
+              <option value="HOME">HOME</option>
         </Form.Select>
         </Form.Group>
 

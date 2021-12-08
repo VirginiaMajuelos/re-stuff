@@ -31,7 +31,7 @@ const productSchema = new Schema(
       
     categorie: {
         type: String,
-        enum: ['TECNOLOGIE', 'SPORTS', 'FURNITURE', 'GAMES', 'CULTURE' ],
+        enum: ['TECNOLOGIE', 'SPORTS', 'FURNITURE', 'GAMES', 'CULTURE', 'HOME' ],
         required: true,
       },
       
