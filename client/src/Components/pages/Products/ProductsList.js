@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Button,Modal } from 'react-bootstrap'
 import ProductsCard from './ProductsCard'
 
 class ProductsList extends Component {
@@ -14,13 +14,13 @@ class ProductsList extends Component {
   render() {
     return (
       <div>
-        
+
         <Row>
           {this.props.products.map(elm => {
 
             return (
               <Col key={elm._id}>
-                <ProductsCard  {...elm} />
+                <ProductsCard {...elm} />
               </Col>
             )
           })

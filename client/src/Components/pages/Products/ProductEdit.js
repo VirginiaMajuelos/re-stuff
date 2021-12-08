@@ -7,7 +7,6 @@ class ProductDetails extends Component {
     super(props)
 
     this.state = {
-      imageUrl: "",
       name: "",
       price: "",
       description: "",
@@ -27,37 +26,35 @@ componentDidMount() {
   this.service.getOneProduct(id)
     .then(response => {
 
-      const { imageUrl, name, description, status, categorie, cityProduct, postCode, owner } = response.data
-      this.setState({ imageUrl, name, description, status, categorie, cityProduct, postCode, owner })
+      const { name, description, status, categorie, cityProduct, postCode, owner } = response.data
+      this.setState({ name, description, status, categorie, cityProduct, postCode, owner })
     })
     .catch(err => console.log(err))
 }
 
   render(){
-    const {imageUrl, name, description, status, categorie, cityProduct, postCode, owner } = this.state
+    const {name, description, status, categorie, cityProduct, postCode, owner } = this.state
 
     return (
       <Container>
-        <h1>Detalles</h1>
+        <h1>Edit</h1>
       
         <Row className="justify-content-around">
           <Col md={6} style={{ overflow: "hidden" }}>
-            
-            <img src={imageUrl} alt={name} style={{width:'100vh'}}/>
-             
-          </Col>
-          <Col md={6}>
             <article>
-             <h2>{name} </h2>
-             <p>{description}</p>
+              <h2>{name} {description}</h2>
+              
               <p>{status}</p>
               <p>{categorie}</p>
               <p>{description}</p>
               <p>{cityProduct}</p>
               <p>{postCode}</p>
               <p>{owner}</p>
-              </article>
-
+              
+              
+            </article>
+          </Col>
+          <Col md={4}>
           </Col>
         </Row>
       </Container>

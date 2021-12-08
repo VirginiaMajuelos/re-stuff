@@ -21,12 +21,12 @@ export default class NewProduct extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-console.log(this.state)
-    this.productService.createProduct(this.state)
+
+    this.productService.createProduct({...this.state, owner: this.props.loggedUser})
       .then(response => {
         // this.props.refreshProduct()
         console.log(response)
-        this.props.history.push("/")
+        this.props.history.push("/products")
       })
       .catch(err => console.log(err))
 
@@ -63,85 +63,74 @@ console.log(this.state)
           <Form.Control onChange={this.handleInputChange} value={this.state.description} name="description" type="text" />
         </Form.Group>
 
-        {/* <Form.Group className="mb-3" controlId="categorie">
-          <Form.Label>Categorie</Form.Label>
-          <Form.Control onChange={this.handleInputChange} value={this.state.categorie} name="categorie" type="text" />
-        </Form.Group> */}
-
         <Form.Group className="mb-3" controlId="cityProduct">
-          <Form.Label>City Product</Form.Label>
-          <Form.Control onChange={this.handleInputChange} value={this.state.cityProduct} name="cityProduct" type="text" />
-        </Form.Group>
-
+          <Form.Label>City</Form.Label>
+           <Form.Select onChange={this.handleInputChange}  aria-label="Floating label select example" name="cityProduct">
+              <option>Open your city</option>
+              <option value="ÁLAVA">Álava</option>
+              <option value="ALBACETE">Albacete</option>
+              <option value="ALICANTE">Alicante</option>
+              <option value="ALMERÍA">Almería</option>
+              <option value="ASTURIAS">Asturias</option>
+              <option value="ÁVILA">Ávila</option>
+              <option value="BADAJOZ">Badajoz</option>
+              <option value="BARCELONA">Barcelona</option>
+              <option value="BURGOS">Burgos</option>
+              <option value="CÁCERES">Cáceres</option>
+              <option value="CÁDIZ">Cádiz</option>
+              <option value="CANTABRIA">Cantabria</option>
+              <option value="CASTELLÓN">Castellón</option>
+              <option value="CIUDAD REAL">Ciudad Real</option>
+              <option value="CÓRDOBA">Córdoba</option>
+              <option value="LA CORUÑA">La Coruña</option>
+              <option value="CUENCA">Cuenca</option>
+              <option value="GERONA">Gerona</option>
+              <option value="GRANADA">Granada</option>
+              <option value="GUADALAJARA">Guadalajara</option>
+              <option value="GUIPÚZCOA">Guipúzcoa</option>
+              <option value="HUELVA">Huelva</option>
+              <option value="HUESCA">Huesca</option>
+              <option value="BALEARES">Baleares</option>
+              <option value="JAÉN">Jaén</option>
+              <option value="LEÓN">León</option>
+              <option value="LÉRIDA">Lérida</option>
+              <option value="LUGO">Lugo</option>
+              <option value="MADRID">Madrid</option>
+              <option value="MÁLAGA">Málaga</option>
+              <option value="MURCIA">Murcia</option>
+              <option value="NAVARRA">Navarra</option>
+              <option value="ORENSE">Orense</option>
+              <option value="PALENCIA">Palencia</option>
+              <option value="LAS PALMAS">Las Palmas</option>
+              <option value="PONTEVEDRA">Pontevedra</option>
+              <option value="LA RIOJA">La Rioja</option>
+              <option value="SALAMANCA">Salamanca</option>
+              <option value="SEGOVIA">Segovia</option>
+              <option value="SEVILLA">Sevilla</option>
+              <option value="SORIA">Soria</option>
+              <option value="TARRAGONA">Tarragona</option>
+              <option value="SANTA CRUZ DE TENERIFE">Santa Cruz de Tenerife</option>
+              <option value="TERUEL">Teruel</option>
+              <option value="TOLEDO">Toledo</option>
+              <option value="VALENCIA">Valencia</option>
+              <option value="VALLADOLID">Valladolid </option>
+              <option value="VIZCAYA">Vizcaya</option>
+              <option value="ZAMORA">Zamora</option>
+              <option value="ZARAGOZA">Zaragoza</option>
+        </Form.Select>
+        </Form.Group> 
 
         <Form.Group className="mb-3" controlId="categorie">
           <Form.Label>Categorie</Form.Label>
            <Form.Select onChange={this.handleInputChange} aria-label="Floating label select example" name="categorie">
               <option>Open this select categorie</option>
-              <option value="TECNOLOGIE">TECNOLOGIE</option>
-              <option value="SPORTS">SPORTS</option>
-              <option value="FURNITURE">FURNITURE</option>
-              <option value="GAMES">GAMES</option>
-              <option value="CULTURE">CULTURE</option>
+              <option value="TECNOLOGIE">Tecnologie</option>
+              <option value="SPORTS">Sports</option>
+              <option value="FURNITURE">Furniture</option>
+              <option value="GAMES">Games</option>
+              <option value="CULTURE">Culture</option>
         </Form.Select>
         </Form.Group>
-
-        {/* <Form.Group className="mb-3" controlId="cityProduct">
-          <Form.Label>City</Form.Label>
-           <Form.Select aria-label="Floating label select example">
-              <option>Open your city</option>
-              <option value="1">ÁLAVA</option>
-              <option value="2">ALBACETE</option>
-              <option value="3">ALICANTE</option>
-              <option value="4">ALMERÍA</option>
-              <option value="5">ASTURIAS </option>
-              <option value="6">ÁVILA</option>
-              <option value="7">BADAJOZ</option>
-              <option value="8">BARCELONA</option>
-              <option value="9">BURGOS</option>
-              <option value="10">CÁCERES</option>
-              <option value="11">CÁDIZ</option>
-              <option value="12">CANTABRIA</option>
-              <option value="13">CASTELLÓN</option>
-              <option value="14">CIUDAD REAL</option>
-              <option value="15">CÓRDOBA</option>
-              <option value="16">CORUÑA</option>
-              <option value="17">CUENCA</option>
-              <option value="18">GERONA</option>
-              <option value="19">GRANADA</option>
-              <option value="20">GUADALAJARA</option>
-              <option value="21">GUIPÚZCOA</option>
-              <option value="22">HUELVA</option>
-              <option value="23">HUESCA</option>
-              <option value="24">BALEARES</option>
-              <option value="25">JAÉN</option>
-              <option value="26">LEÓN</option>
-              <option value="27">LÉRIDA</option>
-              <option value="28">LUGO</option>
-              <option value="29">MADRID</option>
-              <option value="30">MÁLAGA</option>
-              <option value="31">MURCIA</option>
-              <option value="32">NAVARRA</option>
-              <option value="33">ORENSE</option>
-              <option value="34">PALENCIA</option>
-              <option value="35">LAS PALMAS</option>
-              <option value="36">PONTEVEDRA</option>
-              <option value="37">LA RIOJA</option>
-              <option value="38">SALAMANCA</option>
-              <option value="39">SEGOVIA</option>
-              <option value="40">SEVILLA</option>
-              <option value="41">SORIA</option>
-              <option value="42">TARRAGONA</option>
-              <option value="43">SANTA CRUZ DE TENERIFE</option>
-              <option value="44">TERUEL</option>
-              <option value="45">TOLEDO</option>
-              <option value="46">VALENCIA</option>
-              <option value="47">VALLADOLID</option>
-              <option value="48">VIZCAYA</option>
-              <option value="49">ZAMORA</option>
-              <option value="50">ZARAGOZA</option>
-        </Form.Select>
-        </Form.Group> */}
 
         <Form.Group className="mb-3" controlId="postCode">
           <Form.Label>Post Code</Form.Label>

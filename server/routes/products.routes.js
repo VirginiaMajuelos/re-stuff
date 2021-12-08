@@ -6,7 +6,20 @@ router.get("/", (req, res) => {
     Product.find()
         .then(allProducts => res.json(allProducts))
         .catch(err => res.json({ err, errMessage: "Error looking for all products" }))
-})
+      })
+      
+      
+/// Buscando un producto ////
+
+router.get("/details-product/:id", (req, res) => {
+  const { id } = req.params;
+  
+  Product.findById(id)
+  .then((theProduct) => res.json(theProduct))
+  .catch((err) =>
+  res.json({ err, errMessage: "Error looking for datails of product" })
+  );
+});
 
 /// Buscando productos por name y city ///
 
@@ -20,26 +33,13 @@ router.get("/:name/:city", (req, res) => {
     );
 });
 
-/// Buscando un producto ////
-
-router.get("/details-product/:id", (req, res) => {
-  const { id } = req.params;
-
-  Product.findById(id)
-    .then((theProduct) => res.json(theProduct))
-    .catch((err) =>
-      res.json({ err, errMessage: "Error looking for datails of product" })
-    );
-});
-
 /// Crear nuevo producto
 
 router.post("/create-new-product", (req, res) => {
-  const { name, description, imageUrl, price, categorie, cityProduct, postCode } = req.body;
-console.log(req.body)
-
+  const { name, description, imageUrl, price, categorie, cityProduct, postCode, owner } = req.body;
+  
   Product.create({
-    owner: req.session.currentUser._id,
+    owner,
     name,
     description,
     imageUrl,
@@ -48,8 +48,8 @@ console.log(req.body)
     cityProduct,
     postCode,
   })
-    .then((newProduct) => res.json(newProduct))
-    .catch((err) => res.status(500).json({ err, errMessage: "error creating a new product" }));
+  .then((newProduct) => res.json(newProduct))
+  .catch((err) => res.status(500).json({ err, errMessage: "error creating a new product" }));
 });
 
 
@@ -67,7 +67,7 @@ router.put("/edit-product/:id", (req, res) => {
     postCode,
     status,
   } = req.body;
-
+  
   Product.findByIdAndUpdate(
     id,
     {
@@ -81,20 +81,20 @@ router.put("/edit-product/:id", (req, res) => {
       status,
     },
     { new: true }
-  )
+    )
     .then((updatedProducts) => res.json(updatedProducts))
     .catch((err) => res.json({ err, errMessage: "Error editing product" }));
-});
-
-//// Delete products:
-
-router.delete("/delete-product/:id", (req, res) => {
-  const { id } = req.params;
-
-  Products.findByIdAndDelete(id)
+  });
+  
+  //// Delete products:
+  
+  router.delete("/delete-product/:id", (req, res) => {
+    const { id } = req.params;
+    
+    Product.findByIdAndDelete(id)
     .then((deletedProduct) => res.json({ deletedProduct }))
     .catch((err) => res.json({ err, errMessage: "Error to delete product" }));
-});
-
-
-module.exports = router;
+  });
+  
+  
+  module.exports = router;

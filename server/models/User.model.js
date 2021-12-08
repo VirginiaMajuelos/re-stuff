@@ -4,7 +4,7 @@ const userSchema = new Schema(
   {
     email: {
       type: String,
-      //unique:true,
+      unique:true,
       required  : [ true, 'The email is required' ], 
     },
     
@@ -36,7 +36,7 @@ const userSchema = new Schema(
     
     city: {
       type: String,
-      default:" ",
+      default:"",
     },
   
     imageUser: {
