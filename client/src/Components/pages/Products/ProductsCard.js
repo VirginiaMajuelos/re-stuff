@@ -34,7 +34,7 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
           {cityProduct}
           </Card.Text>
 
-        <Link  to={`/products/rent/${_id}`}>
+        <Link  to={`/create-request/${_id}`}>
           <Button variant="primary">Alquilar</Button>
         </Link>
 

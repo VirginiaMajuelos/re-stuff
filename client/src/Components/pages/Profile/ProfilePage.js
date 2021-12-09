@@ -3,6 +3,7 @@ import { Container, Card, Button, Modal, Form } from 'react-bootstrap'
 import AuthService from '../../../services/auth.service'
 import ProductService from '../../../services/product.service'
 import ProductsCard from '../Products/ProductsCard'
+import RequestService from '../../../services/request.service'
 
 class ProfilePage extends Component {
   constructor(props) {
@@ -20,7 +21,8 @@ class ProfilePage extends Component {
     }
 
     this.authService = new AuthService();
-    this.productService = new ProductService();
+    this.productService = new ProductService(); 
+    this.requestService = new RequestService ();
   }
 
   openModal = () => {
@@ -38,16 +40,23 @@ class ProfilePage extends Component {
   componentDidMount () {
     this.productService.getProductsByOwner(this.props.loggedUser?._id)
     .then(response => {
-      response.data.map(elm => {console.log(elm)})
-
+      //response.data.map(elm => {console.log(elm)})
       this.setState({ products: response.data })
-      }) 
+    }) 
+    .catch(err => console.log(err))
+
+    this.requestService.getRequest(this.props.loggedUser?._id)
+    .then(response => {
+      console.log(response)
+      //response.data.map(elm => {console.log(elm)})
+      this.setState ({request: response.data})
+    })
     .catch(err => console.log(err))
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-console.log(this.state)
+    console.log(this.state)
     this.authService.editProfile(this.props.loggedUser._id, this.state)
       .then(response => {
         console.log(response)
@@ -98,18 +107,18 @@ console.log(this.state)
               {/* <ProductsCard products={this.state.products}/>   */}
               
                  </Card.Text>
- <div style={{display: 'flex', flexDirection: 'row'}}>                 
-                {this.state.products.map(elm => (
-                    <ProductsCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm} />
-                  ))
-                  }
- </div>              
+                  <div style={{display: 'flex', flexDirection: 'row'}}>                 
+                    {this.state.products.map(elm => (<ProductsCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm} />))}
+                  </div>              
                 <Card.Text> Request: 
-              
-              
-                 </Card.Text>
 
-                 <Card.Text>
+                <div>
+                 {this.state.request.map(elm => (elm))}
+                </div>
+
+                </Card.Text>
+
+                <Card.Text>
                 <h3>Do you want edit your profile?</h3>
                 </Card.Text>
                     <Button onClick={this.openModal} variant="primary">Editar</Button>

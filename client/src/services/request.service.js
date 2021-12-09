@@ -3,7 +3,7 @@ import axios from 'axios'
 class RequestService {
   constructor() {
     this.app = axios.create({
-      baseURL: 'http://localhost:5005',
+      baseURL: 'http://localhost:5005/requests',
       withCredentials: true
     })
   }
@@ -14,7 +14,8 @@ class RequestService {
 //   isloggedin = () => this.app.get("/isloggedin")
 //   getEditProfile = (id) => this.app.get(`profile/${id}`)
 //   editProfile = (id) => this.app.put(`/edit-profile/${id}`)
- createRequest = (inicialDate, finalDate, comments, requestOwner, isAccept, idProduct) => this.app.post("/create-request", {inicialDate, finalDate, comments, requestOwner, isAccept, idProduct})
+ createRequest = (data) => this.app.post("/create-request", data)
+ getRequest = (id) => this.app.get("/request/:id", id)
 
 }
 
