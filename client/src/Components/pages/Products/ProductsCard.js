@@ -37,9 +37,7 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
         <Link  to={`/products/rent/${_id}`}>
           <Button variant="primary">Alquilar</Button>
         </Link>
-        <Link to={`/products/edit-product/${_id}`}>
-          <Button variant="primary">Editar</Button>
-        </Link>
+
         <Link  to={`/products/details-product/${_id}`}>
           <Button variant="primary">Details</Button>
         </Link>

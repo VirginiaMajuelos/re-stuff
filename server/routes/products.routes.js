@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { populate } = require("../models/Product.model");
 const Product = require("../models/Product.model");
 
 /// Buscando productos -all products-////
@@ -22,6 +23,7 @@ router.get("/details-product/:id", (req, res) => {
   const { id } = req.params;
   
   Product.findById(id)
+  .populate("owner")
   .then((theProduct) => res.json(theProduct))
   .catch((err) =>
   res.json({ err, errMessage: "Error looking for datails of product" })
@@ -43,6 +45,7 @@ router.get("/:name/:city", (req, res) => {
 /// Crear nuevo producto
 
 router.post("/create-new-product", (req, res) => {
+ 
   const { name, description, imageUrl, price, categorie, cityProduct, postCode, owner } = req.body;
   
   Product.create({
@@ -89,6 +92,7 @@ router.put("/edit-product/:id", (req, res) => {
     },
     { new: true }
     )
+    .populate('owner')
     .then((updatedProducts) => res.json(updatedProducts))
     .catch((err) => res.json({ err, errMessage: "Error editing product" }));
   });

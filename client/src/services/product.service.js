@@ -13,7 +13,7 @@ class ProductService {
   getProductsSearch = (name, city) => this.app.get(`/product/${name}/${city}`)
   getOneProduct = (id) => this.app.get(`/details-product/${id}`)
   createProduct = (productData) => this.app.post("/create-new-product", productData)
-  editProduct = (id) => this.app.put (`/edit-product/${id}`)
+  editProduct = (id, data) => this.app.put (`/edit-product/${id}`, data)
   deleteProduct = (id) => this.app.delete (`/delete-product/${id}`)
 }
 
