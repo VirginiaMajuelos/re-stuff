@@ -21,11 +21,9 @@ export default class NewProduct extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     this.productService.createProduct({...this.state, owner: this.props.loggedUser})
       .then(response => {
         // this.props.refreshProduct()
-        console.log(response)
         this.props.history.push("/products")
       })
       .catch(err => console.log(err))

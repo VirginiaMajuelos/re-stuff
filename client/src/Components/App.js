@@ -7,6 +7,7 @@ import SignupPage from './pages/Singup/SignupPage'
 import LoginPage from './pages/Login/LoginPage';
 import AuthService from '../services/auth.service';
 import NewProduct from './pages/Forms/NewProduct';
+import NewRequest from './pages/Forms/NewRequest';
 import ProductsPage from './pages/Products/ProductsPage'
 import ProductDetails from './pages/Products/ProductDetails';
 import ProductEdit from './pages/Products/ProductEdit';
@@ -44,9 +45,10 @@ class App extends Component {
             <Route path="/" exact render={() => <Home />} />
             <Route path="/products/create-new-product" exact render={(props) => <NewProduct {...props} loggedUser={this.state.loggedUser} />} />
             <Route path="/products" exact render={(props) => <ProductsPage {...props} storeUser={this.storeUser} />} />
-            <Route path="/products/edit-profile/:id" exact render={(props) => <ProductEdit {...props} />} />
+            <Route path="/products/edit-product/:id" exact render={(props) => <ProductEdit {...props} />} />
             <Route path="/products/request/:id" loggedUser={this.state.loggedUser} exact render={(props) => <ProductDetails loggedUser={this.state.loggedUser} {...props} />} />
             <Route path="/products/details-product/:id" exact render={(props) => <ProductDetails {...props} />} />
+            <Route path="/products/delete-product/:id" exact />
 
             <Route path="/profile" render={(props) => <ProfilePage {...props} loggedUser={this.state.loggedUser} storeUser={this.storeUser} />} />
 

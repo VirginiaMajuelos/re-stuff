@@ -18,6 +18,7 @@ class ProductPage extends Component {
    componentDidMount() {
   this.refreshProducts()
   }
+  
    refreshProducts = () => {
      this.service.getAllProducts()
        .then(response => {
