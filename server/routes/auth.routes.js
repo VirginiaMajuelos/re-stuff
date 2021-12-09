@@ -83,12 +83,21 @@ const { id } = req.params;
 
 /// Edit profile
 
-router.put("/edit-profile/:id", (req, res) => {
+router.put("/profile/:id", (req, res) => {
   const { id } = req.params;
   const {email, username, description, city, imageUser, productLike} = req.body;
 
+  const query = {};
+
+  email && (query.email = email)
+  username && (query.username = username)
+  description && (query.description = description)
+  city && (query.city = city)
+  imageUser && (query.imageUser = imageUser)
+  productLike && (query.productLike = productLike)
+
   User.findByIdAndUpdate(
-    id,{email, username, description, city, imageUser, productLike},
+    id, query,
     { new: true })
     .then((updatedProfile) => res.json(updatedProfile))
     .catch((err) => res.json({ err, errMessage: "Error editing product" }));

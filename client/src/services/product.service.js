@@ -9,6 +9,7 @@ class ProductService {
   }
 
   getAllProducts = () => this.app.get("/")
+  getProductsByOwner = (id) => this.app.get (`/owner/${id}`)
   getProductsSearch = (name, city) => this.app.get(`/product/${name}/${city}`)
   getOneProduct = (id) => this.app.get(`/details-product/${id}`)
   createProduct = (productData) => this.app.post("/create-new-product", productData)

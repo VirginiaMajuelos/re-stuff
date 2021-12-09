@@ -6,11 +6,11 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
   return (
 
     <Card  style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={imageUrl} />
+      <Card.Img variant="top" src={imageUrl}/>
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Subtitle>
-          {price}€/h     {status}
+          {price}€/h {status}
          </Card.Subtitle> 
           <Card.Text>
           {categorie}

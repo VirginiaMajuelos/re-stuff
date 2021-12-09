@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Button,Modal } from 'react-bootstrap'
+import { Row, Col} from 'react-bootstrap'
 import ProductsCard from './ProductsCard'
 
 class ProductsList extends Component {

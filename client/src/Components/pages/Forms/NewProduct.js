@@ -21,7 +21,6 @@ export default class NewProduct extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     this.productService.createProduct({...this.state, owner: this.props.loggedUser})
       .then(response => {
         // this.props.refreshProduct()
@@ -66,7 +65,7 @@ export default class NewProduct extends Component {
         <Form.Group className="mb-3" controlId="cityProduct">
           <Form.Label>City</Form.Label>
            <Form.Select onChange={this.handleInputChange}  aria-label="Floating label select example" name="cityProduct">
-              <option>Open your city</option>
+              <option>Select your city</option>
               <option value="ÁLAVA">Álava</option>
               <option value="ALBACETE">Albacete</option>
               <option value="ALICANTE">Alicante</option>

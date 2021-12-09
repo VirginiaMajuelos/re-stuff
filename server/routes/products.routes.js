@@ -8,7 +8,14 @@ router.get("/", (req, res) => {
         .catch(err => res.json({ err, errMessage: "Error looking for all products" }))
       })
       
-      
+/// Busca todos los productos por id owner
+
+router.get("/owner/:id", (req, res) => {
+    Product.find({owner: req.params.id})
+        .then(allProducts => res.json(allProducts))
+        .catch(err => res.json({ err, errMessage: "Error looking for all products" }))
+      })
+
 /// Buscando un producto ////
 
 router.get("/details-product/:id", (req, res) => {
