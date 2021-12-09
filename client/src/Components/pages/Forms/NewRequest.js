@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Form, Button, Container, Row } from 'react-bootstrap'
 import ProductService from '../../../services/product.service'
 
-export default class NewProduct extends Component {
+export default class NewRequest extends Component {
   constructor(props) {
     super(props)
 

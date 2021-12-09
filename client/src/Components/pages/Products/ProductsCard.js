@@ -25,7 +25,7 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Subtitle>
-          {price}€/h     {status}
+          {price}€/h {status}
          </Card.Subtitle> 
           <Card.Text>
           {categorie}
