@@ -96,6 +96,7 @@ router.put("/profile/:id", (req, res) => {
   imageUser && (query.imageUser = imageUser)
   productLike && (query.productLike = productLike)
 
+  console.log(req.body)
   User.findByIdAndUpdate(
     id, query,
     { new: true })

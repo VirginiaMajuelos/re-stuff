@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col, Button, Modal, Form, Img } from "react-bootstrap";
 import ProductService from "../../../services/product.service";
 
+
 class ProductEdit extends Component {
   constructor(props) {
     super(props)

@@ -15,7 +15,7 @@ class RequestService {
 //   getEditProfile = (id) => this.app.get(`profile/${id}`)
 //   editProfile = (id) => this.app.put(`/edit-profile/${id}`)
  createRequest = (data) => this.app.post("/create-request", data)
- getRequest = (id) => this.app.get("/request/:id", id)
+ getRequest = () => this.app.get(`/all-requests/`)
 
 }
 

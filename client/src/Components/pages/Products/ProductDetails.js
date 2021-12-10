@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button, Modal, Form } from "react-bootstrap";
-import { Link } from 'react-router-dom'
 import ProductService from "../../../services/product.service";
+import UploadService from '../../../services/upload.service'
+
 
   class ProductDetails extends Component {
     constructor(props) {
       super(props)
 
       this.state = {
+      product: {
         _id: "",
         imageUrl: "",
         name: "",
@@ -18,9 +20,13 @@ import ProductService from "../../../services/product.service";
         cityProduct: "",
         postCode: "",
         owner:"",
-      }
+       },
+      loading: false
+    }
 
     this.service = new ProductService()
+    this.uploadService = new UploadService()
+
   }
 
   componentDidMount() {
@@ -53,10 +59,8 @@ import ProductService from "../../../services/product.service";
 
   handleSubmit = (e) => {
   e.preventDefault();
-  console.log("estado antes del edit", this.state)
   this.service.editProduct(this.state._id, this.state)
     .then(response => {
-      console.log("estado despues del edit", response)
       this.state.storeUser(response.data);
     })
     .catch(err => console.log(err))
@@ -65,8 +69,34 @@ import ProductService from "../../../services/product.service";
   handleInputChange = (e) => {
   const { name, value } = e.currentTarget
 
-  this.setState({ [name]: value })
+  this.setState({ 
+      product: {
+        ...this.state.product,
+        [name]: value 
+      }
+    })
   }
+
+    handleUploadChange = (e) => {
+    this.setState({ ...this.state.product, loading: true })
+
+    const uploadData = new FormData()
+    uploadData.append('imageData', e.target.files[0])
+
+    this.uploadService
+      .uploadImage(uploadData)
+      .then(response => 
+        this.setState({
+          product: {
+            ...this.state.product,
+            imageUrl: response.data.cloudinary_url
+          },
+          loading: false
+        })
+      )
+      .catch(err => console.log(err))
+          }
+
 
   render(){
     const {imageUrl, name, description, status, categorie, cityProduct, postCode, owner } = this.state
@@ -90,7 +120,7 @@ import ProductService from "../../../services/product.service";
               <p>{description}</p>
               <p>{cityProduct}</p>
               <p>{postCode}</p>
-              <p>{owner.username}</p>
+              {/* <p>{owner.username}</p> */}
               </article>
               <Button onClick={this.openModal} variant="primary">Editar Producto</Button>
 
@@ -106,7 +136,7 @@ import ProductService from "../../../services/product.service";
         <Form onSubmit={this.handleSubmit}>
         <Form.Group className="mb-3" controlId="imageUrl">
           <Form.Label>Url de la imagen</Form.Label>
-          <Form.Control onChange={this.handleInputChange} value={this.state.imageUrl} name="imageUrl" type="text" />
+          <Form.Control onChange={this.handleInputChange}  name="imageUrl" type="file" />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="name">

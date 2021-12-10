@@ -2,6 +2,7 @@ import React from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom'
 import AuthService from '../../../services/auth.service'
+import './Navbar.css';
 
 const authService = new AuthService()
 
@@ -30,6 +31,8 @@ const Navigation = ({ loggedUser, storeUser }) => {
             <Nav.Link as={Link} to="/products/create-new-product">New product</Nav.Link>
             <Nav.Link as={Link} to="/products">Products</Nav.Link>
             <Nav.Link as={Link} to={`/profile/${loggedUser._id}`}>Profile</Nav.Link>
+            {/* <Nav.Link as={Link} to={`/profile/${loggedUser._id}`}><img className="user-avatar" src={this.props.imageUser} alt=""/></Nav.Link> */}
+            {/* <Nav.Link as={Link} to={`/request/${id}`}><img src="" */}
             </>
             :
             <>

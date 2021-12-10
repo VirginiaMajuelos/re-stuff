@@ -4,25 +4,31 @@ import AuthService from '../../../services/auth.service'
 import ProductService from '../../../services/product.service'
 import ProductsCard from '../Products/ProductsCard'
 import RequestService from '../../../services/request.service'
+import UploadService from '../../../services/upload.service'
+
 
 class ProfilePage extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      user:{
       username: "",
       description: "",
       bankAccount: "",
       city: "",
-      imageUser: "",
+      imageUser: ""
+      },
       showModal: false,
       products: [],
       request: []
-    }
+    
+  }
 
     this.authService = new AuthService();
     this.productService = new ProductService(); 
     this.requestService = new RequestService ();
+    this.uploadService = new UploadService()
   }
 
   openModal = () => {
@@ -37,27 +43,26 @@ class ProfilePage extends Component {
     })
   }
 
-  componentDidMount () {
+componentDidMount () {
     this.productService.getProductsByOwner(this.props.loggedUser?._id)
     .then(response => {
-      //response.data.map(elm => {console.log(elm)})
-      this.setState({ products: response.data })
-    }) 
-    .catch(err => console.log(err))
+ 
+      
+       this.requestService.getRequest(this.props.loggedUser?._id)
+       .then(res => {
 
-    this.requestService.getRequest(this.props.loggedUser?._id)
-    .then(response => {
-      console.log(response)
-      //response.data.map(elm => {console.log(elm)})
-      this.setState ({request: response.data})
-    })
+         //res.data.map(elm => {console.log(elm)})
+         this.setState({requests: res.data,  products: response.data })
+       })
+       .catch(err => console.log(err))
+    }) 
     .catch(err => console.log(err))
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(this.state)
-    this.authService.editProfile(this.props.loggedUser._id, this.state)
+    this.authService.editProfile(this.props.loggedUser._id, this.state.user)
       .then(response => {
         console.log(response)
         this.props.storeUser(response.data);
@@ -71,9 +76,28 @@ class ProfilePage extends Component {
     this.setState({ [name]: value })
   }
 
+  handleUploadChange = (e) => {
+    this.setState({ loading: true })
+
+    const uploadData = new FormData()
+    uploadData.append('imageData', e.target.files[0])
+
+    this.uploadService
+      .uploadImage(uploadData)
+      .then(response => 
+        this.setState({
+          user: {
+            ...this.state.user,
+            imageUser: response.data.cloudinary_url
+          },
+          loading: false
+        })
+      )
+      .catch(err => console.log(err))
+
+          }
+
   render() {   
-
-
   return (
     <>
         <Container>
@@ -111,15 +135,11 @@ class ProfilePage extends Component {
                     {this.state.products.map(elm => (<ProductsCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm} />))}
                   </div>              
                 <Card.Text> Request: 
-
-                <div>
                  {this.state.request.map(elm => (elm))}
-                </div>
-
                 </Card.Text>
 
                 <Card.Text>
-                <h3>Do you want edit your profile?</h3>
+                Do you want edit your profile?
                 </Card.Text>
                     <Button onClick={this.openModal} variant="primary">Editar</Button>
             </Card.Body>
@@ -133,27 +153,28 @@ class ProfilePage extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Group className="mb-3" controlId="username">
             <Form.Label>Username</Form.Label>
-            <Form.Control onChange={this.handleInputChange} value={this.state.username} placeholder={this.props.loggedUser.username} name="username" type="text" />
+            <Form.Control onChange={this.handleInputChange} value={this.state.user.username} placeholder={this.props.loggedUser.username} name="username" type="text" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="description">
             <Form.Label>Description</Form.Label>
-            <Form.Control onChange={this.handleInputChange} value={this.state.description} placeholder={this.props.loggedUser.description} name="description" type="text" />
+            <Form.Control onChange={this.handleInputChange} value={this.state.user._iddescription} placeholder={this.props.loggedUser.description} name="description" type="text" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="bankAccount">
-            <Form.Label>bank Account</Form.Label>
-            <Form.Control onChange={this.handleInputChange} value={this.state.bankAccount} placeholder={this.props.loggedUser.bankAccount} name="bankAccount" type="text" />
+            <Form.Label>Bank Account</Form.Label>
+            <Form.Control onChange={this.handleInputChange} value={this.state.user.bankAccount} placeholder={this.props.loggedUser.bankAccount} name="bankAccount" type="text" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="city">
             <Form.Label>City</Form.Label>
-            <Form.Control onChange={this.handleInputChange} value={this.state.city} placeholder={this.props.loggedUser.city} name="city" type="text" />
+            <Form.Control onChange={this.handleInputChange} value={this.state.user.city} placeholder={this.props.loggedUser.city} name="city" type="text" />
           </Form.Group>
+
 
           <Form.Group className="mb-3" controlId="imageUser">
             <Form.Label>Image profile</Form.Label>
-            <Form.Control onChange={this.handleInputChange} value={this.state.imageUser} placeholder={this.props.loggedUser.imageUser} name="imageUser" type="text" />
+            <Form.Control onChange={this.handleUploadChange} name="imageUser" type="file" />
           </Form.Group>
 
           <Button variant="secondary" onClick={this.closeModal}>

@@ -41,9 +41,9 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
         <Link  to={`/products/details-product/${_id}`}>
           <Button variant="primary">Details</Button>
         </Link>
-        <Link onClick={(e) => handleDelete(e, _id)} >
+        <div onClick={(e) => handleDelete(e, _id)} >
           <Button variant="primary">Delete</Button>
-        </Link>
+        </div>
       </Card.Body>
     </Card>
   )

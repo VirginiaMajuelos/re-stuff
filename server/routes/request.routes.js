@@ -2,19 +2,17 @@ const router = require("express").Router();
 const Request = require("../models/Request.model");
 const Product = require("../models/Product.model")
 
-/// Buscando request
-
-// router.get("/request/:id", (req, res) => {
-//   const {id} = req.params
-//     Product.find()
-//      .then(allProducts => {
-//       Request.findById(id)
-//         .then(request => res.json(request))
-//       })
-//         .catch(err => res.json({ err, errMessage: "Error looking for request" }))
-//       })
+//// Buscando request
+router.get("/all-requests", (req, res) => {
+  
+  //   Product.find()
+  //  .then(allProducts => {
+   Request.find()
+         .then(request => res.json(request))
+       
+         .catch(err => res.json({ err, errMessage: "Error looking for request" }))
+       })
 //       .catch(err => res.json({ err, errMessage: "Error looking for request" }))
-    
 
 /// Crear request
 router.post("/create-request", (req, res) => {

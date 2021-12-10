@@ -16,10 +16,8 @@ class LoginPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     this.authService.login(this.state.email, this.state.password)
       .then(response => {
-        
         this.props.storeUser(response.data)
         this.props.history.push("/")
       })
