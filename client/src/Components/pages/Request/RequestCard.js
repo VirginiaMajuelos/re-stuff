@@ -1,74 +1,69 @@
 import React, { Component } from 'react'
-import { Button , Modal} from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Button , Card} from 'react-bootstrap'
+import ProductService from '../../../services/product.service'
 import RequestService from '../../../services/request.service'
 
 class RequestCard extends Component {
     constructor(props) {
         super(props)
         
-this.state= {
-    inicialDate: "", 
-    finalDate: "" , 
-    comments: "", 
-    isAccept: "", 
-    requestOwner: "", 
-    idProduct: ""
+    this.state= {
+        idRequest: this.props._id,
+        idProduct: this.props.idProduct._id,
+        isAccept: this.props.isAccept,
+        status: this.props.idProduct.status,
+        }
+        this.productService = new ProductService(); 
+        this.requestService = new RequestService(); 
 }
-this.requestService = new RequestService ();
 
-  }
+// componentDidMount () {
+//     this.productService.getProductsByOwner(this.props.loggedUser?._id)
+//     .then(response => {
+//        this.requestService.getRequest(this.props.loggedUser?._id)
+//        .then(res => {
+//          console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",{requests: res.data,  products: response.data })
+//          //res.data.map(elm => {console.log(elm)})
+//          this.setState({requests: res.data,  products: response.data })
+//        })
+//        .catch(err => console.log(err))
+//     }) 
+//     .catch(err => console.log(err))
+//   }
 
-  openModal = () => {
-    this.setState({
-      showModal: true
-    })
-  }
-
-  closeModal = () => {
-    this.setState({
-      showModal: false
-    })
-  }
-
-  componentDidMount () {
-      this.requestService.getRequest(this.props.loggedUser?._id)
-      .then(response => {
-          console.log(response)
-          response.data.map(elm => {console.log(elm)})
-          this.setState ({request: response.data})
-        })
-        .catch(err => console.log(err))
-    }
+Accept = () => {
+  
+    console.log("id request",this.state.isAccept)
+    console.log("id producto", this.state.status)
+        // this.setState({isAccept: "ACCEPTED", status: "RENTED" })      
+    // this.productService.editProduct(this.state.idRequest, {isAccept: "ACCEPTED"})    
+    this.requestService.editRequestStatus(this.state.idRequest,  )    
     
+    console.log("despues id request",this.state.isAccept)
+    console.log("despues id producto", this.state.status)
+    
+  }
+
   render() {   
         
   return (
-      <>
-
-    <Button>Request {this.requestOwner}</Button>
-
-    <Modal.Dialog>
-        <Modal.Header closeButton>
-            <Modal.Title>New Request by:{this.requestOwner}</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-            <p>{this.state.inicialDate}</p>
-            <p>{this.state.finalDate}</p>
-            <p>{this.state.comments}</p>
-            <p>{this.state.requestOwner}</p>
-            <p>{this.state.idProduct}</p>
-        </Modal.Body>
-
-        <Modal.Footer>
-            <Button variant="success">Accept</Button>
+<>
+    {/* <Button>Request of {this.props.requestOwner.username} about {this.props.idProduct.name}</Button> */}
+    <Card style={{ width: '18rem'}}>
+        <Card.Body>
+            <Card.Title>{this.props.requestOwner.username}</Card.Title>
+            <Card.Text>
+            <p>{this.props.inicialDate}</p>
+            <p>{this.props.finalDate}</p>
+            <p>{this.props.comments}</p>
+            <p>{this.props.idProduct.name}</p>
+            
+            </Card.Text>
+            <Button variant="success" onClick={this.Accept} >Accept</Button>
             <Button variant="danger">Not accept</Button>
-        </Modal.Footer>
-    </Modal.Dialog>
-
+        </Card.Body>
+    </Card>
 </>
-
   )
   }
 }

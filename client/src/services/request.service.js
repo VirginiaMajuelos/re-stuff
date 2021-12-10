@@ -8,14 +8,9 @@ class RequestService {
     })
   }
 
-//   signup = (email, username, password, bankAccount) => this.app.post("/signup", { username, email, password, bankAccount })
-//   login = (email, password) => this.app.post("/login", { email, password })
-//   logout = () => this.app.get("/logout")
-//   isloggedin = () => this.app.get("/isloggedin")
-//   getEditProfile = (id) => this.app.get(`profile/${id}`)
-//   editProfile = (id) => this.app.put(`/edit-profile/${id}`)
  createRequest = (data) => this.app.post("/create-request", data)
- getRequest = () => this.app.get(`/all-requests/`)
+ getRequest = () => this.app.get("/all-requests")
+ editRequestStatus = (id, dataReq) =>this.app.put(`/edit-request-status/${id}`, dataReq)
 
 }
 

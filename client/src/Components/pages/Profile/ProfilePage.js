@@ -3,6 +3,7 @@ import { Container, Card, Button, Modal, Form } from 'react-bootstrap'
 import AuthService from '../../../services/auth.service'
 import ProductService from '../../../services/product.service'
 import ProductsCard from '../Products/ProductsCard'
+import RequestCard from '../Request/RequestCard'
 import RequestService from '../../../services/request.service'
 import UploadService from '../../../services/upload.service'
 
@@ -21,9 +22,8 @@ class ProfilePage extends Component {
       },
       showModal: false,
       products: [],
-      request: []
-    
-  }
+      requests: []
+    }
 
     this.authService = new AuthService();
     this.productService = new ProductService(); 
@@ -50,7 +50,6 @@ componentDidMount () {
       
        this.requestService.getRequest(this.props.loggedUser?._id)
        .then(res => {
-
          //res.data.map(elm => {console.log(elm)})
          this.setState({requests: res.data,  products: response.data })
        })
@@ -134,8 +133,12 @@ componentDidMount () {
                   <div style={{display: 'flex', flexDirection: 'row'}}>                 
                     {this.state.products.map(elm => (<ProductsCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm} />))}
                   </div>              
-                <Card.Text> Request: 
-                 {this.state.request.map(elm => (elm))}
+                <Card.Text> Requests: 
+
+                <div>
+                 {this.state.requests.map(elm => (<RequestCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm}/>))}
+                </div>
+
                 </Card.Text>
 
                 <Card.Text>
