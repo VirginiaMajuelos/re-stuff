@@ -3,6 +3,7 @@ import { Container, Card, Button, Modal, Form } from 'react-bootstrap'
 import AuthService from '../../../services/auth.service'
 import ProductService from '../../../services/product.service'
 import ProductsCard from '../Products/ProductsCard'
+import RequestCard from '../Request/RequestCard'
 import RequestService from '../../../services/request.service'
 
 class ProfilePage extends Component {
@@ -17,7 +18,7 @@ class ProfilePage extends Component {
       imageUser: "",
       showModal: false,
       products: [],
-      request: []
+      requests: []
     }
 
     this.authService = new AuthService();
@@ -40,17 +41,16 @@ class ProfilePage extends Component {
   componentDidMount () {
     this.productService.getProductsByOwner(this.props.loggedUser?._id)
     .then(response => {
-      //response.data.map(elm => {console.log(elm)})
-      this.setState({ products: response.data })
+ 
+      
+       this.requestService.getRequest(this.props.loggedUser?._id)
+       .then(res => {
+         console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",{requests: res.data,  products: response.data })
+         //res.data.map(elm => {console.log(elm)})
+         this.setState({requests: res.data,  products: response.data })
+       })
+       .catch(err => console.log(err))
     }) 
-    .catch(err => console.log(err))
-
-    this.requestService.getRequest(this.props.loggedUser?._id)
-    .then(response => {
-      console.log(response)
-      //response.data.map(elm => {console.log(elm)})
-      this.setState ({request: response.data})
-    })
     .catch(err => console.log(err))
   }
 
@@ -110,10 +110,10 @@ class ProfilePage extends Component {
                   <div style={{display: 'flex', flexDirection: 'row'}}>                 
                     {this.state.products.map(elm => (<ProductsCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm} />))}
                   </div>              
-                <Card.Text> Request: 
+                <Card.Text> Requests: 
 
                 <div>
-                 {this.state.request.map(elm => (elm))}
+                 {this.state.requests.map(elm => (<RequestCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm}/>))}
                 </div>
 
                 </Card.Text>

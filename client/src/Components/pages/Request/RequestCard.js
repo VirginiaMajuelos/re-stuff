@@ -1,40 +1,70 @@
-// import React from 'react'
-// import { Card, Button } from 'react-bootstrap'
-// import { Link } from 'react-router-dom'
+import React, { Component } from 'react'
+import { Button , Card} from 'react-bootstrap'
+import ProductService from '../../../services/product.service'
+import RequestService from '../../../services/request.service'
 
-                 
-// const RequestCard = ({inicialDate, finalDate, comments, isAccept, requestOwner, idProduct}) 
+class RequestCard extends Component {
+    constructor(props) {
+        super(props)
+        
+    this.state= {
+        idRequest: this.props._id,
+        idProduct: this.props.idProduct._id,
+        isAccept: this.props.isAccept,
+        status: this.props.idProduct.status,
+        }
+        this.productService = new ProductService(); 
+        this.requestService = new RequestService(); 
+}
 
-//   return (
-//     <>
-//     <Card style={{ width: '18rem' }}>
-//       <Card.Body>
-//         <Card.Title>Request:</Card.Title>
+// componentDidMount () {
+//     this.productService.getProductsByOwner(this.props.loggedUser?._id)
+//     .then(response => {
+//        this.requestService.getRequest(this.props.loggedUser?._id)
+//        .then(res => {
+//          console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",{requests: res.data,  products: response.data })
+//          //res.data.map(elm => {console.log(elm)})
+//          this.setState({requests: res.data,  products: response.data })
+//        })
+//        .catch(err => console.log(err))
+//     }) 
+//     .catch(err => console.log(err))
+//   }
 
-//           <Card.Text>
-//           {inicialDate}
-//           </Card.Text>
-//           <Card.Text>
-//           {finalDate}
-//           </Card.Text>
+Accept = () => {
+  
+    console.log("id request",this.state.isAccept)
+    console.log("id producto", this.state.status)
+        // this.setState({isAccept: "ACCEPTED", status: "RENTED" })      
+    // this.productService.editProduct(this.state.idRequest, {isAccept: "ACCEPTED"})    
+    this.requestService.editRequestStatus(this.state.idRequest,  )    
+    
+    console.log("despues id request",this.state.isAccept)
+    console.log("despues id producto", this.state.status)
+    
+  }
 
-//           <Card.Text>
-//           {comments}
-//           </Card.Text>
-//           <Card.Text> 
-//           {}{/* como meter aqui el usuario que hace la request? */}
-//           </Card.Text>
-
-//         <Link  to={`/products`}>
-//           <Button variant="primary">Acept</Button>
-//         </Link>
-//         <Link to={`/products`}>
-//           <Button variant="primary">Deny</Button>
-//         </Link>
-
-//       </Card.Body>
-//     </Card>
-//     </>
-//   )
-
-// export default RequestCard
+  render() {   
+        
+  return (
+<>
+    {/* <Button>Request of {this.props.requestOwner.username} about {this.props.idProduct.name}</Button> */}
+    <Card style={{ width: '18rem'}}>
+        <Card.Body>
+            <Card.Title>{this.props.requestOwner.username}</Card.Title>
+            <Card.Text>
+            <p>{this.props.inicialDate}</p>
+            <p>{this.props.finalDate}</p>
+            <p>{this.props.comments}</p>
+            <p>{this.props.idProduct.name}</p>
+            
+            </Card.Text>
+            <Button variant="success" onClick={this.Accept} >Accept</Button>
+            <Button variant="danger">Not accept</Button>
+        </Card.Body>
+    </Card>
+</>
+  )
+  }
+}
+export default RequestCard

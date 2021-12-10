@@ -22,8 +22,6 @@ export default class NewRequest extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
-  console.log(this.state)
     this.requestService.createRequest(this.state)
       .then(response => {
         // this.props.refreshProduct()

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button, Modal, Form } from "react-bootstrap";
-import { Link } from 'react-router-dom'
 import ProductService from "../../../services/product.service";
 
   class ProductDetails extends Component {

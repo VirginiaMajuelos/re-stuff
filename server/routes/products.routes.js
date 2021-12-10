@@ -6,7 +6,7 @@ const Product = require("../models/Product.model");
 router.get("/", (req, res) => {
     Product.find()
         .then(allProducts => res.json(allProducts))
-        .catch(err => res.json({ err, errMessage: "Error looking for all products" }))
+        .catch(err => res.status(500).json({ err, errMessage: "Error looking for all products" }))
       })
       
 /// Busca todos los productos por id owner
@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 router.get("/owner/:id", (req, res) => {
     Product.find({owner: req.params.id})
         .then(allProducts => res.json(allProducts))
-        .catch(err => res.json({ err, errMessage: "Error looking for all products" }))
+        .catch(err => res.status(500).json({ err, errMessage: "Error looking for all products" }))
       })
 
 /// Buscando un producto ////
@@ -26,7 +26,7 @@ router.get("/details-product/:id", (req, res) => {
   .populate("owner")
   .then((theProduct) => res.json(theProduct))
   .catch((err) =>
-  res.json({ err, errMessage: "Error looking for datails of product" })
+  res.status(500).json({ err, errMessage: "Error looking for datails of product" })
   );
 });
 
@@ -38,7 +38,7 @@ router.get("/:name/:city", (req, res) => {
   Product.find(name, city)
     .then((theProduct) => res.json(theProduct))
     .catch((err) =>
-      res.json({ err, errMessage: "Error looking for kind of products" })
+      res.status(500).json({ err, errMessage: "Error looking for kind of products" })
     );
 });
 
@@ -94,7 +94,7 @@ router.put("/edit-product/:id", (req, res) => {
     )
     .populate('owner')
     .then((updatedProducts) => res.json(updatedProducts))
-    .catch((err) => res.json({ err, errMessage: "Error editing product" }));
+    .catch((err) => res.status(500).json({ err, errMessage: "Error editing product" }));
   });
   
   //// Delete products:
@@ -104,7 +104,7 @@ router.put("/edit-product/:id", (req, res) => {
     
     Product.findByIdAndDelete(id)
     .then((deletedProduct) => res.json({ deletedProduct }))
-    .catch((err) => res.json({ err, errMessage: "Error to delete product" }));
+    .catch((err) => res.status(500).json({ err, errMessage: "Error to delete product" }));
   });
   
   

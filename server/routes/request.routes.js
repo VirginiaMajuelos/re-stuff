@@ -2,17 +2,20 @@ const router = require("express").Router();
 const Request = require("../models/Request.model");
 const Product = require("../models/Product.model")
 
+const { populate } = require("../models/Product.model", "../models/User.model");
+
 /// Buscando request
 
-// router.get("/request/:id", (req, res) => {
-//   const {id} = req.params
-//     Product.find()
-//      .then(allProducts => {
-//       Request.findById(id)
-//         .then(request => res.json(request))
-//       })
-//         .catch(err => res.json({ err, errMessage: "Error looking for request" }))
-//       })
+router.get("/all-requests", (req, res) => {
+  
+  //   Product.find()
+  //  .then(allProducts => {
+   Request.find()
+         .populate("requestOwner idProduct")
+         .then(request => res.json(request))
+       
+         .catch(err => res.json({ err, errMessage: "Error looking for request" }))
+       })
 //       .catch(err => res.json({ err, errMessage: "Error looking for request" }))
     
 
@@ -36,17 +39,17 @@ router.post("/create-request", (req, res) => {
 
 /// Editando request: aceptar, o declinar
 
-router.put("/request/:id", (req, res) => {
+router.put("/edit-request-status/:id", (req, res) => {
   const { id } = req.params;
-  const { inicialDate, finalDate, comments, isAccept, isProduct} = req.body;
+  const { isAccept, idProduct} = req.body;
 
-  Product.findByIdAndUpdate(
-    id,
-    {inicialDate, finalDate, comments, isAccept, isProduct },
-    { new: true }
-    )
-    .then((updatedRequest) => res.json(updatedRequest))
+    Request.findByIdAndUpdate(id, {isAccept, idProduct}, { new: true })
+    .then((updatedRequest) => {
+      return Product.findByIdAndUpdate(idProduct, {status: 'RENTED'}, { new: true } )
+    })
+    .then(response => res.status(200).json(response))
     .catch((err) => res.json({ err, errMessage: "Error accepting rent" }));
+    
   });
 
 /// Delete request
