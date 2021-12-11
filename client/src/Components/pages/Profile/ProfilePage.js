@@ -100,29 +100,29 @@ componentDidMount () {
   return (
     <>
         <Container>
-        { this.props.loggedUser &&
+        { this.props.loggedUser && 
         <>
-        <h1>Profile {this.props.loggedUser.username}</h1>
+        
           <Card className="text-center">
-            <Card.Header><Card.Title>INFORMATION</Card.Title> </Card.Header>
+            <Card.Header><Card.Title><h1>Profile {this.props.loggedUser.username}</h1></Card.Title> </Card.Header>
             <Card.Body>
                 <Card.Img variant="top" src={this.props.loggedUser.imageUser} style={{width:'200px', borderRadius: '45px' }}/>
                 <Card.Text><br></br>
-                Username:{this.props.loggedUser.username}
+                Username: {this.props.loggedUser.username}
                 </Card.Text>
                  <Card.Text>
-                Email:{this.props.loggedUser.email} 
+                Email: {this.props.loggedUser.email} 
                 </Card.Text>
-
                 <Card.Text>
-                Bank Account:{this.props.loggedUser.bankAccount} 
+                Bank Account: {this.props.loggedUser.bankAccount} 
                 </Card.Text>
 
                 <Card.Text>
                 City:{this.props.loggedUser.city} 
                 </Card.Text>
 
-                 {this.props.loggedUser.description && <Card.Text>
+                 {this.props.loggedUser.description && 
+                 <Card.Text>
                 Description:{this.props.loggedUser.description} 
                 </Card.Text>}
 
@@ -147,49 +147,48 @@ componentDidMount () {
                     <Button onClick={this.openModal} variant="primary">Editar</Button>
             </Card.Body>
           </Card>
+
           <Modal show={this.state.showModal} >
-        <Modal.Header onClick={this.closeModal}>
-          <Modal.Title>Formulario</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group className="mb-3" controlId="username">
-            <Form.Label>Username</Form.Label>
-            <Form.Control onChange={this.handleInputChange} value={this.state.user.username} placeholder={this.props.loggedUser.username} name="username" type="text" />
-          </Form.Group>
+              <Modal.Header onClick={this.closeModal}>
+                <Modal.Title>Formulario</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>  
+                <Form onSubmit={this.handleSubmit}>
+                  <Form.Group className="mb-3" controlId="username">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control onChange={this.handleInputChange} value={this.state.user.username} placeholder={this.props.loggedUser.username} name="username" type="text" />
+                  </Form.Group>
 
-          <Form.Group className="mb-3" controlId="description">
-            <Form.Label>Description</Form.Label>
-            <Form.Control onChange={this.handleInputChange} value={this.state.user._iddescription} placeholder={this.props.loggedUser.description} name="description" type="text" />
-          </Form.Group>
+                  <Form.Group className="mb-3" controlId="description">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control onChange={this.handleInputChange} value={this.state.user._iddescription} placeholder={this.props.loggedUser.description} name="description" type="text" />
+                  </Form.Group>
 
-          <Form.Group className="mb-3" controlId="bankAccount">
-            <Form.Label>Bank Account</Form.Label>
-            <Form.Control onChange={this.handleInputChange} value={this.state.user.bankAccount} placeholder={this.props.loggedUser.bankAccount} name="bankAccount" type="text" />
-          </Form.Group>
+                  <Form.Group className="mb-3" controlId="bankAccount">
+                    <Form.Label>Bank Account</Form.Label>
+                    <Form.Control onChange={this.handleInputChange} value={this.state.user.bankAccount} placeholder={this.props.loggedUser.bankAccount} name="bankAccount" type="text" />
+                  </Form.Group>
 
-          <Form.Group className="mb-3" controlId="city">
-            <Form.Label>City</Form.Label>
-            <Form.Control onChange={this.handleInputChange} value={this.state.user.city} placeholder={this.props.loggedUser.city} name="city" type="text" />
-          </Form.Group>
+                  <Form.Group className="mb-3" controlId="city">
+                    <Form.Label>City</Form.Label>
+                    <Form.Control onChange={this.handleInputChange} value={this.state.user.city} placeholder={this.props.loggedUser.city} name="city" type="text" />
+                  </Form.Group>
 
 
-          <Form.Group className="mb-3" controlId="imageUser">
-            <Form.Label>Image profile</Form.Label>
-            <Form.Control onChange={this.handleUploadChange} name="imageUser" type="file" />
-          </Form.Group>
+                  <Form.Group className="mb-3" controlId="imageUser">
+                    <Form.Label>Image profile</Form.Label>
+                    <Form.Control onChange={this.handleUploadChange} name="imageUser" type="file" />
+                  </Form.Group>
 
-          <Button variant="secondary" onClick={this.closeModal}>
-            Close
-          </Button>
-          <Button variant="primary" type='submit' onClick={this.closeModal}>
-            Save Changes
-          </Button>
-        </Form>
-        </Modal.Body>
-        
-      </Modal>
+                  <Button variant="secondary" onClick={this.closeModal}>
+                    Close
+                  </Button>
+                  <Button variant="primary" type='submit' onClick={this.closeModal}>
+                    Save Changes
+                  </Button>
+                </Form>
+              </Modal.Body> 
+          </Modal>
         </>
         }
       </Container>

@@ -42,7 +42,7 @@ class App extends Component {
 
         <main>
           <Switch>
-            <Route path="/" exact render={() => <Home />} />
+            <Route path="/" exact render={(props) => <Home {...props} storeUser={this.storeUser} />} />
             <Route path="/products/create-new-product" exact render={(props) => <NewProduct {...props} loggedUser={this.state.loggedUser} />} />
             <Route path="/products" exact render={(props) => <ProductsPage {...props} storeUser={this.storeUser} />} />
             <Route path="/products/edit-product/:id" exact render={(props) => <ProductEdit {...props} />} />
