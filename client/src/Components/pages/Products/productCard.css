@@ -1,7 +1,9 @@
-.likeBtn{
-    height: 38px;
-    padding: 0 30px;
-    font-size: 11px;
-    background-color:  transparent;
-    border-radius: 6px;
+.card-type {
+  box-shadow: 5px 5px 5px grey;
+  background-color: #f9f8ee;
+  margin-bottom: 15px;
+}
+
+.boton-type {
+  margin: 2px;
 }

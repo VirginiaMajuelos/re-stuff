@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Form, Button, Container, Row } from 'react-bootstrap'
 import ProductService from '../../../services/product.service'
 import UploadService from '../../../services/upload.service'
+import './NewProduct.css'
+
 
 export default class NewProduct extends Component {
   constructor(props) {
@@ -68,7 +70,7 @@ export default class NewProduct extends Component {
 
   render() {
     return (
-      <Container style={{padding:"60px"}}>
+      <Container className="container-newproduct" style={{padding:"60px"}}>
       <Row>
       <Form onSubmit={this.handleSubmit}>
         <Form.Group className="mb-3" controlId="imageUrl">
@@ -165,7 +167,7 @@ export default class NewProduct extends Component {
           <Form.Control onChange={this.handleInputChange} value={this.state.product.postCode} name="postCode" type="number" />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="secondary" type="submit">
           Submit
         </Button>
       </Form>

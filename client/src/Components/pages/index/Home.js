@@ -63,7 +63,7 @@ class Home extends Component {
     <>
       <section>
       <Container>
-        <h1 class="gradient">Re-Stuff</h1>
+        <h1 className="gradient">Re-Stuff</h1>
         <main class="main-home">
           <h2>Rent me!</h2>
           <h5>or</h5>

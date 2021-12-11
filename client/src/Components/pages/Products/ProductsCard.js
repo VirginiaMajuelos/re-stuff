@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import ProductService from '../../../services/product.service'
+import './productCard.css'
 
 const productService = new ProductService()
 
@@ -20,7 +21,7 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
 
   return (
 
-    <Card style={{ width: '18rem' }}>
+    <Card  className="card-type" style={{ width: '19rem' }}>
       <Card.Img variant="top" src={imageUrl} style={{width: "100%", height: "150px", objectFit: "cover" }} />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
@@ -35,15 +36,15 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
           </Card.Text>
 
         <Link  to={`/create-request/${_id}`}>
-          <Button variant="primary">Alquilar</Button>
+          <Button className="boton-type" variant="secondary">Alquilar</Button>
         </Link>
 
         <Link  to={`/products/details-product/${_id}`}>
-          <Button variant="primary">Details</Button>
+          <Button className="boton-type"variant="secondary">Details</Button>
         </Link>
-        <div onClick={(e) => handleDelete(e, _id)} >
-          <Button variant="primary">Delete</Button>
-        </div>
+        
+          <Button onClick={(e) => handleDelete(e, _id)} className="boton-type" variant="secondary">Delete</Button>
+        
       </Card.Body>
     </Card>
   )

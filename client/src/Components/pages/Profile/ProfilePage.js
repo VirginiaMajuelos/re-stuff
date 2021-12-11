@@ -47,12 +47,11 @@ componentDidMount () {
     this.productService.getProductsByOwner(this.props.loggedUser?._id)
     .then(response => {
  
-      
        this.requestService.getRequest(this.props.loggedUser?._id)
        .then(res => {
-         this.setState({requests: res.data,  products: response.data })
-       })
-       .catch(err => console.log(err))
+         this.setState({requests: res.data, products: response.data })
+        })
+        .catch(err => console.log(err))
     }) 
     .catch(err => console.log(err))
   }
