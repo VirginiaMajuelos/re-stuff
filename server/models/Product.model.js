@@ -27,7 +27,6 @@ const productSchema = new Schema(
         required: true,
         default:'AVAILABLE',
       },
-      //DUDAS 1: Como podemos hacer esto funcionar, para que cuando se haya aceptado la solicitud aparezca pero con un mensaje de no available en el momento 
       
     categorie: {
         type: String,

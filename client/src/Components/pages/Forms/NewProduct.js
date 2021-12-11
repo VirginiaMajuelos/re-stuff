@@ -29,12 +29,10 @@ export default class NewProduct extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.productService.createProduct({...this.state.product, owner: this.props.loggedUser})
-      .then(response => {
-        // this.props.refreshProduct()
+      .then(() => {
         this.props.history.push("/products")
       })
-      .catch(err => console.log(err))
-
+      .catch((err) => console.log(err))
   }
 
   handleInputChange = (e) => {
@@ -48,7 +46,7 @@ export default class NewProduct extends Component {
     })
   }
 
-    handleUploadChange = (e) => {
+  handleUploadChange = (e) => {
     this.setState({ ...this.state.product, loading: true })
 
     const uploadData = new FormData()
@@ -172,7 +170,7 @@ export default class NewProduct extends Component {
         </Button>
       </Form>
       </Row>
-      </Container>
+    </Container>
     )
   }
 }

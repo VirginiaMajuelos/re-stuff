@@ -11,7 +11,6 @@ class RequestService {
  createRequest = (data) => this.app.post("/create-request", data)
  getRequest = () => this.app.get("/all-requests")
  editRequestStatus = (id, dataReq) =>this.app.put(`/edit-request-status/${id}`, dataReq)
-
 }
 
 export default RequestService

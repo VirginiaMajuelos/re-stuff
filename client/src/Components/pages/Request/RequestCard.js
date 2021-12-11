@@ -17,19 +17,19 @@ class RequestCard extends Component {
         this.requestService = new RequestService(); 
 }
 
-// componentDidMount () {
-//     this.productService.getProductsByOwner(this.props.loggedUser?._id)
-//     .then(response => {
-//        this.requestService.getRequest(this.props.loggedUser?._id)
-//        .then(res => {
-//          console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",{requests: res.data,  products: response.data })
-//          //res.data.map(elm => {console.log(elm)})
-//          this.setState({requests: res.data,  products: response.data })
-//        })
-//        .catch(err => console.log(err))
-//     }) 
-//     .catch(err => console.log(err))
-//   }
+componentDidMount () {
+    this.productService.getProductsByOwner(this.props.loggedUser?._id)
+    .then(response => {
+       this.requestService.getRequest(this.props.loggedUser?._id)
+       .then(res => {
+         console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",this.state.idProduct)
+         //res.data.map(elm => {console.log(elm)})
+         this.setState({requests: res.data,  products: response.data })
+       })
+       .catch(err => console.log(err))
+    }) 
+    .catch(err => console.log(err))
+  }
 
 Accept = () => {
   
@@ -51,12 +51,12 @@ Accept = () => {
     {/* <Button>Request of {this.props.requestOwner.username} about {this.props.idProduct.name}</Button> */}
     <Card style={{ width: '18rem'}}>
         <Card.Body>
-            <Card.Title>{this.props.requestOwner.username}</Card.Title>
+            <Card.Title>{this.state.requestOwner.username}</Card.Title>
             <Card.Text>
-            <p>{this.props.inicialDate}</p>
-            <p>{this.props.finalDate}</p>
-            <p>{this.props.comments}</p>
-            <p>{this.props.idProduct.name}</p>
+            <p>{this.state.inicialDate}</p>
+            <p>{this.state.finalDate}</p>
+            <p>{this.state.comments}</p>
+            {/* <p>{this.state.idProduct.name}</p> */}
             
             </Card.Text>
             <Button variant="success" onClick={this.Accept} >Accept</Button>

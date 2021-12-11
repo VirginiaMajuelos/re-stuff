@@ -7,7 +7,6 @@ import RequestCard from '../Request/RequestCard'
 import RequestService from '../../../services/request.service'
 import UploadService from '../../../services/upload.service'
 
-
 class ProfilePage extends Component {
   constructor(props) {
     super(props)
@@ -43,15 +42,15 @@ class ProfilePage extends Component {
     })
   }
 
-componentDidMount () {
+  componentDidMount () {
     this.productService.getProductsByOwner(this.props.loggedUser?._id)
     .then(response => {
- 
        this.requestService.getRequest(this.props.loggedUser?._id)
        .then(res => {
-         this.setState({requests: res.data, products: response.data })
-        })
-        .catch(err => console.log(err))
+         //res.data.map(elm => {console.log(elm)})
+         this.setState({requests: res.data,  products: response.data })
+       })
+       .catch(err => console.log(err))
     }) 
     .catch(err => console.log(err))
   }
@@ -91,66 +90,50 @@ componentDidMount () {
         })
       )
       .catch(err => console.log(err))
-
-          }
+  }
 
   render() {   
   return (
     <>
         <Container>
-        { this.props.loggedUser && 
+        { this.props.loggedUser &&
         <>
-        
           <Card className="text-center">
-            <Card.Header><Card.Title><h1>Profile {this.props.loggedUser.username}</h1></Card.Title> </Card.Header>
+            <Card.Header><Card.Title><h1>Profile {this.props.loggedUser.username}</h1></Card.Title></Card.Header>
             <Card.Body>
-                <Card.Img variant="top" src={this.props.loggedUser.imageUser} style={{width:'200px', height: '200px', borderRadius: '50%' }}/>
-                <Card.Text><br></br>
-                Username: {this.props.loggedUser.username}
-                </Card.Text>
-                 <Card.Text>
-                Email: {this.props.loggedUser.email} 
-                </Card.Text>
-                <Card.Text>
-                Bank Account: {this.props.loggedUser.bankAccount} 
-                </Card.Text>
+                <Card.Img variant="top" src={this.props.loggedUser.imageUser} style={{width:'200px', borderRadius: '45px' }}/>
+                
+                <Card.Text>Username:{this.props.loggedUser.username}</Card.Text>
+                
+                <Card.Text>Email:{this.props.loggedUser.email}</Card.Text>
 
-                <Card.Text>
-                City:{this.props.loggedUser.city} 
-                </Card.Text>
+                <Card.Text>Bank Account:{this.props.loggedUser.bankAccount}</Card.Text>
 
-                 {this.props.loggedUser.description && 
-                 <Card.Text>
-                Description:{this.props.loggedUser.description} 
-                </Card.Text>}
+                <Card.Text>City:{this.props.loggedUser.city} </Card.Text>
 
-                <Card.Text>Products:
-              {/* <ProductsCard products={this.state.products}/>   */}
-              
-                 </Card.Text>
-                  <div style={{display: 'flex', flexDirection: 'row'}}>                 
-                    {this.state.products.map(elm => (<ProductsCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm} />))}
-                  </div>              
-                <Card.Text> Requests: 
+                 {this.props.loggedUser.description && <Card.Text>Description:{this.props.loggedUser.description}</Card.Text>}
 
+                <Card.Text>Products:</Card.Text>
+                <div style={{display: 'flex', flexDirection: 'row'}}>                 
+                  {this.state.products.map(elm => (<ProductsCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm} />))}
+                </div>              
+                
+                <Card.Text> Requests:  </Card.Text>
                 <div>
                  {this.state.requests.map(elm => (<RequestCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm}/>))}
                 </div>
 
-                </Card.Text>
-
-                <Card.Text>
-                Do you want edit your profile?
-                </Card.Text>
-                    <Button onClick={this.openModal} variant="primary">Editar</Button>
+                <Card.Text> Do you want edit your profile?</Card.Text>
+                
+                <Button onClick={this.openModal} variant="primary">Editar</Button>
             </Card.Body>
           </Card>
 
           <Modal show={this.state.showModal} >
-              <Modal.Header onClick={this.closeModal}>
-                <Modal.Title>Formulario</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>  
+            <Modal.Header onClick={this.closeModal}>
+              <Modal.Title>Formulario</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>   
                 <Form onSubmit={this.handleSubmit}>
                   <Form.Group className="mb-3" controlId="username">
                     <Form.Label>Username</Form.Label>
@@ -184,9 +167,10 @@ componentDidMount () {
                   <Button variant="primary" type='submit' onClick={this.closeModal}>
                     Save Changes
                   </Button>
+
                 </Form>
-              </Modal.Body> 
-          </Modal>
+            </Modal.Body>
+         </Modal>
         </>
         }
       </Container>

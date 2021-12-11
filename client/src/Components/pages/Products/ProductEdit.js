@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import ProductService from "../../../services/product.service";
 
-
 class ProductEdit extends Component {
   constructor(props) {
     super(props)
@@ -84,21 +83,16 @@ componentDidMount() {
               <p>{cityProduct}</p>
               <p>{postCode}</p>
               <p>{owner}</p>
-              
-              
+                      
             </article>
           </Col>
           <Col md={4}>
           <Button onClick={this.openModal} variant="primary">Editar Producto</Button>
-
           </Col>
         </Row>
-
        </Container>
-    
     )
   }
-
 }
 
 export default ProductEdit

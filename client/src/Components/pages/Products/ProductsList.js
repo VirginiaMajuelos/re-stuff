@@ -17,13 +17,12 @@ class ProductsList extends Component {
 
         <Row>
           {this.props.products.map(elm => {
-
             return (
               <Col key={elm._id}>
                 <ProductsCard {...elm}  refreshProducts={this.props.refreshProducts} />
               </Col>
-            )
-          })
+                   )
+            })
           }
         </Row>
       </div>

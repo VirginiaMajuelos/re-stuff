@@ -5,8 +5,7 @@ import ProductService from '../../../services/product.service'
 import './productCard.css'
 
 const productService = new ProductService()
-
-                    
+                  
 const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id, refreshProducts}) => {
   
   const handleDelete = (e, _id) => {
