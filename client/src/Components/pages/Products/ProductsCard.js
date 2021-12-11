@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom'
 import ProductService from '../../../services/product.service'
 
 const productService = new ProductService()
-
-                    
+                  
 const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id, refreshProducts}) => {
   
   const handleDelete = (e, _id) => {
@@ -19,7 +18,6 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
   }
 
   return (
-
     <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={imageUrl} style={{width: "100%", height: "150px", objectFit: "cover" }} />
       <Card.Body>

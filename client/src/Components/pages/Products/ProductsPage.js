@@ -3,7 +3,6 @@ import { Container } from 'react-bootstrap'
 import ProductList from './ProductsList'
 import ProductService from '../../../services/product.service'
 
-
 class ProductPage extends Component {
   constructor() {
     super()
@@ -15,11 +14,11 @@ class ProductPage extends Component {
 
  this.service = new ProductService()
   }
-   componentDidMount() {
+ componentDidMount() {
   this.refreshProducts()
   }
   
-   refreshProducts = () => {
+ refreshProducts = () => {
      this.service.getAllProducts()
        .then(response => {
         const products = response.data
@@ -28,7 +27,7 @@ class ProductPage extends Component {
        .catch(err => console.log(err))
    }
   
-  render() {
+ render() {
     return (
       <Container>
       <h1>Product List</h1>
@@ -36,7 +35,6 @@ class ProductPage extends Component {
       </Container>
     )
   }
-
 }
 
 export default ProductPage

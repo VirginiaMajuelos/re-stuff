@@ -23,13 +23,10 @@ export default class NewRequest extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.requestService.createRequest(this.state)
-      .then(response => {
-        // this.props.refreshProduct()
-        // console.log(response)
+      .then(() => {
         this.props.history.push("/products")
       })
       .catch(err => console.log(err))
-
   }
 
   handleInputChange = (e) => {
@@ -58,9 +55,7 @@ export default class NewRequest extends Component {
           <Form.Control onChange={this.handleInputChange} value={this.state.comments} name="comments" type="text" />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Enviar
-        </Button>
+        <Button variant="primary" type="submit">Enviar</Button>
       </Form>
       </Row>
       </Container>
