@@ -1,0 +1,12 @@
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.nav {
+  /* background-color: #649c94; */
+  background-color: #245f5a;
+}

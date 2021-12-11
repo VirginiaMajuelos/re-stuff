@@ -50,7 +50,6 @@ componentDidMount () {
       
        this.requestService.getRequest(this.props.loggedUser?._id)
        .then(res => {
-         //res.data.map(elm => {console.log(elm)})
          this.setState({requests: res.data,  products: response.data })
        })
        .catch(err => console.log(err))
@@ -106,7 +105,7 @@ componentDidMount () {
           <Card className="text-center">
             <Card.Header><Card.Title>INFORMATION</Card.Title> </Card.Header>
             <Card.Body>
-                <Card.Img variant="top" src={this.props.loggedUser.imageUser} style={{width:'200px', borderRadius: '45px' }}/>
+                <Card.Img variant="top" src={this.props.loggedUser.imageUser} style={{width:'200px', height: '200px', borderRadius: '50%' }}/>
                 <Card.Text><br></br>
                 Username:{this.props.loggedUser.username}
                 </Card.Text>

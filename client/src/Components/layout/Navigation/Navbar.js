@@ -20,7 +20,7 @@ const Navigation = ({ loggedUser, storeUser }) => {
   }
 
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar className="nav" variant="dark">
       <Container>
         {/* <Navbar.Brand href="#home">Logo</Navbar.Brand> */}
         <Nav className="me-auto">
@@ -30,14 +30,14 @@ const Navigation = ({ loggedUser, storeUser }) => {
             <Nav.Link as={"span"} onClick={logout}>Logout</Nav.Link>
             <Nav.Link as={Link} to="/products/create-new-product">New product</Nav.Link>
             <Nav.Link as={Link} to="/products">Products</Nav.Link>
-            <Nav.Link as={Link} to={`/profile/${loggedUser._id}`}>Profile</Nav.Link>
-            {/* <Nav.Link as={Link} to={`/profile/${loggedUser._id}`}><img className="user-avatar" src={this.props.imageUser} alt=""/></Nav.Link> */}
+            <Nav.Link as={Link} to={`/profile/${loggedUser._id}`}><img className="user-avatar " src={loggedUser.imageUser} alt=""/></Nav.Link>
+            <Nav.Link as={Link} to={''}><img className="user-avatar" src="https://i.pinimg.com/736x/5b/8a/dc/5b8adc3eb83c32f7f29757c8e5e09ab8.jpg" alt="bell-icon/"/></Nav.Link>
             {/* <Nav.Link as={Link} to={`/request/${id}`}><img src="" */}
             </>
             :
             <>
               
-              <Nav.Link as={Link} to="/signup">Registro</Nav.Link>
+              <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>
               <Nav.Link as={Link} to="/login">Login</Nav.Link>
               
             </>
