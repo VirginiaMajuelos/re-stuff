@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import {Link} from 'react-router-dom'
 import { Container, Row, Col, Button, Modal, Form } from "react-bootstrap";
 import ProductService from "../../../services/product.service";
 import UploadService from '../../../services/upload.service'
+import './ProductDetails.css'
 
   class ProductDetails extends Component {
     constructor(props) {
@@ -28,13 +30,16 @@ import UploadService from '../../../services/upload.service'
 
   }
 
+  capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  
+  
   componentDidMount() {
     const id = this.props.match.params.id
-
+    
     this.service.getOneProduct(id)
-     
-      .then(response => {
-      
+    
+    .then(response => {
+       
         const { _id, imageUrl, name, description, status, categorie, cityProduct, postCode, owner } = response.data
         console.log(owner)
         this.setState({ _id, imageUrl, name, description, status, categorie, cityProduct, postCode, owner })
@@ -101,24 +106,24 @@ import UploadService from '../../../services/upload.service'
     const {imageUrl, name, description, status, categorie, cityProduct, postCode, owner } = this.state
 
     return (
-      <Container>
-        <h1>Detalles del Producto</h1>
-        <Row className="justify-content-around">
-          <Col md={6} style={{ overflow: "hidden" }}>
-            <img src={imageUrl} alt={name} style={{width:'100vh'}}/>
-          </Col>
-          <Col md={6}>
-            <article>
-             <h2>{name} </h2>
-             <p>{description}</p>
-              <p>{status}</p>
-              <p>{categorie}</p>
-              <p>{description}</p>
-              <p>{cityProduct}</p>
-              <p>{postCode}</p>
-              <p>{owner.username}</p> 
+      <Container >
+        <h1 className="textTitle">Details</h1>
+        <Link to={'/products'}>Back</Link>
+        <Row className="details">
+          <Col className="column1" md={7}>
+            <article className="textColumn">
+              <p className="name">{name} </p>
+              <p><span>Description: </span>{this.capitalizeFirstLetter(description)}</p>
+              <p><span>Status: </span>{this.capitalizeFirstLetter(status)}</p>
+              <p><span>Categorie: </span>{this.capitalizeFirstLetter(categorie)}</p>
+              <p><span>City: </span>{this.capitalizeFirstLetter(cityProduct)}</p>
+              <p><span>Post Code: </span>{postCode}</p>
+              <p><span>Owner: </span>{owner.username}</p> 
+              <Button onClick={this.openModal} variant="secondary">Editar Producto</Button>
               </article>
-              <Button onClick={this.openModal} variant="primary">Editar Producto</Button>
+          </Col>
+          <Col md={5} style={{ overflow: "hidden" }}>
+            <img src={imageUrl} alt={name} />
           </Col>
         </Row>
         

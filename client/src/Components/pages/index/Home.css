@@ -53,7 +53,8 @@ h2 {
   color: #575756;
   background-color: transparent;
   border-radius: 50px;
-  border: 1px solid #575756;
+  border: 2px solid #245f5a;
+  margin: 30px;
 }
 
 .search-input2 {
@@ -66,13 +67,13 @@ h2 {
   color: #575756;
   background-color: transparent;
   border-radius: 50px;
-  border: 1px solid #575756;
-  margin: 20px;
+  border: 2px solid #245f5a;
+  margin: 10px;
   margin-bottom: 120px;
 }
 
 .section1 {
-  background: #e3e3dd;
+  background: #dfdfc9bd;
   width: 100%;
   height: 500px;
   justify-content: center;

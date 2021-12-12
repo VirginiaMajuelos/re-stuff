@@ -6,7 +6,10 @@ import './productCard.css'
 
 const productService = new ProductService()
                   
+
 const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id, refreshProducts}) => {
+  
+  const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   
   const handleDelete = (e, _id) => {
     e.preventDefault();
@@ -16,22 +19,24 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
         //this.props.history.push("/products")
       })
       .catch(err => console.log(err))
-  }
+    }
+    
+
 
   return (
 
     <Card  className="card-type" style={{ width: '19rem' }}>
       <Card.Img variant="top" src={imageUrl} style={{width: "100%", height: "150px", objectFit: "cover" }} />
       <Card.Body>
-        <Card.Title>{name}</Card.Title>
+        <Card.Title>{capitalizeFirstLetter(name)}</Card.Title>
         <Card.Subtitle>
-          {price}€/h {status}
+          {price}€/h {capitalizeFirstLetter(status)}
          </Card.Subtitle> 
           <Card.Text>
-          {categorie}
+          {capitalizeFirstLetter(categorie)}
           </Card.Text>
           <Card.Text>
-          {cityProduct}
+          {capitalizeFirstLetter(cityProduct)}
           </Card.Text>
 
         <Link  to={`/create-request/${_id}`}>

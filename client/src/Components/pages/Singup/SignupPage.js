@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Form, Button, Row, Col } from 'react-bootstrap'
 import AuthService from '../../../services/auth.service'
+import './SignupPage.css'
 
 class SignupPage extends Component {
   constructor(props) {
@@ -35,9 +36,10 @@ class SignupPage extends Component {
   render() {
     return (
       <Container>
-        <Row>
-          <Col md={{ span: 4, offset: 4 }}>
-            <h2>Registro</h2>
+        <Row style={{marginTop: '100px'}}>
+          <Col className="container-signup" s={{ span: 4, offset: 4 }}>
+            <h2 className="text">Sign Up</h2> <hr></hr>
+
 
             <Form onSubmit={this.handleSubmit}>
               <Form.Group className="mb-3" controlId="email">
@@ -61,7 +63,7 @@ class SignupPage extends Component {
                 <Form.Control onChange={this.handleInputChange} value={this.state.bankAccount} name="bankAccount" type="text" placeholder="Please write your bank accout" />
               </Form.Group>
 
-              <Button variant="primary" type="submit">
+              <Button variant="secondary" type="submit">
                 Submit
               </Button>
             </Form>
