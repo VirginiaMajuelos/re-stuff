@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Container, Form, Button, Row, Col } from 'react-bootstrap'
 import AuthService from '../../../services/auth.service'
 import './LoginPage.css';
+import image from '../../../img/img.png'
 
 class LoginPage extends Component {
   constructor(props) {
@@ -37,10 +38,10 @@ class LoginPage extends Component {
         <Container sytle={{backgroundColor: 'f9f8ee' }}>
           <Row style={{marginTop: '100px'}}>
             
-            <Col className="container-login" md={{ span: 4, offset: 4 }}>
-              <h2>Login</h2>
+            <Col className="container-login" s={{ span: 4, offset: 4 }}>
+              <h2 className="text">Login</h2>
 
-              <hr />
+              <hr className="text"/>
 
               <Form className="container" onSubmit={this.handleSubmit}>
                 <Form.Group className="mb-3" controlId="email">
@@ -57,6 +58,9 @@ class LoginPage extends Component {
                   Submit
                 </Button>
               </Form>
+            </Col>
+            <Col classname="imagen-login" s={6}>
+              <img  src={image} alt="logo" style={{width: '80%'}}/>
             </Col>
           </Row>
         </Container>)

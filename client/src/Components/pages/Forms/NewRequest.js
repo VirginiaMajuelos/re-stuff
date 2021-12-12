@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Container, Row } from 'react-bootstrap'
 import RequestService from '../../../services/request.service'
+import './NewRequest.css'
 
 export default class NewRequest extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ export default class NewRequest extends Component {
 
   render() {
     return (
-      <Container style={{padding:"60px"}}>
+      <Container className="container-newproduct">
       <Row>
       <Form onSubmit={this.handleSubmit}>
         <Form.Group className="mb-3" controlId="inicialDate">
@@ -51,11 +52,11 @@ export default class NewRequest extends Component {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="price">
-          <Form.Label>comments</Form.Label>
+          <Form.Label>Comments</Form.Label>
           <Form.Control onChange={this.handleInputChange} value={this.state.comments} name="comments" type="text" />
         </Form.Group>
 
-        <Button variant="primary" type="submit">Enviar</Button>
+        <Button variant="secondary" type="submit">Enviar</Button>
       </Form>
       </Row>
       </Container>

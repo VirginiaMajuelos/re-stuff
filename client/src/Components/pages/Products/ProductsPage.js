@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Container } from 'react-bootstrap'
 import ProductList from './ProductsList'
 import ProductService from '../../../services/product.service'
+import './ProductsPage.css'
 
 class ProductPage extends Component {
   constructor() {
@@ -29,8 +30,8 @@ class ProductPage extends Component {
   
  render() {
     return (
-      <Container>
-      <h1>Product List</h1>
+      <Container >
+      <h1 className="textTitle">Products</h1> <hr className="list"></hr>
       <ProductList refreshProducts={this.refreshProducts} products={this.state.products} />
       </Container>
     )
