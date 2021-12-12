@@ -12,6 +12,8 @@ import ProductsPage from './pages/Products/ProductsPage'
 import ProductDetails from './pages/Products/ProductDetails';
 import ProductEdit from './pages/Products/ProductEdit';
 import ProfilePage from './pages/Profile/ProfilePage'
+import Footer from './layout/Footer/Footer';
+import RequestCard from './pages/Request/RequestCard';
 
 class App extends Component {
   constructor(props) {
@@ -39,7 +41,7 @@ class App extends Component {
       <>
         <Navbar storeUser={this.storeUser} loggedUser={this.state.loggedUser} />
 
-        <main>
+        <main  className={App}>
           <Switch>
             <Route path="/" exact render={(props) => <Home {...props} storeUser={this.storeUser} />} />
             <Route path="/products/create-new-product" exact render={(props) => <NewProduct {...props} loggedUser={this.state.loggedUser} />} />
@@ -50,6 +52,7 @@ class App extends Component {
             <Route path="/products/delete-product/:id" exact />
             <Route path="/create-request/:id" exact render={(props) => <NewRequest {...props} loggedUser={this.state.loggedUser} />}/>
             <Route path="/profile" render={(props) => <ProfilePage {...props} loggedUser={this.state.loggedUser} storeUser={this.storeUser} />} />
+            <Route path="/request/edit-request-status/:id" render={(props) => <RequestCard {...props} loggedUser={this.state.loggedUser} storeUser={this.storeUser} />} />
 
             {this.state.loggedUser ?
             <>
@@ -62,6 +65,8 @@ class App extends Component {
             </>
             }
           </Switch>
+
+          <Footer></Footer>
           
         </main>
 

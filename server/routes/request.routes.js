@@ -40,7 +40,7 @@ router.put("/edit-request-status/:id", (req, res) => {
     
 });
 
-router.delete("/request/:id", (req, res) => {
+router.delete("/delete-request/:id", (req, res) => {
     const { id } = req.params;
     
     Product.findByIdAndDelete(id)

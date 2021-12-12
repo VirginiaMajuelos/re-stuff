@@ -1,16 +1,16 @@
 import React from "react";
 import {Component} from 'react';
-import { Container } from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
 import ProductService from '../../../services/product.service';
 import SearchBar from '../Search/SearchBar';
-// import ProductList from '../Products/ProductsList';
+import ProductsPage from '../Products/ProductsPage';
 import './Home.css';
 
 class Home extends Component {
   constructor(props) {
     super(props)
 
-	this.statestate = {
+	this.state = {
     products: [],
 	}
   this.service = new ProductService()
@@ -68,18 +68,57 @@ class Home extends Component {
           <h2>Rent me!</h2>
           <h5>or</h5>
           <h3>You can rent your product without use</h3>
+          <br></br>
           <SearchBar searchProduct={()=>this.searchProduct}/>
       {/* <ProductList refreshProducts={this.refreshProducts} products={this.state.products} /> */}
       {/* <SearchCity onCity={()=>this.onCity}/> */}
-          
-       
         </main> 
       </Container>
       </section>
+      <section>
+
+      <ProductsPage products={this.state.props} storeUser={this.storeUser} />
+      </section>
+
       <section className="section1">
         <Container>
           <h3>How does it work?</h3>
         </Container>
+
+        <div style={{ display:'flex', flexDirection: 'row' }}>
+        <Card style={{ margin:'10px' }}>
+          <Card.Img variant="top" />
+          <Card.Body>
+            <Card.Title>Reuse</Card.Title>
+            <Card.Text>
+              Some quick example text to build on the card title and make up the bulk of
+              the card's content.
+            </Card.Text>
+          </Card.Body>
+        </Card>
+
+        <Card style={{ margin:'10px' }}>
+          <Card.Img variant="top" />
+          <Card.Body>
+            <Card.Title>Security</Card.Title>
+            <Card.Text>
+              Some quick example text to build on the card title and make up the bulk of
+              the card's content.
+            </Card.Text>
+          </Card.Body>
+        </Card>
+        <Card style={{ margin:'10px' }}>
+          <Card.Img variant="top" />
+          <Card.Body>
+            <Card.Title>Life Change</Card.Title>
+            <Card.Text>
+              Some quick example text to build on the card title and make up the bulk of
+              the card's content.
+            </Card.Text>
+          </Card.Body>
+        </Card>
+       </div>
+        
       </section>
     </>
   )

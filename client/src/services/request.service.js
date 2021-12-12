@@ -7,9 +7,9 @@ class RequestService {
       withCredentials: true
     })
   }
-
- createRequest = (data) => this.app.post("/create-request", data)
+  
  getRequest = () => this.app.get("/all-requests")
+ createRequest = (data) => this.app.post("/create-request", data)
  editRequestStatus = (id, dataReq) =>this.app.put(`/edit-request-status/${id}`, dataReq)
 }
 

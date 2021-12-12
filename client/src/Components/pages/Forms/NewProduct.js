@@ -17,7 +17,8 @@ export default class NewProduct extends Component {
         description: "",
         categorie: "",
         cityProduct: "",
-        postCode: 0
+        postCode: 0,
+        owner:this.props.loggedUser,
       },
       loading: false
     }
@@ -28,8 +29,9 @@ export default class NewProduct extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.productService.createProduct({...this.state.product, owner: this.props.loggedUser})
-      .then(() => {
+    this.productService.createProduct({...this.state.product})
+      .then(res => {
+        console.log(res)
         this.props.history.push("/products")
       })
       .catch((err) => console.log(err))

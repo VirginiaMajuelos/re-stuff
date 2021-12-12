@@ -47,12 +47,12 @@ class ProfilePage extends Component {
     .then(response => {
        this.requestService.getRequest(this.props.loggedUser?._id)
        .then(res => {
-         //res.data.map(elm => {console.log(elm)})
          this.setState({requests: res.data,  products: response.data })
        })
        .catch(err => console.log(err))
     }) 
     .catch(err => console.log(err))
+    this.refreshProducts()
   }
 
   handleSubmit = (e) => {
@@ -91,6 +91,15 @@ class ProfilePage extends Component {
       )
       .catch(err => console.log(err))
   }
+
+  refreshProducts = () => {
+    this.productService.getAllProducts()
+      .then(response => {
+       const products = response.data
+       this.setState({ products: products })
+      })
+      .catch(err => console.log(err))
+}
 
   render() {   
   return (
