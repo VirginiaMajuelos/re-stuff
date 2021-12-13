@@ -1,6 +1,6 @@
 import React from "react";
 import {Component} from 'react';
-import { Container, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import ProductService from '../../../services/product.service';
 import SearchBar from '../Search/SearchBar';
 import ProductsPage from '../Products/ProductsPage';
@@ -67,6 +67,8 @@ class Home extends Component {
     <>
       <section className="section1" >
        <img src={logo} alt="logo" style={{width:'25%'}} />
+       <h1 className="gradient">Re-Stuff</h1>
+       
         <main class="main-home">
           <h3>Rent me! <span>or</span> You can rent products that you don´t use</h3>
           <SearchBar searchProduct={()=>this.searchProduct}/>

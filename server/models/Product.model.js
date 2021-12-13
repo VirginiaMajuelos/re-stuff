@@ -6,8 +6,7 @@ const productSchema = new Schema(
     
     name:{
         type: String,
-        required  : [ true, 'The name of the product is required' ], 
-        maxlength : 12,
+        required  : [ true, 'The name of the product is required' ],
       },
    
     price:{

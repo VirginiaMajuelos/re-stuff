@@ -5,25 +5,31 @@ import RequestService from '../../../services/request.service'
 
 
 class RequestPage extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       request: []
-    
     }
 
- this.service = new RequestService()
+ this.requestService = new RequestService()
   }
- componentDidMount() {
+ componentDidMount = () => {
   this.refreshRequest()
   }
   
  refreshRequest = () => {
-     this.service.getRequest()
+     this.requestService.getRequest()
        .then(response => {
         const request = response.data
-        this.setState({ request: request })
+        console.log(this.props.loggedUser)
+        console.log("yoooooooooooooooooooooooooooooooo", response.data[0])
+
+        for (let i=0; i> response.data.length; i++){
+          if (this.props.loggedUser._id === response.data[i].idProduct.owner )
+          this.setState({ request: request })
+          }
+        
        })
        .catch(err => console.log(err))
    }
@@ -31,8 +37,10 @@ class RequestPage extends Component {
  render() {
     return (
       <Container >
-      <h1 className="textTitle">Your request</h1> <hr className="list"></hr>
-      {/* <RequestCard refreshProducts={this.refreshRequest} request={this.state.request} /> */}
+               <h1 className="textTitle">Your request</h1> <hr className="list"></hr>
+                <div style={{display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center'}}>
+                 {this.state.request.map(elm => (elm.idProduct && <RequestCard key={elm._id} loggedUser={this.props.loggedUser} owned={this.props.loggedUser?._id === elm.owner} refreshRequests ={this.refreshRequests} {...elm}/>))}
+                </div>
       </Container>
     )
   }

@@ -31,20 +31,22 @@ router.put("/edit-request-status/:id", (req, res) => {
   const { id } = req.params;
   const { isAccept, idProduct} = req.body;
 
+
+
   Request.findByIdAndUpdate(id, {isAccept, idProduct}, { new: true })
     .then((updatedRequest) => {
       return Product.findByIdAndUpdate(idProduct, {status: 'RENTED'}, { new: true } )
   })
   .then(response => res.status(200).json(response))
-  .catch((err) => res.status(500).jsonres.json({ err, errMessage: "Error accepting request" }));
+  .catch((err) => res.status(500).json({ err, errMessage: "Error accepting request" }));
     
 });
 
 router.delete("/delete-request/:id", (req, res) => {
     const { id } = req.params;
     
-    Product.findByIdAndDelete(id)
-    .then((deletedProduct) => res.json({ deletedProduct }))
+    Request.findByIdAndDelete(id)
+    .then((deletedRequest) => res.json({ deletedRequest }))
     .catch((err) => res.status(500).json({ err, errMessage: "Error to delete request" }));
   });
   

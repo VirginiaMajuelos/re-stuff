@@ -3,7 +3,6 @@ import { Navbar, Nav, Container } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom'
 import AuthService from '../../../services/auth.service'
 import './Navbar.css';
-import image from '../../../img/bell-icon.png'
 import {BiBell} from 'react-icons/bi'
 
 const authService = new AuthService()

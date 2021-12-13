@@ -30,19 +30,27 @@ class ProfilePage extends Component {
     this.uploadService = new UploadService()
   }
   componentDidMount () {
-    this.productService.getProductsByOwner(this.props.loggedUser?._id)
+    
+    this.refreshRequests()
+    this.refreshProducts()
+  }
+
+  refreshRequests = () => {
+    this.productService.getProductsByOwner(this.props.loggedUser._id)
     .then(response => {
-       this.requestService.getRequest(this.props.loggedUser?._id)
-       .then(res => {
-         this.setState({requests: res.data,  products: response.data })
+      this.requestService.getRequest()
+      .then(res => {
+         console.log('products:', response.data)
+         console.log('requests:', res.data)
+         const filteredRequest = res.data.filter(el => response.data.some(elm => el.idProduct._id === elm._id) && el.isAccept !== 'ACCEPTED')
+         console.log('filtered requests:', filteredRequest)
+         this.setState({requests: filteredRequest,  products: response.data })
        })
        .catch(err => console.log(err))
     }) 
     .catch(err => console.log(err))
-    this.refreshProducts()
   }
-
-
+  
   openModal = () => {
     this.setState({
       showModal: true
@@ -112,8 +120,6 @@ class ProfilePage extends Component {
             </Card.Title></Card.Header>
             <Card.Body>
                 <Card.Img variant="top" src={this.props.loggedUser.imageUser} style={{width:'200px', borderRadius: '45px' }}/>
-        
-                <Card.Title> Requests:  </Card.Title>
               
                 <Card.Text><span>Username: </span>{this.props.loggedUser.username}</Card.Text>
                 
@@ -129,19 +135,14 @@ class ProfilePage extends Component {
                 <Card.Text><Button onClick={this.openModal} variant="primary">Editar</Button></Card.Text>
 
                 <Card.Text><span>Products: </span></Card.Text>
-                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>                 
+                <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>                 
                   {this.state.products.map(elm => (<ProductsCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm} />))}
                 </div>              
                 
                 <Card.Text > <span>Requests: </span> </Card.Text>
-                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
-                 {this.state.requests.map(elm => (<RequestCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm}/>))}
+                <div style={{display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center'}}>
+                 {this.state.requests.map(elm => (elm.idProduct && <RequestCard key={elm._id} loggedUser={this.props.loggedUser} owned={this.props.loggedUser?._id === elm.owner} refreshRequests ={this.refreshRequests} {...elm}/>))}
                 </div>
-
-                <Card.Title>Products:</Card.Title>
-                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>                 
-                  {this.state.products.map(elm => (<ProductsCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm} />))}
-                </div>  
                 
                 </Card.Body>
                 </Card>      

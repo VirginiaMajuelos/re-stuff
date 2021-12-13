@@ -12,42 +12,36 @@ class RequestCard extends Component {
         idProduct: this.props.idProduct._id,
         isAccept: this.props.isAccept,
         status: this.props.idProduct.status,
-        }
-        this.productService = new ProductService(); 
-        this.requestService = new RequestService(); 
+        request: undefined,
+        products: undefined
+      }
+      this.productService = new ProductService(); 
+      this.requestService = new RequestService(); 
 }
-
-
 
 componentDidMount () {
   console.log(this.props)
-    this.productService.getProductsByOwner(this.props.loggedUser?._id)
+}
+
+Accept = () => {   
+    this.requestService.editRequestStatus(this.state.idRequest, {isAccept: 'ACCEPTED', idProduct: this.state.idProduct} )
     .then(response => {
-       this.requestService.getRequest(this.props.loggedUser?._id)
-       .then(res => {
-         this.setState({requests: res.data,  products: response.data })
-       })
-       .catch(err => console.log(err))
-    }) 
-    .catch(err => console.log(err))
-     this.refreshProducts()
+      this.props.refreshRequests()
+    })
+    .catch(err => console.log(err))    
   }
 
-// Accept = () => {
-  
-//     console.log("id request",this.state.isAccept)
-//     console.log("id producto", this.state.status)
-//         // this.setState({isAccept: "ACCEPTED", status: "RENTED" })      
-//     // this.productService.editProduct(this.state.idRequest, {isAccept: "ACCEPTED"})    
-//     this.requestService.editRequestStatus(this.state.idRequest, this.state.idProduct )    
-    
-//     console.log("despues id request",this.state.isAccept)
-//     console.log("despues id producto", this.state.status)
-    
-//   }
+  Deny = (e, _id) => {
+    e.preventDefault();
+    this.requestService.deleteRequest(this.state.idRequest)
+      .then(response => {
+        this.props.refreshRequests()
+      })
+      .catch(err => console.log(err))
+    }
 
   refreshProducts = () => {
-    this.service.getAllProducts()
+    this.productService.getAllProducts()
       .then(response => {
        const products = response.data
        this.setState({ products: products })
@@ -58,19 +52,18 @@ componentDidMount () {
         
   return (
 <>
-    {/* <Button>Request of {this.props.requestOwner.username} about {this.props.idProduct.name}</Button> */}
     <Card style={{ width: '18rem'}}>
         <Card.Body>
-            <Card.Title>{this.state.requestOwner.username}</Card.Title>
+            <Card.Title>{this.props.requestOwner?.username}</Card.Title>
             <Card.Text>
-            <p>{this.state.inicialDate}</p>
-            <p>{this.state.finalDate}</p>
-            <p>{this.state.comments}</p>
+            <p>{this.props.inicialDate}</p>
+            <p>{this.props.finalDate}</p>
+            <p>{this.props.comments}</p>
             {/* <p>{this.state.idProduct.name}</p> */}
             
             </Card.Text>
             <Button variant="success" onClick={this.Accept} >Accept</Button>
-            <Button variant="danger">Not accept</Button>
+            <Button variant="danger" onClick={this.Deny}>Not accept</Button>
         </Card.Body>
     </Card>
 </>

@@ -26,10 +26,10 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
 
   return (
 
-    <Card  className="card-type" style={{ width: '18rem' }}>
+    <Card className="card-type" style={{ width: '18rem',  }}>
       <Card.Img variant="top" src={imageUrl} style={{width: "100%", height: "150px", objectFit: "cover" }} />
       <Card.Body>
-        <Card.Title className='text-card'><h3>{capitalizeFirstLetter(name)}</h3></Card.Title>
+        <Card.Title className='text-card'><p>{capitalizeFirstLetter(name)}</p></Card.Title>
           {/* <Card.Text className='text-card'>
           {capitalizeFirstLetter(categorie)}
           </Card.Text>
@@ -37,7 +37,7 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
           {capitalizeFirstLetter(cityProduct)}
           </Card.Text> */}
         <Card.Text >
-         <h3> {price}€/h </h3>{capitalizeFirstLetter(status)}
+         <p> {price}€/h </p>{capitalizeFirstLetter(status)}
          </Card.Text> 
 
         <Link  to={`/create-request/${_id}`}>
