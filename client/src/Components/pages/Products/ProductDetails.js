@@ -4,6 +4,7 @@ import { Container, Row, Col, Button, Modal, Form } from "react-bootstrap";
 import ProductService from "../../../services/product.service";
 import UploadService from '../../../services/upload.service'
 import './ProductDetails.css'
+import imgback from '../../../img/arrow.png'
 
   class ProductDetails extends Component {
     constructor(props) {
@@ -107,8 +108,7 @@ import './ProductDetails.css'
 
     return (
       <Container >
-        <h1 className="textTitle">Details</h1>
-        <Link to={'/products'}>Back</Link>
+        <h1 className="textTitle">Details</h1> <hr className="list"></hr>
         <Row className="details">
           <Col className="column1" md={7}>
             <article className="textColumn">
@@ -120,13 +120,16 @@ import './ProductDetails.css'
               <p><span>Post Code: </span>{postCode}</p>
               <p><span>Owner: </span>{owner.username}</p> 
               <Button onClick={this.openModal} variant="secondary">Editar Producto</Button>
+              <Button as={Link} variant="secondary" to={'/products'}><img src={imgback} alt='back' style={{width:'20px'}}/></Button>
+              
               </article>
           </Col>
-          <Col md={5} style={{ overflow: "hidden" }}>
+          <Col md={5} style={{ overflow: "hidden", height:'300px'}}>
             <img src={imageUrl} alt={name} />
           </Col>
         </Row>
         
+
         <Modal show={this.state.showModal} >
           <Modal.Header onClick={this.closeModal}>
             <Modal.Title>Formulario Edit Produtc:</Modal.Title>

@@ -3,6 +3,7 @@ import { Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import ProductService from '../../../services/product.service'
 import './productCard.css'
+import imgdelete from '../../../img/delete.png'
 
 const productService = new ProductService()
                   
@@ -47,7 +48,7 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
           <Button className="boton-type"variant="secondary">Details</Button>
         </Link>
         
-          <Button onClick={(e) => handleDelete(e, _id)} className="boton-type" variant="secondary">Delete</Button>
+          <Button onClick={(e) => handleDelete(e, _id)} className="boton-type" variant="secondary"><img src={imgdelete} alt='delete' style={{width:'20px'}}/></Button>
         
       </Card.Body>
     </Card>
