@@ -228,9 +228,9 @@ import './ProductDetails.css'
                   <Form.Control onChange={this.handleInputChange} value={this.state.postCode} name="postCode" type="number" />
                 </Form.Group>
 
-                <Button variant="secondary" onClick={this.closeModal}>Close</Button>
+                <Button variant="secondary" style={{margin: '10px'}} onClick={this.closeModal}>Close</Button>
 
-                <Button variant="primary" type='submit' onClick={this.closeModal}>Save Changes </Button>
+                <Button variant="secondary" type='submit' onClick={this.closeModal}>Save Changes </Button>
             </Form>
           </Modal.Body>
       </Modal>

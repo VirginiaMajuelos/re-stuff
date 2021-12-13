@@ -14,6 +14,8 @@ import ProductEdit from './pages/Products/ProductEdit';
 import ProfilePage from './pages/Profile/ProfilePage'
 import Footer from './layout/Footer/Footer';
 import RequestCard from './pages/Request/RequestCard';
+import RequestPage from './pages/Request/RequestPage';
+
 
 class App extends Component {
   constructor(props) {
@@ -52,7 +54,8 @@ class App extends Component {
             <Route path="/products/delete-product/:id" exact />
             <Route path="/create-request/:id" exact render={(props) => <NewRequest {...props} loggedUser={this.state.loggedUser} />}/>
             <Route path="/profile" render={(props) => <ProfilePage {...props} loggedUser={this.state.loggedUser} storeUser={this.storeUser} />} />
-            <Route path="/request/edit-request-status/:id" render={(props) => <RequestCard {...props} loggedUser={this.state.loggedUser} storeUser={this.storeUser} />} />
+            <Route path="/requests/edit-request-status/:id" render={(props) => <RequestCard {...props} loggedUser={this.state.loggedUser} storeUser={this.storeUser} />} />
+            <Route path="/requests/all-requests" render={(props) => <RequestPage {...props} loggedUser={this.state.loggedUser} storeUser={this.storeUser} />} />
 
             {this.state.loggedUser ?
             <>

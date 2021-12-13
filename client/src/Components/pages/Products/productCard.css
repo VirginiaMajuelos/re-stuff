@@ -1,7 +1,22 @@
 .card-type {
   box-shadow: 4px 4px 10px #245f5aab;
+  margin-bottom: 55px;
+  transition: 1s;
+}
+
+.card-type:hover {
   background-color: #dfdfc9bd;
-  margin-bottom: 15px;
+  transform: scale(1.2);
+  transition: 0.8s;
+}
+
+.card-type::before {
+  transition-duration: 1s;
+}
+
+.text-card {
+  color: #245f5a;
+  /* font-weight: xx-small; */
 }
 
 .boton-type {

@@ -3,6 +3,8 @@ import { Navbar, Nav, Container } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom'
 import AuthService from '../../../services/auth.service'
 import './Navbar.css';
+import image from '../../../img/bell-icon.png'
+import {BiBell} from 'react-icons/bi'
 
 const authService = new AuthService()
 
@@ -30,9 +32,9 @@ const Navigation = ({ loggedUser, storeUser }) => {
             <Nav.Link as={"span"} onClick={logout}>Logout</Nav.Link>
             <Nav.Link as={Link} to="/products/create-new-product">New product</Nav.Link>
             <Nav.Link as={Link} to="/products">Products</Nav.Link>
+            <Nav.Link as={Link} to={"/requests/all-requests"}><BiBell/></Nav.Link>
             <Nav.Link as={Link} to={`/profile/${loggedUser._id}`}><img className="user-avatar " src={loggedUser.imageUser} alt="user"/></Nav.Link>
-            <Nav.Link as={Link} to={`/request//edit-request-status/${loggedUser._id}`}><img className="user-avatar" src="https://i.pinimg.com/736x/5b/8a/dc/5b8adc3eb83c32f7f29757c8e5e09ab8.jpg" alt="bell-icon/"/></Nav.Link>
-            {/* <Nav.Link as={Link} to={`/request/${id}`}><img src="" */}
+
 
             
 
