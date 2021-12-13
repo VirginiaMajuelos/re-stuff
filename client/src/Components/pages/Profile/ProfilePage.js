@@ -108,12 +108,10 @@ class ProfilePage extends Component {
         <>
           <Card className="text-center">
             <Card.Header><Card.Title>
-            <h1 className="textTitle">Products {this.props.loggedUser.username}</h1> <hr className="list"></hr>
+            <h1 className="textTitle">Profile:  {this.props.loggedUser.username}</h1> <hr className="list"></hr>
             </Card.Title></Card.Header>
             <Card.Body>
                 <Card.Img variant="top" src={this.props.loggedUser.imageUser} style={{width:'200px', borderRadius: '45px' }}/>
-        
-                <Card.Title> Requests:  </Card.Title>
               
                 <Card.Text><span>Username: </span>{this.props.loggedUser.username}</Card.Text>
                 
@@ -135,13 +133,8 @@ class ProfilePage extends Component {
                 
                 <Card.Text > <span>Requests: </span> </Card.Text>
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
-                 {this.state.requests.map(elm => (<RequestCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm}/>))}
+                 {this.state.requests.map(elm => (elm.idProduct && <RequestCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm}/>))}
                 </div>
-
-                <Card.Title>Products:</Card.Title>
-                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>                 
-                  {this.state.products.map(elm => (<ProductsCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm} />))}
-                </div>  
                 
                 </Card.Body>
                 </Card>      

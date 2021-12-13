@@ -8,7 +8,7 @@ import './Home.css';
 import image01 from '../../../img/reuse.png'
 import image02 from '../../../img/security.png'
 import image03 from '../../../img/lifechange.png'
-import logo from '../../../img/logo.png'
+// import logo from '../../../img/logo.png'
 
 class Home extends Component {
   constructor(props) {
@@ -16,6 +16,7 @@ class Home extends Component {
 
 	this.state = {
     products: [],
+    productsCopy: []
 	}
   this.service = new ProductService()
   }
@@ -28,21 +29,21 @@ class Home extends Component {
        this.service.getAllProducts()
          .then(response => {
           const products = response.data
-          this.setState({ products: products })
+          this.setState({ products: products, productsCopy: products })
          })
          .catch(err => console.log(err))
    }
    
 	searchProduct = (e) => {
 		let searchValue = e.currentTarget.value;
-		let filteredProducts =  this.state.products.filter(data =>{
+		let filteredProducts =  this.state.productsCopy.filter(data =>{
 			return data.name.toLowerCase().includes(searchValue.toLowerCase()) 
 		})
 		console.log(filteredProducts)
 		this.setState({
 			products: filteredProducts 
 		})
-    this.refreshProducts()
+    //this.refreshProducts()
 	}
 
 	// onCity = (e) => {
@@ -66,7 +67,8 @@ class Home extends Component {
   return (
     <>
       <section className="section1" >
-       <img src={logo} alt="logo" style={{width:'25%'}} />
+      <h1 className='gradient'>Re-Stuff</h1>
+       {/* <img src={logo} alt="logo" style={{width:'25%'}} /> */}
         <main class="main-home">
           <h3>Rent me! <span>or</span> You can rent products that you don´t use</h3>
           <SearchBar searchProduct={()=>this.searchProduct}/>
@@ -78,7 +80,7 @@ class Home extends Component {
 
       <section className="section2">
 
-      <ProductsPage products={this.state.props} storeUser={this.storeUser} />
+      <ProductsPage products={this.state.products} storeUser={this.storeUser} />
       </section>
 
       <section className="section1">

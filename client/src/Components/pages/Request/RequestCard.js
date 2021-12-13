@@ -47,7 +47,7 @@ componentDidMount () {
 //   }
 
   refreshProducts = () => {
-    this.service.getAllProducts()
+    this.productService.getAllProducts()
       .then(response => {
        const products = response.data
        this.setState({ products: products })
@@ -61,11 +61,11 @@ componentDidMount () {
     {/* <Button>Request of {this.props.requestOwner.username} about {this.props.idProduct.name}</Button> */}
     <Card style={{ width: '18rem'}}>
         <Card.Body>
-            <Card.Title>{this.state.requestOwner.username}</Card.Title>
+            <Card.Title>{this.props.requestOwner?.username}</Card.Title>
             <Card.Text>
-            <p>{this.state.inicialDate}</p>
-            <p>{this.state.finalDate}</p>
-            <p>{this.state.comments}</p>
+            <p>{this.props.inicialDate}</p>
+            <p>{this.props.finalDate}</p>
+            <p>{this.props.comments}</p>
             {/* <p>{this.state.idProduct.name}</p> */}
             
             </Card.Text>
