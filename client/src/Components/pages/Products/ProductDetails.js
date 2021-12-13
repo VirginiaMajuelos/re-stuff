@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import {Link} from 'react-router-dom'
 import { Container, Row, Col, Button, Modal, Form } from "react-bootstrap";
 import ProductService from "../../../services/product.service";
-import UploadService from '../../../services/upload.service'
+import UploadService from '../../../services/upload.service';
 import './ProductDetails.css'
 import imgback from '../../../img/arrow.png'
+import NewReview from "../Review/NewReview";
+import ShowReview from "../Review/ShowReview";
 
   class ProductDetails extends Component {
     constructor(props) {
@@ -22,29 +24,43 @@ import imgback from '../../../img/arrow.png'
         cityProduct: "",
         postCode: "",
         owner:"",
+
+        review:[{
+        description: "",
+        }],
+
       
+      mostrar: false,
       loading: false
     }
 
     this.service = new ProductService()
     this.uploadService = new UploadService()
+    
 
   }
 
   capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   
-  
+//   Rating = () => {
+//   let number = ();
+//   return (
+//     <div className="Rating">
+//       {number >= 1 ? '★' : '☆'}
+//       {number >= 2 ? '★' : '☆'}
+//       {number >= 3 ? '★' : '☆'}
+//       {number >= 4 ? '★' : '☆'}
+//       {number >= 5 ? '★' : '☆'}
+//     </div>
+//   );
+// };
+
   componentDidMount() {
     const id = this.props.match.params.id
-    
     this.service.getOneProduct(id)
-    
     .then(response => {
-       
         const { _id, imageUrl, name, description, status, categorie, cityProduct, postCode, owner } = response.data
-        console.log(owner)
         this.setState({ _id, imageUrl, name, description, status, categorie, cityProduct, postCode, owner })
-      
       })
       .catch(err => console.log(err))
   }
@@ -69,8 +85,9 @@ import imgback from '../../../img/arrow.png'
       this.state.storeUser(response.data);
     })
     .catch(err => console.log(err))
-
+ 
   }
+
   handleInputChange = (e) => {
   const { name, value } = e.currentTarget
 
@@ -119,16 +136,18 @@ import imgback from '../../../img/arrow.png'
               <p><span>City: </span>{this.capitalizeFirstLetter(cityProduct)}</p>
               <p><span>Post Code: </span>{postCode}</p>
               <p><span>Owner: </span>{owner.username}</p> 
-              <Button onClick={this.openModal} variant="secondary">Editar Producto</Button>
-              <Button as={Link} variant="secondary" to={'/products'}><img src={imgback} alt='back' style={{width:'20px'}}/></Button>
-              
+              <Button onClick={this.openModal} style={{margin: '10px'}} variant="secondary">Editar Producto</Button>
+              <Button as={Link} variant="secondary" to={'/products'}><img src={imgback} alt='back' style={{ width:'10px'}}/></Button>
               </article>
           </Col>
           <Col md={5} style={{ overflow: "hidden", height:'300px'}}>
             <img src={imageUrl} alt={name} />
           </Col>
         </Row>
-        
+          <Col md={12}>
+          <NewReview/>
+          <ShowReview/>
+          </Col>
 
         <Modal show={this.state.showModal} >
           <Modal.Header onClick={this.closeModal}>
