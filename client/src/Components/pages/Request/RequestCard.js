@@ -25,8 +25,6 @@ componentDidMount () {
     .then(response => {
        this.requestService.getRequest(this.props.loggedUser?._id)
        .then(res => {
-         console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-         //res.data.map(elm => {console.log(elm)})
          this.setState({requests: res.data,  products: response.data })
        })
        .catch(err => console.log(err))

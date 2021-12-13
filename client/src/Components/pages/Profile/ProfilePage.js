@@ -112,17 +112,28 @@ class ProfilePage extends Component {
             </Card.Title></Card.Header>
             <Card.Body>
                 <Card.Img variant="top" src={this.props.loggedUser.imageUser} style={{width:'200px', borderRadius: '45px' }}/>
+        
+                <Card.Title> Requests:  </Card.Title>
+              
+                <Card.Text><span>Username: </span>{this.props.loggedUser.username}</Card.Text>
                 
-                <Card.Text>Username:{this.props.loggedUser.username}</Card.Text>
-                <Card.Text>Email:{this.props.loggedUser.email}</Card.Text>
-                <Card.Text>Bank Account:{this.props.loggedUser.bankAccount}</Card.Text>
-                <Card.Text>City:{this.props.loggedUser.city} </Card.Text>
-                <Card.Text>Description:{this.props.loggedUser.description}</Card.Text>
+                <Card.Text><span>Email: </span>{this.props.loggedUser.email}</Card.Text>
+
+                <Card.Text><span>Bank Account: </span>{this.props.loggedUser.bankAccount}</Card.Text>
+
+                <Card.Text><span>City: </span>{this.props.loggedUser.city} </Card.Text>
+
+                 {this.props.loggedUser.description && <Card.Text><span>Description: </span>{this.props.loggedUser.description}</Card.Text>}
 
                  <Card.Text> Do you want edit your profile?</Card.Text>
-                <Card.Text><Button onClick={this.openModal} variant="primary">Editar</Button></Card.Text>  
-                      
-                <Card.Title> Requests:  </Card.Title>
+                <Card.Text><Button onClick={this.openModal} variant="primary">Editar</Button></Card.Text>
+
+                <Card.Text><span>Products: </span></Card.Text>
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>                 
+                  {this.state.products.map(elm => (<ProductsCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm} />))}
+                </div>              
+                
+                <Card.Text > <span>Requests: </span> </Card.Text>
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
                  {this.state.requests.map(elm => (<RequestCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm}/>))}
                 </div>
@@ -130,10 +141,11 @@ class ProfilePage extends Component {
                 <Card.Title>Products:</Card.Title>
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>                 
                   {this.state.products.map(elm => (<ProductsCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm} />))}
-                </div>        
-
-            </Card.Body>
-          </Card>
+                </div>  
+                
+                </Card.Body>
+                </Card>      
+           
 
           <Modal show={this.state.showModal} >
             <Modal.Header onClick={this.closeModal}>
