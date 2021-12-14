@@ -17,7 +17,7 @@ router.post("/create-reviews", (req, res) => {
     const { id } = req.query;
     // rating || (rating = 4)
 
-    Review.create({  description, idProduct: id })
+    Review.create({  description, idProduct: id, reviewOwner })
         .then(newReview => res.status(200).json(newReview))
         .catch(err => res.status(500).json(err))
 

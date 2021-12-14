@@ -8,7 +8,7 @@ import ReviewService from '../../../services/review.service';
       super(props)
 
       this.state = {
-    
+        
         review:[{
         description: "",
         }],
@@ -43,6 +43,7 @@ import ReviewService from '../../../services/review.service';
     e.preventDefault();
     this.reviewService.createReview(this.state._id, this.state.review)
       .then(res => {
+        console.log(res)
         this.props.history.push("/products")
       })
       .catch((err) => console.log(err))

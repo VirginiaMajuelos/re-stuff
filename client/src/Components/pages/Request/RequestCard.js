@@ -52,7 +52,7 @@ Accept = () => {
         
   return (
 <>
-    <Card style={{ width: '18rem'}}>
+    <Card style={{ width: '50%', margin: '10px'}}>
         <Card.Body>
             <Card.Title>{this.props.requestOwner?.username}</Card.Title>
             <Card.Text>

@@ -21,15 +21,12 @@ class RequestPage extends Component {
  refreshRequest = () => {
      this.requestService.getRequest()
        .then(response => {
-        const request = response.data
-        console.log(this.props.loggedUser)
-        console.log("yoooooooooooooooooooooooooooooooo", response.data[0])
-
-        for (let i=0; i> response.data.length; i++){
-          if (this.props.loggedUser._id === response.data[i].idProduct.owner )
-          this.setState({ request: request })
-          }
-        
+      
+        console.log("Logged user", this.props.loggedUser._id)
+        console.log("info que recibe", response.data)
+        const filteredRequest = response.data.filter(el => response.data.some(elm => el.idProduct.owner === this.props.loggedUser._id) && el.isAccept !== 'ACCEPTED')
+        console.log('filtered requests:', filteredRequest)
+        this.setState({request: filteredRequest}) 
        })
        .catch(err => console.log(err))
    }

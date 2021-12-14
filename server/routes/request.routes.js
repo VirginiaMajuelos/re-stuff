@@ -31,8 +31,6 @@ router.put("/edit-request-status/:id", (req, res) => {
   const { id } = req.params;
   const { isAccept, idProduct} = req.body;
 
-
-
   Request.findByIdAndUpdate(id, {isAccept, idProduct}, { new: true })
     .then((updatedRequest) => {
       return Product.findByIdAndUpdate(idProduct, {status: 'RENTED'}, { new: true } )

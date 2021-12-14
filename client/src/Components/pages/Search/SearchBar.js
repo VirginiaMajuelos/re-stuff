@@ -1,15 +1,31 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 function SearchBar(props) {
+	const [searchText, setSearchText] = useState("")
+	const [city, setCity] = useState("")
+
+	const handleSelect =  (e) => {
+		setCity(e.currentTarget.value)
+	}
+
+	const handleSearch = (e) => {
+		setSearchText(e.currentTarget.value)
+	}
+	
+	useEffect(() => {
+		props.searchProduct(searchText, city)
+	}, [searchText, city])
+
+
 
 	return (
 		<div>
 			<div className="search-container">
-			   <input className="search-input" type="search" placeholder="What are you looking for?" name="search" onChange={props.searchProduct()}/>
-			</div>
-			<label for="city"></label>
-			<select class="search-input2" id="city" name="city">
-				<option>Select your city</option>
+			   <input className="search-input" type="search" placeholder="What are you looking for?" name="search" onChange={handleSearch}/>
+			
+			<label for="city">City: </label>
+			<select class="search-input2" id="city" name="city" onChange={handleSelect}>
+				<option value=''>Select your city</option>
 					<option value="ÁLAVA">Álava</option>
 					<option value="ALBACETE">Albacete</option>
 					<option value="ALICANTE">Alicante</option>
@@ -61,6 +77,7 @@ function SearchBar(props) {
 					<option value="ZAMORA">Zamora</option>
 					<option value="ZARAGOZA">Zaragoza</option>
 			</select>
+			</div>
 		</div>
 	);
 }

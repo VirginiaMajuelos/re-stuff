@@ -145,8 +145,8 @@ import ShowReview from "../Review/ShowReview";
           </Col>
         </Row>
           <Col md={12}>
-          <NewReview/>
-          <ShowReview/>
+          <NewReview id={this.state._id}/>
+          
           </Col>
 
         <Modal show={this.state.showModal} >

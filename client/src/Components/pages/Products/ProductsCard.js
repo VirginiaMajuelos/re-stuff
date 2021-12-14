@@ -26,7 +26,7 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
 
   return (
 
-    <Card className="card-type" style={{ width: '18rem' }}>
+    <Card className="card-type" style={{ width: '17rem', margin:'10px' }}>
       <Card.Img variant="top" src={imageUrl} style={{width: "100%", height: "150px", objectFit: "cover" }} />
       <Card.Body>
         <Card.Title className='text-card'><p>{capitalizeFirstLetter(name)}</p></Card.Title>

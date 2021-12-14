@@ -25,7 +25,7 @@ const Navigation = ({ loggedUser, storeUser }) => {
       <Container>
         {/* <Navbar.Brand href="#home">Logo</Navbar.Brand> */}
         <Nav className="me-auto">
-          <Nav.Link as={Link} to="/">Logo</Nav.Link>
+          <Nav.Link as={Link} to="/" className='gradient'>Re-Stuff</Nav.Link>
           {loggedUser ?
           <>
             <Nav.Link as={"span"} onClick={logout}>Logout</Nav.Link>
