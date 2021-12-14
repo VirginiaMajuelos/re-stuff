@@ -9,7 +9,7 @@ class ReviewService {
   }
   
  getReview = () => this.app.get("/all-reviews")
- createReview = (id, data) => this.app.post(`/create-reviews/?id=${id}`, data)
+ createReview = (id, data) => this.app.post(`/create-reviews?id=${id}`, data)
  
 }
 

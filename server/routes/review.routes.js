@@ -8,7 +8,7 @@ router.get('/all-reviews', (req, res) => {
 
     Review.find()
         .populate("reviewOwner")
-        .then(allReviews => res.render('/reviews', {allReviews}))
+        .then(allReviews => res.json (allReviews))
         .catch(err => console.log(err))
 })
 
@@ -17,25 +17,10 @@ router.post("/create-reviews", (req, res) => {
     const { id } = req.query;
     // rating || (rating = 4)
 
-    Review.create({  description, idProduct: id, reviewOwner })
+    Review.create({  description, idProduct: id, reviewOwner: req.session.currentUser._id })
         .then(newReview => res.status(200).json(newReview))
         .catch(err => res.status(500).json(err))
 
 })
-
-
-router.get("/delete", (req, res) => {
-    const { id } = req.query
-
-    Review.findByIdAndDelete(id)
-        .then(info => res.redirect("/reviews"))
-        .catch(err => console.log(err))
-
-})
-
-
-
-
-
 
 module.exports = router;
