@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import ProductService from '../../../services/product.service'
 import './productCard.css'
 import imgdelete from '../../../img/delete.png'
+import FavoriteButton from './FavoriteButton'
 // import FavoriteButton from './FavoriteButton'
 
 
@@ -42,8 +43,7 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
         <Card.Text >
          <p> {price}€/h </p>{capitalizeFirstLetter(status)}
          </Card.Text> 
-
-        {/* <FavoriteButton></FavoriteButton> */}
+       
 
         <Link  to={`/create-request/${_id}`}>
           <Button className="boton-type" variant="secondary">Alquilar</Button>

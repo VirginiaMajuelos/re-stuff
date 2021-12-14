@@ -20,7 +20,7 @@ class showReview extends Component {
   componentDidMount () {
     this.reviewService.getReview()
     .then(response=> {
-     // const this.state.review = response.data
+         // const this.state.review = response.data
      console.log(response.data)
       this.setState({review: response.data})
     })
