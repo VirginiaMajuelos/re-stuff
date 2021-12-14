@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import ProductService from '../../../services/product.service'
 import './productCard.css'
 import imgdelete from '../../../img/delete.png'
-// import FavoriteButton from './FavoriteButton'
+import FavoriteButton from './FavoriteButton'
 
 
 const productService = new ProductService()
@@ -24,6 +24,14 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
       .catch(err => console.log(err))
     }
     
+  const handleSendFavorite = (e) => {
+    e.preventDefault();
+      productService.favoriteProduct(_id)
+      .then(response => { 
+        console.log("aaaaaaaaaaaaa", response)
+      })
+      .catch(err => console.log(err))
+    }
   
 
 
@@ -33,18 +41,12 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
       <Card.Img variant="top" src={imageUrl} style={{width: "100%", height: "150px", objectFit: "cover" }} />
       <Card.Body>
         <Card.Title className='text-card'><p>{capitalizeFirstLetter(name)}</p></Card.Title>
-          {/* <Card.Text className='text-card'>
-          {capitalizeFirstLetter(categorie)}
-          </Card.Text>
-          <Card.Text className='text-card'>
-          {capitalizeFirstLetter(cityProduct)}
-          </Card.Text> */}
         <Card.Text >
          <p> {price}€/h </p>{capitalizeFirstLetter(status)}
          </Card.Text> 
 
-        {/* <FavoriteButton></FavoriteButton> */}
-
+        <FavoriteButton></FavoriteButton>
+{/* handleSendFavorite = {this.handleSendFavorite} */}
         <Link  to={`/create-request/${_id}`}>
           <Button className="boton-type" variant="secondary">Alquilar</Button>
         </Link>
@@ -59,5 +61,6 @@ const ProductCard = ({imageUrl, name, price, status, categorie, cityProduct, _id
     </Card>
   )
 }
+
 
 export default ProductCard

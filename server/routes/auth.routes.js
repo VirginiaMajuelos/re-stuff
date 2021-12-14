@@ -20,7 +20,6 @@ router.post('/signup', (req, res) => {
         .create({ username, email, password: hashPass, bankAccount})
         .then((user) => res.status(200).json(user))
         .catch(err => console.log(err))
-        //.catch(err => res.status(500).json({ code: 500, message: 'DB error while creating user', err: err.message }))
     })
     .catch(err => res.status(500).json({ code: 500, message: 'BDB error while fetching user', err: err.message }))
 })
@@ -84,5 +83,6 @@ router.put("/profile/:id", (req, res) => {
     .then((updatedProfile) => res.json(updatedProfile))
     .catch((err) => res.status(500).json({ err, errMessage: "Error editing product" }));
 });
+
 
 module.exports = router

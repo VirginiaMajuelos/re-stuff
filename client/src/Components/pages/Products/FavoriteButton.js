@@ -1,67 +1,24 @@
-// import React from 'react'
-// import {MdFavoriteBorder, MdFavorite} from 'react-icons/md'
-// import { Container, Div, Image } from 'react-bootstrap'
-// import { useState, useEffect } from 'react'
+import React from 'react'
+import {MdFavoriteBorder, MdFavorite} from 'react-icons/md'
+import { useState } from 'react'
 
+const FavoriteButton = (props) => {
+  //isRed define un state, setIsRed es una función que actualiza isRed
+  //false es su valor inicial.
+  //equivalente a : this.state = {isRed: false}
+  const [isNotFavorite, setFavorite] = useState(false)
 
-// const FavoriteButton = ({coin}) => {
-//   const [isFavorite, setIsFavorite] = useState(false);
-	
-// 	const handlePress = () => {
-//     setIsFavorite(!isFavorite);
-//     if (isFavorite) {
-//       removeFavorite();
-//     } else {
-//       addFavorite();
-//     }
-//   };
+  
+  const handleClick = () => {
+    setFavorite(!isNotFavorite)
+  }
 
-//   const checkFavorite = async () => {
-//     const key = `favorite-${coin.id}`;
-//     const checking = await Storage.instance.get(key);
+  return (
+    <div style={{borderRadius: '5px', }} onClick={handleClick}> {isNotFavorite ?  <MdFavorite/> : <MdFavoriteBorder/>}</div>
+  )
+}
 
-//     if (checking !== null) {
-//       setIsFavorite(true);
-//     }
-//   };
+export default FavoriteButton
+ 
 
-// const addFavorite = async () => {
-//     const key = `favorite-${coin.id}`;
-//     const stored = await Storage.instance.store(key, JSON.stringify(coin));
-
-//     if (stored) {
-//       setIsFavorite(true);
-//     }
-//   };
-
-//   const removeFavorite = async () => {
-//     const key = `favorite-${coin.id}`;
-//     const deleted = await Storage.instance.remove(key);
-
-//     if (deleted) {
-//       setIsFavorite(false);
-//     }
-//   };
-
-//   useEffect(() => {
-//     checkFavorite();
-//   }, [isFavorite]);
-
-// return (
-//     <Container>
-//       <Div style={styles.button} onPress={() => handlePress()}>
-//         {isFavorite ? 
-//         (<Image><MdFavoriteBorder/></Image>) : 
-//         (<Image><MdFavorite/></Image>)}
-//       </Div>
-//     </Container>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   button: {
-//     marginRight: 8,
-//   },
-// });
-
-// export default FavoriteButton;
+//En onClick queremos esta función {props.handleSendFavorite} pero no funciona. 

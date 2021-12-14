@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { populate } = require("../models/Product.model");
 const Product = require("../models/Product.model");
+const User = require("../models/User.model");
 
 router.get("/", (req, res) => {
     Product.find()
@@ -61,4 +62,13 @@ router.put("/edit-product/:id", (req, res) => {
     .catch((err) => res.status(500).json({ err, errMessage: "Error to delete product" }));
   });
   
+  
+router.put("/push-favorite/:id"), (req,res) => {
+ const { id } = req.params;
+    User.findByIdAndUpdate({owner: req.session.currentUser._id}, {$push: {productLike: id}}, {new:true}) 
+      .then((user) =>  console.log(user))
+      .catch((err) => res.status(500).json({ err, errMessage: "Error to push productLike"}))
+  
+};
+
   module.exports = router;

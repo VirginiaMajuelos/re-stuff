@@ -21,6 +21,7 @@ import ShowReview from "../Review/ShowReview";
     this.reviewService= new ReviewService()
     }
 
+
   openReview = () => {
     this.setState({
       mostrar: !this.state.mostrar
@@ -73,7 +74,7 @@ import ShowReview from "../Review/ShowReview";
             <Form.Control value={this.state.review.description} onChange={this.handelInputChangeReview} name="description" type="text"/>
         <Button variant="secondary" type='submit' style={{margin: '10px'}} onClick={this.closeModal}>Send comments </Button>         
         </Form.Group>
-        <ShowReview reviewOwner={this.props.loggedUser}></ShowReview>
+        <ShowReview productId={this.props.productId} reviewOwner={this.props.loggedUser}></ShowReview>
         </Form>}
     </Col>
  </Container>

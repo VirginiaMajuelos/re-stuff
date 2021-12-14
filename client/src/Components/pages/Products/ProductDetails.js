@@ -26,7 +26,7 @@ import NewReview from "../Review/NewReview";
         owner:"",
       
       mostrar: false,
-      loading: false
+      loading: false,
     }
 
     this.service = new ProductService()
