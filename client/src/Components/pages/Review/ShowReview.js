@@ -8,10 +8,7 @@ class showReview extends Component {
       super(props)
 
       this.state = {
-        review:[{
-        description: "",
-        
-        }],
+        productReviews: [],
     }
 
     this.reviewService= new ReviewService()
@@ -19,20 +16,38 @@ class showReview extends Component {
 
   componentDidMount () {
     this.reviewService.getReview()
-    .then(response=> {
-         // const this.state.review = response.data
-     console.log(response.data)
-      this.setState({review: response.data})
+    .then(response => {
+     // const this.state.review = response.data
+     const filteredProducts = response.data.filter(review => review.idProduct === this.props.productId)
+     console.log("aaaaaaaa", filteredProducts)
+     console.log("este es el id del producto", this.props.productId)
+     this.setState({productReviews: filteredProducts})
     })
     .catch(err => console.log(err))
   }
+
+
+    //  componentDidMount = () => {
+  // this.refreshReview()
+  // }
+  
+//  refreshReview = () => {
+//      this.reviewService.getReview()
+//        .then(response => {
+//          const filteredReview = response.data.filter(el => response.data.some(elm => el.reviewOwner.username === this.props.loggedUser._id))  
+//          this.setState({request: filteredReview}) 
+//          console.log('que pasa',this.response)
+//         })
+//        .catch(err => console.log(err))
+//    }
+ 
 
        render(){
        return (
  <Container >
  <div>                 
-     {this.state.review && this.state.review.map((review)=> (
-<div className="review">"{review.description}", <br></br>From: {review.reviewOwner?.username}</div>))}  
+     {this.state.productReviews && this.state.productReviews.map((review)=> (
+<div className="review">"{review.description}", <br></br>From username: {review.reviewOwner?.username}</div>))}  
 </div> 
             
 

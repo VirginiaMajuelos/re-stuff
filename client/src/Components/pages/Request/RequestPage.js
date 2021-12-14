@@ -22,10 +22,7 @@ class RequestPage extends Component {
      this.requestService.getRequest()
        .then(response => {
       
-        console.log("Logged user", this.props.loggedUser._id)
-        console.log("info que recibe", response.data)
-        const filteredRequest = response.data.filter(el => response.data.some(elm => el.idProduct.owner === this.props.loggedUser._id) && el.isAccept !== 'ACCEPTED')
-        console.log('filtered requests:', filteredRequest)
+        const filteredRequest = response.data.filter(el => response.data.some(elm => el.idProduct.owner === this.props.loggedUser._id) && el.isAccept !== 'ACCEPTED')  
         this.setState({request: filteredRequest}) 
        })
        .catch(err => console.log(err))

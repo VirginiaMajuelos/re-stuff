@@ -15,8 +15,7 @@ router.get('/all-reviews', (req, res) => {
 router.post("/create-reviews", (req, res) => {
     let { description } = req.body
     const { id } = req.query;
-    // rating || (rating = 4)
-
+    
     Review.create({  description, idProduct: id, reviewOwner: req.session.currentUser._id })
         .then(newReview => res.status(200).json(newReview))
         .catch(err => res.status(500).json(err))
