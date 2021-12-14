@@ -1,0 +1,11 @@
+.review {
+  width: 90%;
+  height: 70px;
+  margin: 30px;
+  border: 1px solid #245f5a;
+  border-radius: 6px;
+  text-align: left;
+  padding-left: 15px;
+  box-shadow: 4px 4px 10px #245f5aab;
+  padding-top: 20px;
+}

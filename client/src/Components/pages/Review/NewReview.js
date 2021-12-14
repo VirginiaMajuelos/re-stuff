@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import {Link} from 'react-router-dom'
 import { Container, Row, Col, Button, Modal, Form } from "react-bootstrap";
 import ReviewService from '../../../services/review.service';
+import ShowReview from "../Review/ShowReview";
 
  class NewReview extends Component {
     constructor(props) {
       super(props)
 
       this.state = {
-    
         review:[{
         description: "",
         }],
@@ -41,9 +41,10 @@ import ReviewService from '../../../services/review.service';
 
  handleSubmitReview = (e) => {
     e.preventDefault();
-    this.reviewService.createReview(this.state._id, this.state.review)
+    this.reviewService.createReview(this.props.productId, this.state.review)
       .then(res => {
-        this.props.history.push("/products")
+        console.log('llego', res)
+        // this.props.history.push("/products")
       })
       .catch((err) => console.log(err))
   }
@@ -69,9 +70,10 @@ import ReviewService from '../../../services/review.service';
         <Form onSubmit={this.handleSubmitReview}>
         <Form.Group>
             <Form.Label>Comments</Form.Label>
-            <Form.Control value={this.state.review.description} onChange={this.handelInputChangeReview} name="description" type="text" />
-        </Form.Group>
+            <Form.Control value={this.state.review.description} onChange={this.handelInputChangeReview} name="description" type="text"/>
         <Button variant="secondary" type='submit' style={{margin: '10px'}} onClick={this.closeModal}>Send comments </Button>         
+        </Form.Group>
+        <ShowReview reviewOwner={this.props.loggedUser}></ShowReview>
         </Form>}
     </Col>
  </Container>

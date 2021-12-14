@@ -6,7 +6,7 @@ import UploadService from '../../../services/upload.service';
 import './ProductDetails.css'
 import imgback from '../../../img/arrow.png'
 import NewReview from "../Review/NewReview";
-import ShowReview from "../Review/ShowReview";
+
 
   class ProductDetails extends Component {
     constructor(props) {
@@ -24,11 +24,6 @@ import ShowReview from "../Review/ShowReview";
         cityProduct: "",
         postCode: "",
         owner:"",
-
-        review:[{
-        description: "",
-        }],
-
       
       mostrar: false,
       loading: false
@@ -91,11 +86,8 @@ import ShowReview from "../Review/ShowReview";
   handleInputChange = (e) => {
   const { name, value } = e.currentTarget
 
-  this.setState({ 
-      product: {
-        ...this.state.product,
-        [name]: value 
-      }
+  this.setState({
+        [name]: value
     })
   }
 
@@ -109,10 +101,7 @@ import ShowReview from "../Review/ShowReview";
       .uploadImage(uploadData)
       .then(response => 
         this.setState({
-          product: {
-            ...this.state.product,
-            imageUrl: response.data.cloudinary_url
-          },
+            imageUrl: response.data.cloudinary_url,
           loading: false
         })
       )
@@ -140,14 +129,14 @@ import ShowReview from "../Review/ShowReview";
               <Button as={Link} variant="secondary" to={'/products'}><img src={imgback} alt='back' style={{ width:'10px'}}/></Button>
               </article>
           </Col>
-          <Col md={5} style={{ overflow: "hidden", height:'300px'}}>
+          <Col md={5} >
             <img src={imageUrl} alt={name} />
           </Col>
         </Row>
           <Col md={12}>
-          <NewReview/>
-          <ShowReview/>
+          <NewReview history={this.props.history} productId={this.state._id} reviewOwner={this.props.loggedUser}/>
           </Col>
+          
 
         <Modal show={this.state.showModal} >
           <Modal.Header onClick={this.closeModal}>
@@ -158,7 +147,7 @@ import ShowReview from "../Review/ShowReview";
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group className="mb-3" controlId="imageUrl">
                   <Form.Label>Imagen</Form.Label>
-                  <Form.Control onChange={this.handleInputChange}  name="imageUrl" type="file" />
+                  <Form.Control onChange={this.handleUploadChange}  name="imageUrl" type="file" />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="name">
