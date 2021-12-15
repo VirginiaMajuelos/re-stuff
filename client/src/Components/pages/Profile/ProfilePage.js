@@ -106,7 +106,7 @@ class ProfilePage extends Component {
        this.setState({ products: products })
       })
       .catch(err => console.log(err))
-}
+  }
 
   render() {   
   return (

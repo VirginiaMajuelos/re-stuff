@@ -31,7 +31,7 @@ Accept = () => {
     .catch(err => console.log(err))    
   }
 
-  Deny = (e, _id) => {
+Deny = (e, _id) => {
     e.preventDefault();
     this.requestService.deleteRequest(this.state.idRequest)
       .then(response => {
@@ -40,7 +40,7 @@ Accept = () => {
       .catch(err => console.log(err))
     }
 
-  refreshProducts = () => {
+refreshProducts = () => {
     this.productService.getAllProducts()
       .then(response => {
        const products = response.data

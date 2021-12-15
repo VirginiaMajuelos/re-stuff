@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Container } from 'react-bootstrap'
 import RequestCard from './RequestCard'
 import RequestService from '../../../services/request.service'
 
@@ -30,12 +29,12 @@ class RequestPage extends Component {
   
  render() {
     return (
-      <Container >
+      <div style={{width: '100%'}}>
                <h1 className="textTitle">Your request</h1> <hr className="list"></hr>
                 <div style={{display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center'}}>
                  {this.state.request.map(elm => (elm.idProduct && <RequestCard key={elm._id} loggedUser={this.props.loggedUser} owned={this.props.loggedUser?._id === elm.owner} refreshRequests ={this.refreshRequests} {...elm}/>))}
                 </div>
-      </Container>
+      </div>
     )
   }
 }

@@ -4,56 +4,42 @@ import ReviewService from '../../../services/review.service';
 import './ShowReview.css'
 
 class showReview extends Component {
-    constructor(props) {
-      super(props)
+  constructor(props) {
+    super(props)
 
-      this.state = {
-        productReviews: [],
+    this.state = {
+      productReviews: [],
     }
 
-    this.reviewService= new ReviewService()
-      }
+    this.reviewService = new ReviewService()
+  }
 
-  componentDidMount () {
-    this.reviewService.getReview()
-    .then(response => {
-     // const this.state.review = response.data
-     const filteredProducts = response.data.filter(review => review.idProduct === this.props.productId)
-     console.log("aaaaaaaa", filteredProducts)
-     console.log("este es el id del producto", this.props.productId)
-     this.setState({productReviews: filteredProducts})
-    })
-    .catch(err => console.log(err))
+  componentDidMount() {
+    this.filterReviews()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.productReviews?.length !== prevProps.productReviews?.length ) {
+      this.filterReviews()
+    }
   }
 
 
-    //  componentDidMount = () => {
-  // this.refreshReview()
-  // }
-  
-//  refreshReview = () => {
-//      this.reviewService.getReview()
-//        .then(response => {
-//          const filteredReview = response.data.filter(el => response.data.some(elm => el.reviewOwner.username === this.props.loggedUser._id))  
-//          this.setState({request: filteredReview}) 
-//          console.log('que pasa',this.response)
-//         })
-//        .catch(err => console.log(err))
-//    }
- 
+  filterReviews() {
+    const filteredProducts = this.props.productReviews?.filter(review => review.idProduct === this.props.productId)
+    this.setState({ productReviews: filteredProducts })
+  }
 
-       render(){
-       return (
- <Container >
- <div>                 
-     {this.state.productReviews && this.state.productReviews.map((review)=> (
-<div className="review">"{review.description}", <br></br>From username: {review.reviewOwner?.username}</div>))}  
-</div> 
-            
-
- </Container>
-       )  
-    }
+  render() {
+    return (
+      <Container>
+        <div>
+          {this.state.productReviews.map((review) => (
+            <div className="review">"{review.description}", <br></br>From username: {review.reviewOwner?.username}</div>))}
+        </div>
+      </Container>
+    )
+  }
 }
 
-    export default showReview
+export default showReview

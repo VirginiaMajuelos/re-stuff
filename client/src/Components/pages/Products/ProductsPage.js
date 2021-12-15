@@ -23,7 +23,7 @@ class ProductPage extends Component {
   if (this.props.products !== prevProps.products) {
     this.setState({products: this.props.products})
   }
-}
+ }
   
  refreshProducts = () => {
 

@@ -6,6 +6,8 @@ import UploadService from '../../../services/upload.service';
 import './ProductDetails.css'
 import imgback from '../../../img/arrow.png'
 import NewReview from "../Review/NewReview";
+import ReviewService from '../../../services/review.service';
+
 
 
   class ProductDetails extends Component {
@@ -31,7 +33,7 @@ import NewReview from "../Review/NewReview";
 
     this.service = new ProductService()
     this.uploadService = new UploadService()
-    
+    this.reviewService= new ReviewService()  
 
   }
 
@@ -51,6 +53,7 @@ import NewReview from "../Review/NewReview";
 // };
 
   componentDidMount() {
+ 
     const id = this.props.match.params.id
     this.service.getOneProduct(id)
     .then(response => {
@@ -58,6 +61,18 @@ import NewReview from "../Review/NewReview";
         this.setState({ _id, imageUrl, name, description, status, categorie, cityProduct, postCode, owner })
       })
       .catch(err => console.log(err))
+  }
+
+  refreshReview = () => {
+    this.reviewService.getReview()
+    .then(response => {
+     // const this.state.review = response.data
+     const filteredProducts = response.data.filter(review => review.idProduct === this.props.productId)
+     console.log("vamos a refresh", filteredProducts)
+     this.setState({productReviews: filteredProducts})
+   
+    })
+    .catch(err => console.log(err))
   }
 
   openModal = () => {
@@ -91,11 +106,11 @@ import NewReview from "../Review/NewReview";
     })
   }
 
-    handleUploadChange = (e) => {
-    this.setState({ ...this.state, loading: true })
+  handleUploadChange = (e) => {
+  this.setState({ ...this.state, loading: true })
 
-    const uploadData = new FormData()
-    uploadData.append('imageData', e.target.files[0])
+  const uploadData = new FormData()
+  uploadData.append('imageData', e.target.files[0])
 
     this.uploadService
       .uploadImage(uploadData)

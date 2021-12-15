@@ -12,6 +12,10 @@
   /* background-color: #5442bb; */
 }
 
+a .navlink :hover, a .nav-bar :hover{
+  color: black;
+text-decoration: underline;
+}
 
 .gradient {
   background-image: linear-gradient(
