@@ -16,7 +16,7 @@ router.post('/send-email', (req, res, next) => {
       if(isAccepted === 'ACCEPTED'){
             const message =
               "Your rent request has been accept. The productOwner contact you for email or whatsapp. A cool option is that you can write a review when you finish rent. Enjoy it!";
-        } else {
+        } else if (isAccepted === 'DENY'){
             const message ="Sorry! Your rent request has benn deny. The productOwner can't accept your rent to that day. Try it with other date or other products. See you!";
         };
 
