@@ -25,23 +25,7 @@ class showReview extends Component {
     })
     .catch(err => console.log(err))
   }
-
-
-    //  componentDidMount = () => {
-  // this.refreshReview()
-  // }
   
-//  refreshReview = () => {
-//      this.reviewService.getReview()
-//        .then(response => {
-//          const filteredReview = response.data.filter(el => response.data.some(elm => el.reviewOwner.username === this.props.loggedUser._id))  
-//          this.setState({request: filteredReview}) 
-//          console.log('que pasa',this.response)
-//         })
-//        .catch(err => console.log(err))
-//    }
- 
-
        render(){
        return (
  <Container >

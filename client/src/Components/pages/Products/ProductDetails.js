@@ -37,19 +37,6 @@ import NewReview from "../Review/NewReview";
 
   capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   
-//   Rating = () => {
-//   let number = ();
-//   return (
-//     <div className="Rating">
-//       {number >= 1 ? '★' : '☆'}
-//       {number >= 2 ? '★' : '☆'}
-//       {number >= 3 ? '★' : '☆'}
-//       {number >= 4 ? '★' : '☆'}
-//       {number >= 5 ? '★' : '☆'}
-//     </div>
-//   );
-// };
-
   componentDidMount() {
     const id = this.props.match.params.id
     this.service.getOneProduct(id)

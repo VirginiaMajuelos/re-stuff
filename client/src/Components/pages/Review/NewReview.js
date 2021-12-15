@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import {Link} from 'react-router-dom'
-import { Container, Row, Col, Button, Modal, Form } from "react-bootstrap";
+// import {Link} from 'react-router-dom'
+import { Container, Col, Button, Form } from "react-bootstrap";
 import ReviewService from '../../../services/review.service';
 import ShowReview from "../Review/ShowReview";
 
@@ -12,15 +12,12 @@ import ShowReview from "../Review/ShowReview";
         review:[{
         description: "",
         }],
-
       
       mostrar: false,
-
     }
 
     this.reviewService= new ReviewService()
     }
-
 
   openReview = () => {
     this.setState({

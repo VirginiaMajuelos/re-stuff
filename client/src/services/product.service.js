@@ -13,9 +13,9 @@ class ProductService {
   getProductsSearch = (name, city) => this.app.get(`/product/${name}/${city}`)
   getOneProduct = (id) => this.app.get(`/details-product/${id}`)
   createProduct = (productData) => this.app.post("/create-new-product", productData)
-  editProduct = (id, data) => this.app.put (`/edit-product/${id}`, data)
-  deleteProduct = (id) => this.app.delete (`/delete-product/${id}`)
-  favoriteProduct = (id) => this.app.put (`/push-favorite/${id}`)
+  editProduct = (id, data) => this.app.put(`/edit-product/${id}`, data)
+  deleteProduct = (id) => this.app.delete(`/delete-product/${id}`)
+  favoriteProduct = (id) => this.app.put(`/push-favorite/${id}`)
 }
 
 export default ProductService

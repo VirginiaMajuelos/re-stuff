@@ -2,11 +2,12 @@
   box-shadow: 4px 4px 10px #245f5aab;
   margin-bottom: 55px;
   transition: 1s;
+  justify-content: space-between;
 }
 
 .card-type:hover {
   background-color: #dfdfc9bd;
-  transform: scale(1.2);
+  transform: scale(1.1);
   transition: 0.8s;
 }
 

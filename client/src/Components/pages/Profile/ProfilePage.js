@@ -116,7 +116,7 @@ class ProfilePage extends Component {
         <>
           <Card className="text-center">
             <Card.Header><Card.Title>
-            <h1 className="textTitle">Profile:  {this.props.loggedUser.username}</h1> <hr className="list"></hr>
+            <h1 className="textTitle">Profile:  {this.props.loggedUser.username}</h1> 
             </Card.Title></Card.Header>
             <Card.Body>
                 <Card.Img variant="top" src={this.props.loggedUser.imageUser} style={{width:'200px', borderRadius: '45px' }}/>
@@ -131,8 +131,8 @@ class ProfilePage extends Component {
 
                  {this.props.loggedUser.description && <Card.Text><span>Description: </span>{this.props.loggedUser.description}</Card.Text>}
 
-                 <Card.Text> Do you want edit your profile?</Card.Text>
-                <Card.Text><Button onClick={this.openModal} variant="primary">Editar</Button></Card.Text>
+                 <Card.Text> <h3> Do you want edit your profile?</h3></Card.Text>
+                <Card.Text><Button onClick={this.openModal} variant="secondary">Edit profile</Button></Card.Text>
 
                 <Card.Text><span>Products: </span></Card.Text>
                 <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>                 
@@ -150,7 +150,7 @@ class ProfilePage extends Component {
 
           <Modal show={this.state.showModal} >
             <Modal.Header onClick={this.closeModal}>
-              <Modal.Title>Formulario</Modal.Title>
+              <Modal.Title>Edit your user!</Modal.Title>
             </Modal.Header>
             <Modal.Body>   
                 <Form onSubmit={this.handleSubmit}>
@@ -180,7 +180,7 @@ class ProfilePage extends Component {
                     <Form.Control onChange={this.handleUploadChange} name="imageUser" type="file" />
                   </Form.Group>
 
-                  <Button variant="secondary" onClick={this.closeModal}>
+                  <Button style={{margin: '5px' }}variant="secondary" onClick={this.closeModal}>
                     Close
                   </Button>
                   <Button variant="primary" type='submit' onClick={this.closeModal}>

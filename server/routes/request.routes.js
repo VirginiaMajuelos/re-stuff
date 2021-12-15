@@ -4,6 +4,8 @@ const Product = require("../models/Product.model")
 
 const { populate } = require("../models/Product.model", "../models/User.model");
 
+const transporter = require("../config/nodemailer.config")
+
 router.get("/all-requests", (req, res) => {
    Request.find()
          .populate("requestOwner idProduct")
@@ -48,5 +50,9 @@ router.delete("/delete-request/:id", (req, res) => {
     .catch((err) => res.status(500).json({ err, errMessage: "Error to delete request" }));
   });
   
+
+
+
+
 module.exports = router
 
