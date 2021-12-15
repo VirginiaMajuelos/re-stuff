@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Form, Button, Container, Row } from 'react-bootstrap'
 import RequestService from '../../../services/request.service'
 import './NewRequest.css'
+import swal from 'sweetalert';
+
 
 export default class NewRequest extends Component {
   constructor(props) {
@@ -36,6 +38,15 @@ export default class NewRequest extends Component {
     this.setState({ [name]: value })
   }
 
+ showAlert = () => {
+  swal({
+    title: 'Request sent',
+    text: 'Soon, the productOwner will contact you by Email',
+    icon: 'success',
+    button: 'okey! 👌'
+  })
+}
+
   render() {
     return (
       <Container className="container-newproduct">
@@ -56,7 +67,9 @@ export default class NewRequest extends Component {
           <Form.Control onChange={this.handleInputChange} value={this.state.comments} name="comments" type="text" />
         </Form.Group>
 
-        <Button variant="secondary" type="submit">Enviar</Button>
+        <Button variant="secondary" type="submit" onClick={() => this.showAlert()}>Sent</Button>
+
+        
       </Form>
       </Row>
       </Container>

@@ -7,10 +7,6 @@ function SearchCity(props) {
 			<div className="search-container">
 				<input type="search" name="search" onChange={props.onCity()}></input>
 			</div>
-			{/* <div className="checkbox">
-				<label>Show products on Stock</label>
-				<input type="checkbox" name="checkbox" onChange={props.onStock()}></input>
-			</div> */}
 		</div>
 	);
 }

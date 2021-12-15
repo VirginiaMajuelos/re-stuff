@@ -63,12 +63,12 @@ router.put("/edit-product/:id", (req, res) => {
   });
   
   
-router.put("/push-favorite/:id"), (req,res) => {
+router.put("/push-favorite/:id", (req,res) => {
  const { id } = req.params;
-    User.findByIdAndUpdate({owner: req.session.currentUser._id}, {$push: {productLike: id}}, {new:true}) 
-      .then((user) =>  console.log(user))
+    User.findByIdAndUpdate(req.session.currentUser._id, {$push: {productLike: id}}, {new:true}) 
+      .then((user) =>  res.status(200).json(user))
       .catch((err) => res.status(500).json({ err, errMessage: "Error to push productLike"}))
   
-};
+});
 
   module.exports = router;

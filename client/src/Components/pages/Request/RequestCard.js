@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button , Card} from 'react-bootstrap'
 import ProductService from '../../../services/product.service'
 import RequestService from '../../../services/request.service'
+import NodemailerService from '../../../services/nodemailer.service'
 
 class RequestCard extends Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class RequestCard extends Component {
       }
       this.productService = new ProductService(); 
       this.requestService = new RequestService(); 
+      this.nodemailerService = new NodemailerService();
 }
 
 componentDidMount () {
@@ -27,15 +29,21 @@ Accept = () => {
     this.requestService.editRequestStatus(this.state.idRequest, {isAccept: 'ACCEPTED', idProduct: this.state.idProduct} )
     .then(response => {
       this.props.refreshRequests()
+      this.nodemailerService.sendEmail(this.state.idRequest, {isAccept: 'ACCEPTED', idProduct: this.state.idProduct})
+      // Llamar al back a la ruta de enviar correo y pasarle: idRequest, accepted
+    console.log('aceptadaaaaaaaaaaaaa', response)
     })
     .catch(err => console.log(err))    
   }
-
-Deny = (e, _id) => {
+  
+  Deny = (e, _id) => {
     e.preventDefault();
     this.requestService.deleteRequest(this.state.idRequest)
       .then(response => {
         this.props.refreshRequests()
+        this.nodemailerService.sendEmail(this.state.idRequest, {isAccept: 'DENY', idProduct: this.state.idProduct})
+        // Llamar al back a la ruta de enviar correo y pasarle: idProduct, denied
+      console.log('denegada', response)
       })
       .catch(err => console.log(err))
     }
