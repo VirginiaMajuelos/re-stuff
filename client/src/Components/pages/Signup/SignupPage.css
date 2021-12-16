@@ -1,10 +1,9 @@
 .container-signup {
-  border-radius: 10px;
-  margin: 50px 50px;
-  padding: 40px;
-  height: 100%;
-  box-shadow: 4px 4px 10px #245f5aab;
-  background-color: #dfdfc9bd;
+  padding: 20px;
+  background-color: #e0e0ca;
+  border-radius: 15px;
+  background: #e0e0ca;
+  box-shadow: 20px 20px 60px #bebeac, -20px -20px 60px #ffffe8;
 }
 
 .text {

@@ -1,36 +1,37 @@
-import React, { Component } from 'react'
-import { Container, Form, Button, Row, Col } from 'react-bootstrap'
-import AuthService from '../../../services/auth.service'
-import './LoginPage.css';
-import image from '../../../img/img.png'
+import React, { Component } from "react";
+import { Container, Form, Button, Row, Col } from "react-bootstrap";
+import AuthService from "../../../services/auth.service";
+import "./LoginPage.css";
+import image from "../../../img/img.png";
 
 class LoginPage extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       email: "",
-      password: ""
-    }
+      password: "",
+    };
 
-    this.authService = new AuthService()
+    this.authService = new AuthService();
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.authService.login(this.state.email, this.state.password)
-      .then(response => {
-        this.props.storeUser(response.data)
-        this.props.history.push("/")
+    this.authService
+      .login(this.state.email, this.state.password)
+      .then((response) => {
+        this.props.storeUser(response.data);
+        this.props.history.push("/");
       })
-      .catch(err => console.log(err.response.data.message))
-  }
+      .catch((err) => console.log(err.response.data.message));
+  };
 
   handleInputChange = (e) => {
-    const { name, value } = e.currentTarget
+    const { name, value } = e.currentTarget;
 
-    this.setState({ [name]: value })
-  }
+    this.setState({ [name]: value });
+  };
 
   render() {
     return (
@@ -66,23 +67,6 @@ class LoginPage extends Component {
         </Container>)
     )
   }
-
 }
 
-export default LoginPage
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default LoginPage;

@@ -6,6 +6,7 @@ require("./db");
 
 require("./config")(app);
 require("./config/session.config")(app);
+require ("./config/nodemailer.config");
 require("./config/cloudinary.config");
 
 require("./routes")(app);

@@ -4,4 +4,5 @@ module.exports = app => {
   app.use("/requests", require("./request.routes"));
   app.use("/upload", require("./uploads.routes"));
   app.use("/reviews", require ("./review.routes"));
+  app.use("/send-email", require("./nodemailer.routes"));
 }

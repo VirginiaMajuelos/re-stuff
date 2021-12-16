@@ -1,15 +1,15 @@
-import axios from 'axios'
+import axios from "axios";
 
 class AuthService {
   constructor() {
     this.app = axios.create({
-      baseURL: 'http://localhost:5005',
-      withCredentials: true
-    })
+      baseURL: "http://localhost:5005",
+      withCredentials: true,
+    });
   }
 
-  sendEmail = (idRequest, isAccepted) => this.app.post("/send-email", {idRequest, isAccepted })
- 
+  sendEmail = (idRequest, isAccept, idProduct) =>
+    this.app.post("/send-email", { idRequest, isAccept, idProduct });
 }
 
-export default AuthService
+export default AuthService;

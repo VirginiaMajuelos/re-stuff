@@ -12,12 +12,13 @@
   /* background-color: #5442bb; */
 }
 
-a .navlink :hover, a .nav-bar :hover{
+a .navlink :hover,
+a .nav-bar :hover {
   color: black;
-text-decoration: underline;
+  text-decoration: underline;
 }
 
-.gradient {
+.gradient-nav {
   background-image: linear-gradient(
     90deg,
     #e0e0ca 30%,
@@ -30,7 +31,11 @@ text-decoration: underline;
   -webkit-background-clip: text;
   animation: move 2s infinite;
   text-align: center;
-  
+}
+
+.right {
+  position: relative !important;
+  left: 220%;
 }
 
 .main-home {

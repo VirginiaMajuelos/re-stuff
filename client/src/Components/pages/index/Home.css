@@ -28,11 +28,10 @@ label {
     #649c94 100%
   );
   color: transparent;
-  font-size: 20vmin;
+  font-size: 10vmin;
   -webkit-background-clip: text;
   animation: move 2s infinite;
   text-align: center;
-  padding-top: 40px;
 }
 
 .main-home {
