@@ -23,7 +23,7 @@ class ProductPage extends Component {
   if (this.props.products !== prevProps.products) {
     this.setState({products: this.props.products})
   }
- }
+}
   
  refreshProducts = () => {
 
@@ -44,7 +44,7 @@ class ProductPage extends Component {
     return (
       <Container >
       <h1 className="textTitle">Products</h1> <hr className="list"></hr>
-      <ProductList refreshProducts={this.refreshProducts} products={this.state.products} />
+      <ProductList loggedUser={this.props.loggedUser} refreshProducts={this.refreshProducts} products={this.state.products} />
       </Container>
     )
   }

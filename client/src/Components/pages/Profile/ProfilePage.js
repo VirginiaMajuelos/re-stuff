@@ -36,14 +36,11 @@ class ProfilePage extends Component {
   }
 
   refreshRequests = () => {
-    this.productService.getProductsByOwner(this.props.loggedUser._id)
+    this.productService.getProductsByOwner(this.props.loggedUser?._id)
     .then(response => {
       this.requestService.getRequest()
       .then(res => {
-         console.log('products:', response.data)
-         console.log('requests:', res.data)
          const filteredRequest = res.data.filter(el => response.data.some(elm => el.idProduct._id === elm._id) && el.isAccept !== 'ACCEPTED')
-         console.log('filtered requests:', filteredRequest)
          this.setState({requests: filteredRequest,  products: response.data })
        })
        .catch(err => console.log(err))
@@ -67,7 +64,6 @@ class ProfilePage extends Component {
     e.preventDefault();
     this.authService.editProfile(this.props.loggedUser._id, this.state.user)
       .then(response => {
-        console.log(response)
         this.props.storeUser(response.data);
       })
       .catch(err => console.log(err))
@@ -76,7 +72,7 @@ class ProfilePage extends Component {
   handleInputChange = (e) => {
     const { name, value } = e.currentTarget
 
-    this.setState({ [name]: value })
+    this.setState({ user:{[name]: value} })
   }
 
   handleUploadChange = (e) => {
@@ -136,7 +132,7 @@ class ProfilePage extends Component {
 
                 <Card.Text><span>Products: </span></Card.Text>
                 <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>                 
-                  {this.state.products.map(elm => (<ProductsCard key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm} />))}
+                  {this.state.products.map(elm => (<ProductsCard loggedUser={this.props.loggedUser} key={elm._id} owned={this.props.loggedUser?._id === elm.owner} {...elm} />))}
                 </div>              
                 
                 <Card.Text > <span>Requests: </span> </Card.Text>
@@ -161,7 +157,7 @@ class ProfilePage extends Component {
 
                   <Form.Group className="mb-3" controlId="description">
                     <Form.Label>Description</Form.Label>
-                    <Form.Control onChange={this.handleInputChange} value={this.state.user._iddescription} placeholder={this.props.loggedUser.description} name="description" type="text" />
+                    <Form.Control onChange={this.handleInputChange} value={this.state.user.description} placeholder={this.props.loggedUser.description} name="description" type="text" />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="bankAccount">

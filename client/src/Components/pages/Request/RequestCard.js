@@ -22,16 +22,14 @@ class RequestCard extends Component {
 }
 
 componentDidMount () {
-  console.log(this.props)
+  this.props.refreshRequests()
 }
 
 Accept = () => {   
     this.requestService.editRequestStatus(this.state.idRequest, {isAccept: 'ACCEPTED', idProduct: this.state.idProduct} )
     .then(response => {
       this.nodemailerService.sendEmail(this.state.idRequest, {isAccept: 'ACCEPTED', idProduct: this.state.idProduct})
-      console.log('aceptadaaaaaaaaaaaaa', response)
       this.props.refreshRequests()
-      // Llamar al back a la ruta de enviar correo y pasarle: idRequest, accepted
     })
     .catch(err => console.log(err))    
   }
@@ -40,10 +38,8 @@ Accept = () => {
     e.preventDefault();
     this.requestService.deleteRequest(this.state.idRequest)
       .then(response => {
-        console.log('denegada', response)
         this.nodemailerService.sendEmail(this.state.idRequest, {isAccept: 'DENY', idProduct: this.state.idProduct})
         this.props.refreshRequests()
-        // Llamar al back a la ruta de enviar correo y pasarle: idProduct, denied
       })
       .catch(err => console.log(err))
     }

@@ -21,5 +21,15 @@
 }
 
 .boton-type {
+  /* opacity: 0.7;
+  margin-left: 1.3em;
+  font-size: 1.8em;
+  transition: 0.2s;
+  padding: 0.65em;
+  border-radius: 50%;
+  display:grid;
+  place-items: center;
+  background: #d4dbe8;
+  box-shadow: -11px -11ox 25px rgba(255, 255, 255, 0.35), 11px 13px 25px rgba(165, 181, 208, 0.738227); */
   margin: 2px;
 }

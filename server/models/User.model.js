@@ -41,7 +41,7 @@ const userSchema = new Schema(
   
     imageUser: {
       type: String,
-      default: '/images/person-icon-default.png'
+      default: 'https://res.cloudinary.com/dhn7lkwbd/image/upload/v1639589185/legooo_xtsb5y.jpg'
     },
 
     productLike:[ {

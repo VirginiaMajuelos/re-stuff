@@ -1,6 +1,6 @@
 .textTitle {
   color: #245f5a;
-  font-size: 50px;
+  font-size: 7vmin;
   margin: 20px;
   text-align: center;
 }
@@ -11,6 +11,9 @@
   margin-bottom: 15px;
   padding: 40px;
   margin: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 img {
@@ -28,19 +31,19 @@ img {
 
   img {
     order: 1;
-    width: 50%;
     object-fit: contain;
     margin-right: 20px;
   }
+  .column1 {
+    order: 2;
+  }
+  
+  .column2 {
+    order: 3;
+  }
+  
 }
 
-.column1 {
-  order: 2;
-}
-
-.column2 {
-  order: 3;
-}
 
 .textColumn {
   padding-left: 40px;

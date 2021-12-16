@@ -35,7 +35,7 @@ class LoginPage extends Component {
   render() {
     return (
       (
-        <Container sytle={{backgroundColor: 'f9f8ee' }}>
+        <Container sytle={{backgroundColor: 'f9f8ee', height: '100vh' }}>
           <Row style={{marginTop: '100px'}}>
             
             <Col className="container-login" s={{ span: 4, offset: 4 }}>

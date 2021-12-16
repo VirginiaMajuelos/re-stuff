@@ -118,7 +118,12 @@ import ReviewService from '../../../services/review.service';
       <Container >
         <h1 className="textTitle">Details</h1> <hr className="list"></hr>
         <Row className="details">
-          <Col className="column1" md={7}>
+
+       
+        <Col md={4} >
+            <img src={imageUrl} alt={name} />
+        </Col>
+        <Col className="column1" md={7}>
             <article className="textColumn">
               <p className="name">{name} </p>
               <p><span>Description: </span>{this.capitalizeFirstLetter(description)}</p>
@@ -131,13 +136,14 @@ import ReviewService from '../../../services/review.service';
               <Button as={Link} variant="secondary" to={'/products'}><img src={imgback} alt='back' style={{ width:'10px'}}/></Button>
               </article>
           </Col>
-          <Col md={5} >
-            <img src={imageUrl} alt={name} />
-          </Col>
-        </Row>
-          <Col md={12}>
+         
+  
+          <Col md={12} lg={12} className="column2">
+          <hr></hr>
           <NewReview history={this.props.history} productId={this.state._id} reviewOwner={this.props.loggedUser}/>
           </Col>
+        </Row>
+          
           
 
         <Modal show={this.state.showModal} >

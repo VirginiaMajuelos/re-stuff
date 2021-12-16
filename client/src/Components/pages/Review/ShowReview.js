@@ -34,7 +34,7 @@ class showReview extends Component {
     return (
       <Container>
         <div>
-          {this.state.productReviews.map((review) => (
+          {this.state.productReviews.reverse().map((review) => (
             <div className="review">"{review.description}", <br></br>From username: {review.reviewOwner?.username}</div>))}
         </div>
       </Container>

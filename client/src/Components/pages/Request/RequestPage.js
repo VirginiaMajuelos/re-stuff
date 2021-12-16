@@ -32,7 +32,7 @@ class RequestPage extends Component {
       <div style={{width: '100%'}}>
                <h1 className="textTitle">Your request</h1> <hr className="list"></hr>
                 <div style={{display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center'}}>
-                 {this.state.request.map(elm => (elm.idProduct && <RequestCard key={elm._id} loggedUser={this.props.loggedUser} owned={this.props.loggedUser?._id === elm.owner} refreshRequests ={this.refreshRequests} {...elm}/>))}
+                 {this.state.request.map(elm => (elm.idProduct && <RequestCard key={elm._id} loggedUser={this.props.loggedUser} owned={this.props.loggedUser?._id === elm.owner} refreshRequest ={this.refreshRequest} {...elm}/>))}
                 </div>
       </div>
     )

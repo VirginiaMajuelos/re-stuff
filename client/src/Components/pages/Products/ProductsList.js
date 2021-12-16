@@ -19,7 +19,7 @@ class ProductsList extends Component {
           {this.props.products.map(elm => {
             return (
               <Col key={elm._id}>
-                <ProductsCard {...elm}  refreshProducts={this.props.refreshProducts} />
+                <ProductsCard {...elm} loggedUser={this.props.loggedUser}  refreshProducts={this.props.refreshProducts} />
               </Col>
                    )
             })

@@ -45,9 +45,9 @@ class App extends Component {
 
         <main  className={App}>
           <Switch>
-            <Route path="/" exact render={(props) => <Home {...props} storeUser={this.storeUser} />} />
+            <Route path="/" exact render={(props) => <Home {...props} storeUser={this.storeUser} loggedUser={this.state.loggedUser} />} />
             <Route path="/products/create-new-product" exact render={(props) => <NewProduct {...props} loggedUser={this.state.loggedUser} />} />
-            <Route path="/products" exact render={(props) => <ProductsPage {...props} storeUser={this.storeUser} />} />
+            <Route path="/products" exact render={(props) => <ProductsPage {...props} storeUser={this.storeUser}  loggedUser={this.state.loggedUser}/>} />
             <Route path="/products/edit-product/:id" exact render={(props) => <ProductEdit {...props} />} />
             <Route path="/products/request/:id" loggedUser={this.state.loggedUser} exact render={(props) => <ProductDetails loggedUser={this.state.loggedUser} {...props} />} />
             <Route path="/products/details-product/:id" exact render={(props) => <ProductDetails {...props} loggedUser={this.state.loggedUser}/>} />

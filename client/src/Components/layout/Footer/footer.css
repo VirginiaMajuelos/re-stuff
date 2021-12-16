@@ -2,13 +2,19 @@
    position:relative;
    bottom:0;
    width:100%;
-   height:40px;   /* Height of the footer */
-   background: #575756;
+   height:auto;   /* Height of the footer */
+   background: #649c94;
     text-align: center;
-    padding-top: 5px;
+    padding-top: 15px;
+    padding-bottom: 10px;
     color: white;
-    font-size: 2vmin;
+    font-size: 2.5vmin;
     font-weight: lighter;
+    margin-top: 30px;
+}
 
 
+.imgFooter{
+    width:30px;
+    padding-left:5%;
 }

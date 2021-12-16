@@ -60,48 +60,10 @@ class Home extends Component {
 
       <section className="section2">
 
-      <ProductsPage products={this.state.products} storeUser={this.storeUser} />
+      <ProductsPage loggedUser={this.props.loggedUser} products={this.state.products} storeUser={this.storeUser} />
       </section>
 
-      <section className="section1">
-          <h1 className="textTitle">How does it work?</h1> <hr className="list"></hr>
 
-        <div style={{ display:'flex', flexDirection: 'row' }}>
-            <Card style={{ margin:'10px' }}>
-                  <Card.Img variant="top" src={image01}  style={{ width:'85%', paddingLeft:'5%'}}/>
-                <Card.Body>
-                <Card.Title>Reuse</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
-                </Card.Text>
-              </Card.Body>
-              
-            </Card>
-
-            <Card style={{ margin:'10px' }} >
-            <Card.Img variant="top" src={image02}  style={{ width:'85%', paddingLeft:'5%'}}/>
-              <Card.Body>
-                <Card.Title>Security</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
-                </Card.Text>
-              </Card.Body>
-            </Card>
-            <Card style={{ margin:'10px' }}>
-            <Card.Img variant="top" src={image03}  style={{ width:'85%', paddingLeft:'5%'}}/>
-              <Card.Body>
-                <Card.Title>Life Change</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
-                </Card.Text>
-              </Card.Body>
-            </Card>
-       </div>
-     
-      </section>
     </>
   )
 }
