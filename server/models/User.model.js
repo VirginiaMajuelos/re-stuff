@@ -41,7 +41,7 @@ const userSchema = new Schema(
   
     imageUser: {
       type: String,
-      default: '/images/person-icon-default.png'
+      default: 'https://files.slack.com/files-pri/T02G2TV3KRT-F02QSBET7L5/legooo.jpeg'
     },
 
     productLike:[ {

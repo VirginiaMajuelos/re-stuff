@@ -3,8 +3,11 @@
   margin: 50px 50px;
   padding: 40px;
   height: 410px;
-  box-shadow: 4px 4px 10px #245f5aab;
-  background-color: #dfdfc9bd;
+  /* box-shadow: 4px 4px 10px #245f5aab;
+  background-color: #dfdfc9bd; */
+  border-radius: 15px;
+  background: #e0e0ca;
+  box-shadow: 20px 20px 60px #bebeac, -20px -20px 60px #ffffe8;
 }
 
 .image-login {
