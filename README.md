@@ -1,5 +1,23 @@
 # re-stuff
 
+## Website:
+
+Demo: https://re-stuff.herokuapp.com/
+
+## Description:
+Website about rental product between people. You can upload to product for rent o rent other products. The search bar allow search products for type or for cities.  The app allow reading review the other user about some products or you can write your review about experience. Also, you can send a request for rent. 
+
+## Technologies:
+
+-HTML 5
+-CSS 3
+-JAVASCRIPT
+-REACT
+-MONGO DB
+-EXPRESS 
+-NODE JS
+
+
 ### Endpoints
 
 | Route                                  | HTTP Verb | Description               |
@@ -27,3 +45,8 @@
 | `/products/chat`                       | GET       | Reading all chats in user |
 | `/products/chat`                       | POST      | Chat between users        |
 | `xxxxxxxxxxxxxx`                       | xxxx      | xxxxxxxxxxxxxxxxxxxxx     |
+
+## Aditional info:
+This project has been developed by Eunice Santiago y Virginia Majuelos as the final project of Ironhack's Web Development Bootcamp and it has been created in two weeks.
+
+
