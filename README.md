@@ -1,4 +1,4 @@
-# re-stuff
+# RE-STUFF
 
 ## Website:
 
@@ -9,13 +9,13 @@ Website about rental product between people. You can upload to product for rent 
 
 ## Technologies:
 
--HTML 5
--CSS 3
--JAVASCRIPT
--REACT
--MONGO DB
--EXPRESS 
--NODE JS
+-HTML 5 <br>
+-CSS 3  <br>
+-JAVASCRIPT  <br>
+-REACT  <br>
+-MONGO DB  <br>
+-EXPRESS  <br>
+-NODE JS <br>
 
 
 ### Endpoints
